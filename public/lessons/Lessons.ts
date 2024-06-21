@@ -1,4 +1,4 @@
-import { Code, Package, Database, Terminal, Eye, GitMerge, List, Box, RefreshCw, AlertCircle, FileText, Search, Layers, WrapText, CircleDashed, SquareTerminal, ArrowLeftRight, ListMinus, Plus, Coffee, CopyPlus } from 'lucide-react'; // Import icons as needed
+import { Code, Package, Database, Terminal, Eye, GitMerge, List, Box, RefreshCw, AlertCircle, FileText, Search, Layers, WrapText, CircleDashed, SquareTerminal, ArrowLeftRight, ListMinus, Plus, Coffee, CopyPlus, BadgeInfo } from 'lucide-react'; // Import icons as needed
 
 export const filters = [
     "Basics",
@@ -679,7 +679,7 @@ export const returnIcon = (iconName: string) => {
         case "Coffee":
             return Coffee;
         default:
-            return null; // Handle other cases or return null if no match
+            return BadgeInfo; // Handle other cases or return null if no match
     }
 
 };
