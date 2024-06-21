@@ -1,36 +1,45 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# JavaBrewed ♨️ - Efficient Learning for Computer Science Students
+JavaBrewed is an application designed to help Computer Science students learn faster and more efficiently. By utilizing diagrams and providing personalized support, JavaBrewed aims to enhance the learning experience and make complex topics more accessible.
 
-## Getting Started
+# Features
+* **Interactive Diagrams**: Visualize complex algorithms and data structures with interactive diagrams.
+Personalized Support: Receive tailored recommendations and support based on your learning progress and preferences.
+* **Comprehensive Content**: Access a wide range of topics in Computer Science, from basic concepts to advanced theories.
+* **Practice Problems**: Test your knowledge with a variety of practice problems and quizzes.
+* **Progress Tracking**: Monitor your learning progress and identify areas that need improvement.
 
-First, run the development server:
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+# Technology Stack
+JavaBrewed is built using the following technologies:
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+* **React**: A JavaScript library for building user interfaces.
+* **Next.js**: A React framework for server-side rendering and static web applications.
+* **Vercel**: A platform for frontend frameworks and static sites, used for deployment.
+* **lucide-react**: An icon library for React applications.
+* **shadcn** / **daisyui**: UI libraries for building beautiful and responsive user interfaces.
+* **react-flow-renderer**: A library for creating interactive diagrams.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+# How To Use
+* Head over to the site listed in the about page, or here: [LINK].
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+## Contributing
+We welcome contributions from the community! To contribute:
+1. Fork the repository.
+2. Create a new branch:
+    ```sh
+    git checkout -b feature-name
+    ```
+3. Make your changes and commit them:
+    ```sh
+    git commit -m "Add new feature"
+    ```
+4. Push to the branch:
+    ```sh
+    git push origin feature-name
+    ```
+5. Create a pull request and describe your changes in detail.
 
-## Learn More
+## License
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for more details.
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+**Start learning smarter and faster with JavaBrewed – your companion in mastering Computer Science.**
