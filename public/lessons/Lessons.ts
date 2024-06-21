@@ -65,13 +65,13 @@ export const WhatIsJava = {
         Step2: {
             QuestionType: "default",
             Boxes: {
-                Box1: { id: 'S2-1', position: {x: 180, y: 150}, data: {label: "Programmer 🧑‍💻"} },
-                Box2: { id: 'S2-2', position: {x: 430, y: 150}, data: {label: "Energy ⚡"} },
-                Box3: { id: 'S2-3', position: {x: 660, y: 150}, data: {label: "Code ♨️"} },
+                Box1: { id: 'S2-1', position: {x: 220, y: 150}, data: {label: "Energy ⚡"} },
+                Box2: { id: 'S2-2', position: {x: -30, y: 150}, data: {label: "Programmer 🧑‍💻"} },
+                Box3: { id: 'S2-3', position: {x: 380, y: 150}, data: {label: "Code ♨️"} },
             },
             Edges: {
-                Edge1: {id: 'S2-[1-2]', source: 'S2-1', target: 'S2-2', animated: true, label: "plus"},
-                Edge2: {id: 'S2-[2-3]', source: 'S2-2', target: 'S2-3', animated: true, label: "equals"}, 
+                Edge1: {id: 'S2-[1-2]', source: 'S2-1', target: 'S2-2', animated: true, label: "plus"}, 
+                Edge2: {id: 'S2-[1-3]', source: 'S2-1', target: 'S2-3', animated: true, label: "equals"},
             },
             Title: "How to install Java?",
             SubTitle: "How to install?",

@@ -1,6 +1,6 @@
 "use client"
 
-import { MoveLeft, MoveRight, Menu, AlignLeft, AlignRight } from "lucide-react";
+import { MoveLeft, MoveRight, Menu, AlignLeft, AlignRight, BadgeInfo } from "lucide-react";
 import { getLessonByParamName, returnIcon } from "../../../../public/lessons/Lessons";
 import { Button } from "@/components/ui/button";
 import {
@@ -38,7 +38,7 @@ const LessonComponent = ({ params }: { params: { lessonName: string } }) => {
 
     const {lessonName} = params;
     const lesson = getLessonByParamName(lessonName);
-    const Icon = returnIcon(lesson.icon);
+    const Icon = returnIcon(lesson.icon) || BadgeInfo;
 
     const [normal, setNormal] = React.useState(true);
 
