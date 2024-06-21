@@ -6,6 +6,9 @@
   --foreground-rgb: 0, 0, 0;
   --background-start-rgb: 214, 219, 220;
   --background-end-rgb: 255, 255, 255;
+  --totl-primary-background: rgba(255,255,255,.8);
+  --totl-primary-font-color: #000;
+  --totl-primate-font-descolor: #565656;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -30,4 +33,299 @@ body {
   .text-balance {
     text-wrap: balance;
   }
+}
+
+
+.mockup-code {
+  position: relative;
+  overflow: hidden;
+  overflow-x: auto;
+  min-width: 18rem;
+  border-radius: 1rem;
+  --tw-bg-opacity: 1;
+  background-color: rgb(43, 43, 43);
+  padding-top: 1.25rem;
+  padding-bottom: 1.25rem;
+  --tw-text-opacity: 1;
+  color: white;
+  direction: ltr;
+  width:max-content;
+  padding-right: 1.50rem;
+}
+
+.mockup-code:before {
+  content: "";
+  margin-bottom: 1rem;
+  display: block;
+  height: .75rem;
+  width: .75rem;
+  border-radius: 9999px;
+  opacity: .3;
+  box-shadow: 1.4em 0, 2.8em 0, 4.2em 0;
+}
+
+.mockup-code pre[data-prefix]:before {
+  content: attr(data-prefix);
+  display: inline-block;
+  text-align: right;
+  margin-left: 1rem;
+  opacity: .5;
+}
+
+.mockup-code pre:before {
+  content: "";
+  margin-right: 2ch;
+}
+
+.steps .step {
+  display: grid;
+  grid-template-columns: repeat(1, minmax(0, 1fr));
+  grid-template-columns: auto;
+  grid-template-rows: repeat(2, minmax(0, 1fr));
+  grid-template-rows: 40px 1fr;
+  place-items: center;
+  text-align: center;
+  min-width: 4rem;
+}
+
+.steps {
+  display: inline-grid;
+  grid-auto-flow: column;
+  overflow: hidden;
+  overflow-x: auto;
+  counter-reset: step;
+  grid-auto-columns: 1fr;
+}
+ol, ul, menu {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.steps .step-primary+.step-primary:before, .steps .step-primary:after {
+  --tw-bg-opacity: 1;
+  background-color: var(--fallback-p, oklch(var(--p) / 1));
+  --tw-text-opacity: 1;
+  color: var(--fallback-pc, oklch(var(--pc) / 1));
+}
+.steps .step-primary+.step-primary:before, .steps .step-primary:after {
+  --tw-bg-opacity: 1;
+  background-color: var(--fallback-p, oklch(var(--p) / 1));
+  --tw-text-opacity: 1;
+  color: var(--fallback-pc, oklch(var(--pc) / 1));
+}
+
+.steps .step:after {
+  content: counter(step);
+  counter-increment: step;
+  z-index: 1;
+  position: relative;
+  grid-column-start: 1;
+  grid-row-start: 1;
+  display: grid;
+  height: 2rem;
+  width: 2rem;
+  place-items: center;
+  background-color: rgb(91, 107, 133);
+  place-self: center;
+  border-radius: 9999px;
+  --tw-bg-opacity: 1;
+  --tw-text-opacity: 1;
+  color: white;
+}
+
+.circle-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.circle {
+  position: relative;
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  border: 10px solid black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transform: translate(-50%, -50%);
+}
+
+.inner-text {
+  position: absolute;
+  text-align: center;
+  z-index: 1;
+}
+
+.outer-text {
+  position: absolute;
+  width: 300px;
+  height: 300px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transform: rotate(-90deg);
+}
+
+.char {
+  position: absolute;
+  bottom: 86%;
+  transform-origin: 0 150px;
+  font-size: 30px;
+  font-weight: bold;
+}
+
+.react-flow__attribution {
+  display: none;
+}
+
+.react-flow__node {
+  background-color: transparent;
+  border: 1px solid #cccccc !important;
+  border-radius: 1rem !important;
+  padding: 10px !important;
+  font-size: 20px !important;
+  animation: slideInFromTop 0.7s ease forwards;
+  width: fit-content !important;
+}
+
+.noREACT {
+  width: calc((100vw / 4) - 8vw);
+  font-size: 1rem;
+}
+
+.react-flow__edge {
+  animation: slideInFromTop 0.7s ease forwards;
+}
+
+@keyframes slideInFromTop {
+  0% {
+    transform: translateY(-20vh);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(initial);
+    opacity: 1;
+  }
+}
+
+.section-rightSide {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  opacity: 0;
+  animation: fadeInFromTop 0.5s ease forwards;
+}
+
+@keyframes fadeInFromTop {
+  0% {
+    opacity: 0;
+    transform: translateY(-100px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInFromBottom {
+  0% {
+    opacity: 0;
+    transform: translateY(100px) !important;
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) !important;
+  }
+}
+
+.goals-index {
+  animation: fadeInFromTop 0.5s ease forwards;
+  opacity: 0;
+}
+
+.vocab {
+  animation: fadeInFromTop 0.5s ease forwards;
+  opacity: 0;
+}
+
+.goals-index:nth-child(1), .vocab:nth-child(1) {
+  animation-delay: .5s;
+}
+.goals-index:nth-child(2), .vocab:nth-child(2) {
+  animation-delay: 1.5s;
+}
+.goals-index:nth-child(3), .vocab:nth-child(3) {
+  animation-delay: 2.5s;
+}
+
+.vocab:nth-child(4) {
+  animation-delay: 3.5s;
+}
+
+.code-sectionRightSide {
+  opacity: 0;
+  animation: fadeInFromBottom 0.5s ease forwards;
+}
+
+.loading {
+  display: grid;
+  place-items: center;
+  animation: loadingAnim 1s linear infinite;
+}
+
+@keyframes loadingAnim {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* Add this CSS to your stylesheet */
+
+.vertical-layout {
+  flex-direction: column;
+}
+
+@media (max-width: 890px) {
+  .resizeable-lesson {
+    flex-direction: column !important;
+    height: 100vh;
+  }
+}
+
+
+/* styles/globals.css */
+@keyframes gradientShift {
+  0% {
+      background-position: 0% 50%;
+  }
+  100% {
+    background-position: 100% 50%;
+  }
+}
+
+@keyframes ungradientShift {
+  0% {
+    background-position: 100% 50%;
+      
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.gradient-animated {
+  background-size: 200% 200%;
+  transition: background-position 0.5s ease;
+}
+
+.gradient-animated:hover {
+  animation: gradientShift 0.7s forwards;
+}
+.gradient-animated:not(:hover) {
+  animation: ungradientShift 0.7s forwards;
 }
