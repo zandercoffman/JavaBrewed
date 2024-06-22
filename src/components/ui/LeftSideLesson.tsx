@@ -2,7 +2,7 @@
 
 import { LoaderCircle } from 'lucide-react';
 import React, { useState, useEffect } from 'react';
-import ReactFlow, { Node, Edge, addEdge, ReactFlowProps, useNodesState, useEdgesState, Controls, Background } from 'react-flow-renderer';
+import ReactFlow, { Node, Edge, addEdge, ReactFlowProps, useNodesState, useEdgesState, Controls, Background, MiniMap } from 'react-flow-renderer';
 
 const doStuff = (lesson: any, stepNum: number): { nodes: Node[], edges: Edge[] } => {
     var nodes: Node[] = [];

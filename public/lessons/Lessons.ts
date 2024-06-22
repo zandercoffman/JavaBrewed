@@ -89,13 +89,56 @@ export const WhatIsJava = {
         Step3: {
             QuestionType: "default",
             Boxes: {
-                Box1: { id: '1', position: {x: 60, y: 70}, data: {label: "Employee 👤"} },
+                Box1: { id: 'S3-1', position: {x: 220, y: 150}, data: {label: "class Car 🚗"} },
+                Box2: { id: 'S3-2', position: {x: 380, y: 245}, data: {label: "mileage"} },
+                Box3: { id: 'S3-3', position: {x: 220, y: 340}, data: {label: "speed ⏩"} },
+            },
+            Edges: {
+                Edge1: {id: 'S3-[1-2]', source: 'S3-1', target: 'S3-2', animated: true, label: "has"}, 
+                Edge2: {id: 'S3-[1-3]', source: 'S3-1', target: 'S3-3', animated: true, label: "has"}, 
+            },
+            Title: "Object Oriented Programming",
+            SubTitle: "Object Oriented",
+            Overview: "Learn about access modifiers and how they control access to variables and methods in Java.",
+            Content: {
+                1: { type: "text", content: "Object-Oriented Programming (OOP) is a programming style based on the concept of \"objects\", which can contain data and code: data in the form of fields (often known as attributes or properties), and code in the form of procedures (often known as methods)." },
+                2: { type: "points", content: ["Class: A blueprint for creating objects. It defines a type of object according to the methods and properties.", "Object: An instance of a class. When a class is defined, no memory is allocated until an object of that class is created."]}
+            }
+        },
+        Step4: {
+            QuestionType: "default",
+            Boxes: {
+                Box1: { id: 'S4-1', position: {x: 230, y: 150}, data: {label: "void"} },
+                Box2: { id: 'S4-2', position: {x: 170, y: 150}, data: {label: "static"} },
+                Box3: { id: 'S4-3', position: {x: 90, y: 150}, data: {label: "public"} },
+                Box4: { id: 'S4-4', position: {x: 280, y: 150}, data: {label: "main("} },
+                Box5: { id: 'S4-5', position: {x: 340, y: 150}, data: {label: "String[]"} },
+                Box6: { id: 'S4-6', position: {x: 430, y: 150}, data: {label: "args) {"} },
+                Box7: { id: 'S4-7', position: {x: 170, y: 200}, data: {label: "System.out.println(\"Hello world!\");"} },
+                Box8: { id: 'S4-8', position: {x: 90, y: 250}, data: {label: "}"} },
             },
             Edges: {
                 Edge1: { id: 'e1-2', source: '1', target: '2', animated: true },
             },
-            Title: "What are Access Modifiers?",
-            SubTitle: "What are they?",
+            Title: "Main Method",
+            SubTitle: "Main Method",
+            Overview: "Learn about access modifiers and how they control access to variables and methods in Java.",
+            Content: {
+                1: { type: "text", content: "Each Java program is able to be runned by the method main() which is listed in the diagram. Let us analyze each part of this method as an introduction." },
+                2: { type: "points", content: ["public: Any"]}
+            }
+        },
+        Step5: {
+            QuestionType: "default",
+            Boxes: {
+                Box1: { id: 'S4-1', position: {x: 220, y: 150}, data: {label: "void"} },
+
+            },
+            Edges: {
+                Edge1: { id: 'e1-2', source: '1', target: '2', animated: true },
+            },
+            Title: "Syntax",
+            SubTitle: "Syntax",
             Overview: "Learn about access modifiers and how they control access to variables and methods in Java.",
             Content: {
                 1: { type: "text", content: "Access Modifiers control how variables and methods are accessed within a class, by other classes in the same package, or by classes in different packages, ensuring proper data handling, validation, and security." },
@@ -684,6 +727,14 @@ export const returnIcon = (iconName: string) => {
 
 };
 
+export const DefaultLesson = {
+    name: "DefaultLesson",
+    icon: "CopyPlus",
+    description: "DefaultLesson",
+    filters: [],
+    unit: "N/A"
+};
+
 export const getLessonByParamName = (finder: string) => {
-    return Lessons.find(lesson => lesson.name.trim().replace(/\s+/g, '').toLowerCase() == finder) || "Not found";
+    return Lessons.find(lesson => lesson.name.trim().replace(/\s+/g, '').toLowerCase() == finder) || DefaultLesson;
 }

@@ -38,12 +38,12 @@ const LessonComponent = ({ params }: { params: { lessonName: string } }) => {
 
     const {lessonName} = params;
     const lesson = getLessonByParamName(lessonName);
-    const Icon = returnIcon(lesson.icon) || BadgeInfo;
+    const Icon = returnIcon(lesson.icon);
 
     const [normal, setNormal] = React.useState(true);
 
     //TODO: update step code whenever i mess with it
-    const [step, setStep] = React.useState(2);
+    const [step, setStep] = React.useState(4);
 
     const text = "You will earn ";
   const textArray = text.split("");

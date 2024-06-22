@@ -138,7 +138,7 @@ export default function LessonPage() {
                     {filters.map((group: string) => {
                         return <>
                             <div className="flex flex-col mt-5 mb-5 gap-2">
-                                <h1 className="text-3xl font-bold text-left leading-20">{group}</h1> <br/>
+                                <h1 className="text-3xl font-bold md:text-left leading-20 text-center">{group}</h1> <br/>
                                 <Carousel>
                                     <CarouselContent>
                                         {
