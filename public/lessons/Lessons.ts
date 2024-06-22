@@ -354,7 +354,8 @@ export const DefiningNumbers = {
     icon: "Code",
     description: "Learn how to define numbers in Java, and explore their arithmetic operations.",
     filters: ["Basics", "Variables", "Data Types", "Operators"],
-    unit: 1
+    unit: 1,
+    steps: {}
 };
 
 export const DefiningCharacters = {
@@ -362,7 +363,8 @@ export const DefiningCharacters = {
     icon: "Code",
     description: "Learn how to define characters in Java using the char data type, and understand basic operations and conversions involving characters.",
     filters: ["Basics", "Variables", "Data Types"],
-    unit: 1
+    unit: 1,
+    steps: {}
 };
 
 export const DefiningBooleans = {
@@ -370,7 +372,8 @@ export const DefiningBooleans = {
     icon: "Code",
     description: "Learn how to define booleans in Java, and understand boolean logic.",
     filters: ["Basics", "Variables", "Data Types", "Control Statements"],
-    unit: 1
+    unit: 1,
+    steps: {}
 };
 
 export const DefiningStrings = {
@@ -378,7 +381,8 @@ export const DefiningStrings = {
     icon: "Code",
     description: "Learn how to define strings in Java, and use the .substring() method to manipulate string data.",
     filters: ["Basics", "Variables", "Data Types", "String Manipulation"],
-    unit: 1
+    unit: 1,
+    steps: {}
 };
 
 export const IfStatement = {
@@ -386,7 +390,8 @@ export const IfStatement = {
     icon: "Code",
     description: "Learn how to use conditional statements in Java to make decisions based on different conditions.",
     filters: ["Basics", "Control Statements"],
-    unit: 3
+    unit: 3,
+    steps: {}
 };
 
 export const ForLoop = {
@@ -394,7 +399,8 @@ export const ForLoop = {
     icon: "GitMerge",
     description: "Explore the usage of for loops in Java for iterating over arrays and collections or executing a block of code a fixed number of times.",
     filters: ["Basics", "Control Statements", "Loops"],
-    unit: 4
+    unit: 4,
+    steps: {}
 };
 
 export const WhileLoop = {
@@ -402,7 +408,8 @@ export const WhileLoop = {
     icon: "GitMerge",
     description: "Understand the syntax and usage of while loops in Java for executing a block of code repeatedly as long as a specified condition is true.",
     filters: ["Basics", "Control Statements", "Loops"],
-    unit: 4
+    unit: 4,
+    steps: {}
 };
 
 export const DoWhileLoop = {
@@ -410,7 +417,8 @@ export const DoWhileLoop = {
     icon: "GitMerge",
     description: "Learn about the do-while loop in Java, which executes a block of code once, and then repeats the loop as long as a specified condition is true.",
     filters: ["Basics", "Control Statements", "Loops"],
-    unit: 4
+    unit: 4,
+    steps: {}
 };
 
 export const ForEachLoop = {
@@ -418,7 +426,8 @@ export const ForEachLoop = {
     icon: "GitMerge",
     description: "Explore the for-each loop (enhanced for loop) in Java for iterating over elements in arrays or collections.",
     filters: ["Basics", "Control Statements", "Loops", "Collections"],
-    unit: 4
+    unit: 4,
+    steps: {}
 };
 
 export const SwitchStatement = {
@@ -426,7 +435,8 @@ export const SwitchStatement = {
     icon: "GitMerge",
     description: "Understand how to use switch statements in Java for multi-way branching based on the value of an expression.",
     filters: ["Basics", "Control Statements"],
-    unit: 3
+    unit: 3,
+    steps: {}
 };
 
 export const Methods = {
@@ -434,7 +444,8 @@ export const Methods = {
     icon: "Terminal",
     description: "Explore defining methods, passing arguments, returning values, and method overloading.",
     filters: ["Basics", "Functions"],
-    unit: 5
+    unit: 5,
+    steps: {}
 };
 
 export const EnumUsage = {
@@ -442,7 +453,8 @@ export const EnumUsage = {
     icon: "CircleDashed",
     description: "Learn how to define and use enums in Java to represent a fixed set of constants.",
     filters: ["Intermediate Concepts", "Variables", "Data Types"],
-    unit: "N/A"
+    unit: "N/A",
+    steps: {}
 };
 
 export const ArrayUsage = {
@@ -450,7 +462,8 @@ export const ArrayUsage = {
     icon: "List",
     description: "Explore how to declare, initialize, and manipulate one-dimensional arrays in Java.",
     filters: ["Basics", "Data Structures", "Collections"],
-    unit: 6
+    unit: 6,
+    steps: {}
 };
 
 export const TwoDArrayUsage = {
@@ -458,7 +471,8 @@ export const TwoDArrayUsage = {
     icon: "List",
     description: "Learn how to declare, initialize, and work with two-dimensional arrays (arrays of arrays) in Java.",
     filters: ["Intermediate Concepts", "Data Structures", "Collections"],
-    unit: 8
+    unit: 8,
+    steps: {}
 };
 
 export const ArraysAndArrayLists = {
@@ -466,7 +480,8 @@ export const ArraysAndArrayLists = {
     icon: "List",
     description: "Master the use of arrays and ArrayLists in Java, including common operations and algorithms.",
     filters: ["Intermediate Concepts", "Data Structures", "Collections"],
-    unit: "N/A"
+    unit: "N/A",
+    steps: {}
 };
 
 export const ArrayListUsage = {
@@ -474,7 +489,8 @@ export const ArrayListUsage = {
     icon: "List",
     description: "Learn how to use ArrayLists in Java, a resizable array implementation of the List interface.",
     filters: ["Intermediate Concepts", "Data Structures", "Collections"],
-    unit: 7
+    unit: 7,
+    steps: {}
 };
 
 export const DemorgansLaw = {
@@ -482,7 +498,8 @@ export const DemorgansLaw = {
     icon: "WrapText",
     description: "Learn how to simplify Boolean expressions using De Morgan's laws, which state the equivalence between negating logical conjunctions (AND) and disjunctions (OR), and vice versa.",
     filters: ["Intermediate Concepts", "Boolean Logic"],
-    unit: 3
+    unit: 3,
+    steps: {}
 };
 
 export const ShortCircuitEvaluation = {
@@ -490,7 +507,8 @@ export const ShortCircuitEvaluation = {
     icon: "GitMerge",
     description: "Understand short-circuit evaluation in Java and other programming languages, where the evaluation of Boolean expressions stops as soon as the outcome is determined by the initial conditions, improving efficiency and avoiding unnecessary computations.",
     filters: ["Intermediate Concepts", "Boolean Logic"],
-    unit: 3
+    unit: 3,
+    steps: {}
 };
 
 export const DeclarationVsInstantiation = {
@@ -498,7 +516,8 @@ export const DeclarationVsInstantiation = {
     icon: "SquareTerminal",
     description: "Learn about the difference between declaring and instantiating variables and objects in Java. Declaration refers to specifying the type and name of a variable or object without allocating memory, while instantiation involves creating an instance of a class or allocating memory for an object.",
     filters: ["Basics", "Variables", "Object-Oriented Programming"],
-    unit: 2
+    unit: 2,
+    steps: {}
 };
 
 export const BasicOOP = {
@@ -506,7 +525,8 @@ export const BasicOOP = {
     icon: "Box",
     description: "Introduction to classes, objects, and relational hierarchies.",
     filters: ["Basics", "Object-Oriented Programming"],
-    unit: 5
+    unit: 5,
+    steps: {}
 };
 
 export const WritingClasses = {
@@ -514,7 +534,8 @@ export const WritingClasses = {
     icon: "Box",
     description: "Learn the fundamentals of writing classes in Java, including constructors, fields, methods, and encapsulation.",
     filters: ["Basics", "Object-Oriented Programming", "Classes and Objects"],
-    unit: 5
+    unit: 5,
+    steps: {}
 };
 
 export const Constructors = {
@@ -522,7 +543,8 @@ export const Constructors = {
     icon: "Box",
     description: "Learn about constructors in Java, including default constructors, parameterized constructors, constructor chaining, and best practices.",
     filters: ["Basics", "Object-Oriented Programming", "Classes and Objects"],
-    unit: 5
+    unit: 5,
+    steps: {}
 };
 
 export const ThisKeyword = {
@@ -530,7 +552,8 @@ export const ThisKeyword = {
     icon: "Layers",
     description: "Understand the 'this' keyword in Java, its usage to refer to the current object, and resolving ambiguity between instance variables and parameters.",
     filters: ["Intermediate Concepts", "Object-Oriented Programming"],
-    unit: 5
+    unit: 5,
+    steps: {}
 };
 
 export const Scope = {
@@ -538,7 +561,8 @@ export const Scope = {
     icon: "Layers",
     description: "Learn about variable scope in Java, including local variables, instance variables, class (static) variables, and block scope.",
     filters: ["Basics", "Variables"],
-    unit: 5
+    unit: 5,
+    steps: {}
 };
 
 export const UsingClasses = {
@@ -546,7 +570,8 @@ export const UsingClasses = {
     icon: "Box",
     description: "Explore how to effectively use classes in Java for creating objects, accessing fields and methods, and implementing inheritance.",
     filters: ["Intermediate Concepts", "Object-Oriented Programming", "Classes and Objects"],
-    unit: 2
+    unit: 2,
+    steps: {}
 };
 
 export const AdvancedOOP = {
@@ -554,7 +579,8 @@ export const AdvancedOOP = {
     icon: "Box",
     description: "Introduction to classes, objects, inheritance, polymorphism, and encapsulation in Java.",
     filters: ["Intermediate Concepts", "Object-Oriented Programming", "Inheritance", "Polymorphism", "Encapsulation"],
-    unit: 9
+    unit: 9,
+    steps: {}
 };
 
 export const RVCTime = {
@@ -562,7 +588,8 @@ export const RVCTime = {
     icon: "Clock",
     description: "Understand the difference between run time and compile time in software development.",
     filters: ["Basics"],
-    unit: 1
+    unit: 1,
+    steps: {}
 };
 
 export const Recursion = {
@@ -570,7 +597,8 @@ export const Recursion = {
     icon: "RefreshCw",
     description: "Understand recursive methods, recursion vs. iteration, and solving problems recursively.",
     filters: ["Intermediate Concepts", "Algorithms"],
-    unit: 10
+    unit: 10,
+    steps: {}
 };
 
 export const Exception = {
@@ -578,7 +606,8 @@ export const Exception = {
     icon: "AlertCircle",
     description: "Learn how to handle exceptions using try-catch blocks and understanding checked vs. unchecked exceptions.",
     filters: ["Intermediate Concepts", "Exception Handling"],
-    unit: "N/A"
+    unit: "N/A",
+    steps: {}
 };
 
 export const WrapperClasses = {
@@ -586,7 +615,8 @@ export const WrapperClasses = {
     icon: "WrapText",
     description: "Explore Wrapper Classes in Java, which allow you to use primitive data types as objects.",
     filters: ["Intermediate Concepts", "Variables"],
-    unit: 7
+    unit: 7,
+    steps: {}
 };
 
 export const StaticVsNonStatic = {
@@ -594,7 +624,8 @@ export const StaticVsNonStatic = {
     icon: "CircleDashed",
     description: "Learn what the difference is between static and non-static features in Java.",
     filters: ["Intermediate Concepts", "Object-Oriented Programming"],
-    unit: 5
+    unit: 5,
+    steps: {}
 };
 
 export const InitializationVSDeclaration = {
@@ -602,7 +633,8 @@ export const InitializationVSDeclaration = {
     icon: "SquareTerminal",
     description: "Learn the ins and outs of when to look for Initialization Vs Declaration.",
     filters: ["Basics", "Variables"],
-    unit: 1
+    unit: 1,
+    steps: {}
 };
 
 export const SuperclassVsSubclass = {
@@ -610,7 +642,8 @@ export const SuperclassVsSubclass = {
     icon: "ArrowLeftRight",
     description: "Learn the difference and the relationship between a superclass and its subclass.",
     filters: ["Intermediate Concepts", "Object-Oriented Programming", "Inheritance"],
-    unit: 9
+    unit: 9,
+    steps: {}
 };
 
 export const Polymorphism = {
@@ -618,7 +651,8 @@ export const Polymorphism = {
     icon: "ListMinus",
     description: "Learn deeper about the comparison of a parent class to its child class.",
     filters: ["Intermediate Concepts", "Object-Oriented Programming", "Polymorphism"],
-    unit: 9
+    unit: 9,
+    steps: {}
 };
 
 export const Encapsulation = {
@@ -626,7 +660,8 @@ export const Encapsulation = {
     icon: "Layers",
     description: "Further your knowledge when dealing with parent-child class relationships.",
     filters: ["Intermediate Concepts", "Object-Oriented Programming", "Encapsulation"],
-    unit: 9
+    unit: 9,
+    steps: {}
 };
 
 export const IPPVSPPI = {
@@ -634,7 +669,8 @@ export const IPPVSPPI = {
     icon: "CopyPlus",
     description: "Understand the difference between pre-increment and post-increment operations.",
     filters: ["Intermediate Concepts", "Operators", "Boolean Logic"],
-    unit: "N/A"
+    unit: "N/A",
+    steps: {}
 };
 
 
@@ -732,7 +768,8 @@ export const DefaultLesson = {
     icon: "CopyPlus",
     description: "DefaultLesson",
     filters: [],
-    unit: "N/A"
+    unit: "N/A",
+    steps: {}
 };
 
 export const getLessonByParamName = (finder: string) => {
