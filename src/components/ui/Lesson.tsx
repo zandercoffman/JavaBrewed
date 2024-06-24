@@ -45,6 +45,12 @@ export default function Lesson(params: any) {
     const GotIcon = returnIcon(lesson.icon);
     const [click, setClicked] = React.useState(false);
 
+    const [switchSet, setSwitch] = React.useState(false);
+
+    React.useEffect(() => {
+        setSwitch(params.isTeachMode);
+    }, [params.isTeachMode])
+
     const getCutOffText = (s: string) => {
         if (s.length <= 120) {
             return s + "...";
@@ -53,7 +59,7 @@ export default function Lesson(params: any) {
         }
     }
 
-    const link = `/lessons/${(lesson.name.trim().replace(/\s+/g, '').toLowerCase())}`;
+    const link = `${(lesson.name.trim().replace(/\s+/g, '').toLowerCase())}`;
 
     return <>
         <div className="relative flex flex-col gap-[20px] w-full min-h-[340px] max-h-[340px] overflow-hidden transition-all bg-white shadow-sm rounded-[20px] border-none p-[30px] pb-[90px]">
@@ -72,8 +78,8 @@ export default function Lesson(params: any) {
                 }
             </div>
             <div className="absolute bottom-0 left-0 bg-gray  shadow-sm rounded-[20px] border-none p-[30px] mt-[60px] max-w-1/2">
-                <Button asChild className="rounded-[20px] border-none bg-black text-white hover:bg-gray-600 transition-all">
-                    <Link href={link}>Start Lesson</Link>
+                <Button asChild className={((switchSet) ? "!bg-gradient-to-r !from-blue-600 !to-violet-600 gradient-animated " : "") + " rounded-[20px] border-none bg-black text-white hover:bg-gray-600 transition-all"}>
+                    <Link href={(!switchSet) ? (`lessons/${link}`) : (`teach/${link}`)}>{(!switchSet) ? (`Learn Now`) : (`Teach Now`)}</Link>
                 </Button>
                 <Sheet>
                     <SheetTrigger className="ml-3">Learn More</SheetTrigger>
@@ -81,11 +87,11 @@ export default function Lesson(params: any) {
                         <div className="md:w-1/2 w-full">
                             <SheetHeader className="flex md:flex-row">
                                 <div className="flex flex-col gap-2 md:w-1/2">
-                                    <SheetTitle className="flex flex-row  text-3xl gap-2.5">
+                                    <SheetTitle className={" flex flex-row  text-3xl gap-2.5" }>
                                         {GotIcon && <GotIcon className="w-[40px] h-[40px]"/>}
                                         {lesson.name}
                                     </SheetTitle>
-                                    <Button asChild className="absolute border-2 bg-black text-white hover:bg-black hover:text-gray-300 rounded-[1rem] bottom-0 mb-3">
+                                    <Button asChild className={"absolute border-2 bg-black text-white hover:bg-black hover:text-gray-300 rounded-[1rem] bottom-0 mb-3" }>
                                         <Link href={link}>Start Lesson</Link>
                                     </Button>
                                 </div>

@@ -9,6 +9,50 @@
   --totl-primary-background: rgba(255,255,255,.8);
   --totl-primary-font-color: #000;
   --totl-primate-font-descolor: #565656;
+  /* Default background color of <body>...etc */
+--background: 0 0% 100%;
+--foreground: 222.2 47.4% 11.2%;
+
+/* Muted backgrounds such as <TabsList />, <Skeleton /> and <Switch /> */
+--muted: 210 40% 96.1%;
+--muted-foreground: 215.4 16.3% 46.9%;
+
+/* Background color for <Card /> */
+--card: 0 0% 100%;
+--card-foreground: 222.2 47.4% 11.2%;
+
+/* Background color for popovers such as <DropdownMenu />, <HoverCard />, <Popover /> */
+--popover: 0 0% 100%;
+--popover-foreground: 222.2 47.4% 11.2%;
+
+/* Default border color */
+--border: 214.3 31.8% 91.4%;
+
+/* Border color for inputs such as <Input />, <Select />, <Textarea /> */
+--input: 214.3 31.8% 91.4%;
+
+/* Primary colors for <Button /> */
+--primary: 222.2 47.4% 11.2%;
+--primary-foreground: 210 40% 98%;
+
+/* Secondary colors for <Button /> */
+--secondary: 210 40% 96.1%;
+--secondary-foreground: 222.2 47.4% 11.2%;
+
+/* Used for accents such as hover effects on <DropdownMenuItem>, <SelectItem>...etc */
+--accent: 210 40% 96.1%;
+--accent-foreground: 222.2 47.4% 11.2%;
+
+/* Used for destructive actions such as <Button variant="destructive"> */
+--destructive: 0 100% 50%;
+--destructive-foreground: 210 40% 98%;
+
+/* Used for focus ring */
+--ring: 215 20.2% 65.1%;
+
+/* Border radius for card, input and buttons */
+--radius: 0.5rem;
+
 }
 
 @media (prefers-color-scheme: dark) {
@@ -328,4 +372,77 @@ ol, ul, menu {
 }
 .gradient-animated:not(:hover) {
   animation: ungradientShift 0.7s forwards;
+}
+
+.chat-bubble-ai {
+  margin-left: 2px;
+  color: white;
+}
+
+.chat-bubble-ai:before {
+  position: absolute;
+  height: 1rem;
+  width: 1.5rem;
+  bottom: 0;
+  left: 0;
+  background-color: inherit;
+  content: "";
+  -webkit-mask-size: contain;
+  mask-size: contain;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+  mask-position: center;
+  border-radius: 91% 0% 0% 28% / 88% 86% 9% 5%  ;
+}
+
+.chat-bubble-user {
+  margin-left: 2px;
+  color: white;
+}
+
+.chat-bubble-user:after {
+  position: absolute;
+  height: 1rem;
+  width: 2rem;
+  bottom: 0;
+  right: 0;
+  background-color: inherit;
+  content: "";
+  -webkit-mask-size: contain;
+  mask-size: contain;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+  mask-position: center;
+  border-radius: 0% 100% 77% 23% / 73% 97% 3% 27%  ;
+}
+
+/* Example custom scrollbar styles */
+/* Track */
+::-webkit-scrollbar {
+  width: 6px; /* Width of the entire scrollbar */
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background-color: #4a4b4a; /* Color of the scroll handle */
+  border-radius: 3px; /* Rounded corners */
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background-color: #2b2c2b; /* Darker handle on hover */
+}
+
+
+.tab {
+  background-color: white;
+  padding: 20px;
+  border-radius: 1rem;
+  height: 65vh;
+}
+
+button {
+  transition: all 1s;
 }

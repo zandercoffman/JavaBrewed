@@ -160,6 +160,8 @@ export const AccessModifiers = {
 
     unit: 1,
 
+    passage: "Access modifiers in Java control the visibility and accessibility of classes, methods, and variables. The main access modifiers are public, private, protected, and the default (no modifier). Here’s a brief overview of each: public makes a member accessible from any other class, regardless of the package. private restricts access to the member within the same class. It's the most restrictive level. protected allows access within the same package and by subclasses, even in different packages. When no modifier (default) is specified, the member is accessible only within its own package.",
+
     vocab: {
         1: {"name": "public","desc": "The public access modifier makes the member (class, method, constructor, or field) accessible from any other class. If a class is declared public, it can be accessed from any other class."},
         2: { "name": "private","desc": "The private access modifier restricts the access to the member within the class itself. It cannot be accessed from outside the class. This is the most restrictive access level."},
@@ -196,6 +198,11 @@ export const AccessModifiers = {
                 1: { type: "text", content: "Access Modifiers control how variables and methods are accessed within a class, by other classes in the same package, or by classes in different packages, ensuring proper data handling, validation, and security." },
                 2: { type: "text", content: "The four modifiers are `public`, `default`, `protected`, and `private`." },
                 3: { type: "code", content: ["private static int employeeCount = 1020;", "protected Data companyData;", "private ArrayList<Employee> list;", "", "public static void addEmployee(Employee wkr) {", "\tlist.add(wkr);", "\temployeeCount++;", "}", "class Employee {...} //default modifier - no attribute"] }
+            },
+            Teach: {
+                good: ["default", "accessor", "no modifiers", "viewed", "same", "package"],
+                bad: ["public", "private", "global"],
+                title: "access modifiers"
             }
         },
         Step2: {
@@ -218,7 +225,13 @@ export const AccessModifiers = {
                 1: { type: "text", content: "In this diagram, you are able to see both unrelated individuals and related individuals. When a member (class, method, or variable) is declared as public, it means that it can be accessed from any other class in any package." },
                 2: { type: "points", content: ["Code that is \"public\" is able to be viewed in any class."] },
                 3: { type: "code", content: ["public static void main(String[] args) {", "\tSystem.out.println(\"Hello world!\");", "} //JVM calls Class.main() to start the program", "//The JVM needs access to call the method"] }
+            },
+            Teach: {
+                good: ["default", "accessor", "no modifiers", "viewed", "same", "package"],
+                bad: ["public", "private", "global"],
+                title: "public keyword"
             }
+            
         },
         Step3: {
             QuestionType: "default",
@@ -240,6 +253,11 @@ export const AccessModifiers = {
                 2: {type: "points",content: ["No modifiers is able to be viewed in classes in the SAME package."]},
                 3: {type: "remember",content: ["Think of a family house -- people who are related have access to it."]},
                 4: {type: "code",content: ["package family;", "Space familyHouse; //Only allowed in 'family'", "package Community;", "public Space communityPark; //Allowed anywhere"]}
+            },
+            Teach: {
+                good: ["default", "accessor", "no modifiers", "viewed", "same", "package"],
+                bad: ["public", "private", "global"],
+                title: "default keyword"
             }
         },
         Step4: {
@@ -263,6 +281,11 @@ export const AccessModifiers = {
                 1: {type: "text",content: "In this diagram, you are able to see that people who are related to the kingdom are able to see its information. When a structure is declared as protected, classes in the same package can view it."},
                 2: {type: "points",content: ["\"protected\" code can be viewed in any class in the SAME package."]},
                 3: {type: "remember",content: ["People who are in royalty have information related to its kingdom."]},
+            },
+            Teach: {
+                good: ["default", "accessor", "no modifiers", "viewed", "same", "package"],
+                bad: ["public", "private", "global"],
+                title: "protected keyword (1/2)"
             }
         },
         Step5: {
@@ -289,6 +312,11 @@ export const AccessModifiers = {
                 "1": {"type": "text","content": "In this diagram, the Checking Account inherits from the Bank Account. The Bank Account has a protected variable (Account Information) that is accessible by the Checking Account."},
                 "2": {"type": "points","content": ["Subclasses can inherit and use protected members from their parent classes."]},
                 "3": {"type": "remember","content": ["A checking account must have basic information from an original source."]},
+            },
+            Teach: {
+                good: ["default", "accessor", "no modifiers", "viewed", "same", "package"],
+                bad: ["public", "private", "global"],
+                title: "protected keyword (2/2)"
             }
         },
         Step6: {
@@ -316,6 +344,11 @@ export const AccessModifiers = {
                 1: {type: "text",content: "In this diagram, you see a person trying to change another person's height. This won't work. Why? Because \"height\" is a personal variable."},
                 2: {type: "points",content: ["\"private\" code can NOT be viewed in any class regardless of package."]},
                 3: {type: "remember",content: ["Genetic-controlled factors cannot be changed by others."]},
+            },
+            Teach: {
+                good: ["default", "accessor", "no modifiers", "viewed", "same", "package"],
+                bad: ["public", "private", "global"],
+                title: "private keyword"
             }
         },
         Step7: {

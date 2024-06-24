@@ -25,11 +25,19 @@ import {
   } from "@/components/ui/drawer"
 import { CircleX, SlidersHorizontal } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
+import { Switch } from "@/components/ui/switch"
+import { Label } from "@/components/ui/label"
+
 
   
 export default function LessonPage() {
 
     const [appliedFilters, setFilters] = React.useState<object>({});
+    const [isTeachMode, setIsTeachMode] = React.useState(false);
+
+    const handleSwitchChange = (checked: boolean) => {
+        setIsTeachMode(!checked);
+    };
 
     const changeFilters = (key: string, val: string) => {
         setFilters(prevFilters => ({
@@ -88,7 +96,14 @@ export default function LessonPage() {
                                     </DrawerFooter>
                                 </DrawerContent>
                             </Drawer>
+                            <div className="grid place-items-center float-right ml-auto">
+                                <div className="flex flex-row gap-2 align-middle">
+                                    <Label htmlFor="lesson-teach" className="text-1xl">{isTeachMode ? "Teach" : "Learn"}</Label>
+                                    <Switch id="lesson-teach" checked={isTeachMode} onCheckedChange={() => handleSwitchChange(isTeachMode)}/>
+                                </div>
+                            </div>
                         </div>
+                        
                     </div>
 
                     {isFiltersNotBlank() && (
@@ -109,7 +124,7 @@ export default function LessonPage() {
                                         <>
                                             {isJobFilterShow(lesson) && <>
                                             <CarouselItem key={lesson.id} className="md:basis-1/2 lg:basis-1/3 min-h-full">
-                                                <Lesson lessonObj={lesson} />
+                                                <Lesson lessonObj={lesson} isTeachMode={isTeachMode}/>
                                             </CarouselItem>
                                             </>}
                                         </>
@@ -128,7 +143,7 @@ export default function LessonPage() {
                         <CarouselContent>
                             {Lessons.map((lesson: Object) => {
                                 return <>
-                                    <CarouselItem className="md:basis-1/2 lg:basis-1/3 min-h-full"><Lesson lessonObj={lesson}/></CarouselItem>
+                                    <CarouselItem className="md:basis-1/2 lg:basis-1/3 min-h-full"><Lesson lessonObj={lesson} isTeachMode={isTeachMode}/></CarouselItem>
                                 </>
                             })}
                         </CarouselContent>
@@ -144,7 +159,7 @@ export default function LessonPage() {
                                         {
                                             Lessons.filter(lesson => lesson.filters?.includes(group)).map((lesson) => {
                                                 return <>
-                                                     <CarouselItem className="md:basis-1/2 lg:basis-1/3  min-h-full"><Lesson lessonObj={lesson}/></CarouselItem>
+                                                     <CarouselItem className="md:basis-1/2 lg:basis-1/3  min-h-full"><Lesson lessonObj={lesson} isTeachMode={isTeachMode}/></CarouselItem>
                                                 </>
                                             }) 
                                         }

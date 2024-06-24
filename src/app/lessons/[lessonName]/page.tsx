@@ -74,15 +74,13 @@ const LessonComponent = ({ params }: { params: { lessonName: string } }) => {
 
     return (
       <>
+      <style jsx>{`header {
+          display: none !important;
+        }
+      `}</style>
           <main className="relative flex min-h-screen max-h-screen flex-col items-center overflow-hidden">
             
-          <style jsx>{`
-        .header {
-        display: none;
-        }
-      ${
-        isLastStep && ``
-      }`}</style>
+          
             <div className="fixed z-20 flex flex-row gap-[10px] font-bold left-0 bottom-0 w-24 h-10 m-3 ">
               <Button
                 variant={"outline"}

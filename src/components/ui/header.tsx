@@ -6,74 +6,71 @@ import React from 'react';
 import { useRouter } from 'next/navigation';
 import { usePathname, useSearchParams } from 'next/navigation'
 
-export default function Header() {
+import { BookOpenCheck, MessageCircle, UserRound } from 'lucide-react';
 
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip"
+
+import {
+  Command,
+  CommandDialog,
+  CommandEmpty,
+  CommandGroup,
+  CommandInput,
+  CommandItem,
+  CommandList,
+  CommandSeparator,
+  CommandShortcut,
+} from "@/components/ui/command"
+
+
+export default function Header() {
   const [isLessonPage, setIsLessonPage] = React.useState(false);
   const router = useRouter();
   const pathname = usePathname();
 
   React.useEffect(() => {
     const handleRouteChange = (url: string) => {
-      setIsLessonPage(url.includes('lessons/'));
+      setIsLessonPage(url.includes('lessons/') || url.includes('teach/'));
     };
 
     handleRouteChange(pathname);
   }, [pathname]);
 
-    return <>
-        <div className={`${isLessonPage ? 'hidden' : ''} grid align-center m-auto top-0 lg:max-w-5xl lg:grid-cols-5 mb-6 mt-6 header`}>
-          <Link
-            href="/"
-            className="group text-center rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 "
-            rel="noopener noreferrer"
-          >
-            <h3 className="mb-3 text-2xl font-semibold">
-              JavaBrewed
-            </h3>
-          </Link>
-          <Link
-            className="group text-center rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 "
-            rel="noopener noreferrer"
-            href="/dashboard"
-          >
-            <h3 className="mb-3 text-1x1">
-                Dashboard{" "}
-              </h3>
-          </Link>
+  if (window.location.href.includes("lessons/") || window.location.href.includes("teach/")){
+    return <></>
+  }
 
-          <Link
-            href="/lessons"
-            className="group text-center rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 "
-            rel="noopener noreferrer"
-          >
-            <h3 className="mb-3 text-1x1 ">
-            Lessons{" "}
-            </h3>
-          </Link>
-
-          <a
-            href="/practice"
-            className="group text-center rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 "
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <h3 className="mb-3 text-1x1 ">
-              Practice{" "}
-            </h3>
-          </a>
-
-          <a
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            className="group text-center rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <h3 className="mb-3 text-1x1">
-              Tests{" "}
-            </h3>
-          </a>
+  return (
+    <>
+      <header className='flex flex-col lg:flex-row w-full py-12 px-24  text-2xl text-center header'>
+        <Link href={"/"} className='font-semibold w-full lg:w-[20%]'>JavaBrewed♨️</Link>
+        <div className='flex justify-end gap-[2rem] flex-col lg:flex-row w-full lg:w-[80%] ml-[2rem] mr-[2rem] '>
+          <Button icon={MessageCircle} link="/chatbot" title="ChatBot"/>
+          <Button icon={BookOpenCheck} link="/lessons" title="Lessons"/>
+          <Button icon={UserRound} link="/profile" title="Profile" />
         </div>
-        <Separator />
-
+      </header>
+      
     </>
+  );
+}
+
+function Button(params: any) {
+  const Icon = params.icon;
+
+  return <>
+    <TooltipProvider>
+      <Tooltip>
+        <TooltipTrigger><Link href={params.link}>{<Icon/>}</Link></TooltipTrigger>
+        <TooltipContent>
+          {params.title}
+        </TooltipContent>
+      </Tooltip>
+    </TooltipProvider>
+  </>
 }
