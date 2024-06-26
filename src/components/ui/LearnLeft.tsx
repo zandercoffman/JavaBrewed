@@ -4,16 +4,35 @@ import { Bot, LoaderCircle } from 'lucide-react';
 import { AIMessage } from './AIMessage';
 import { UserMessage } from './UserMessage';
 
-export function LeftSideLearnSide({ lesson, step, show, setNodeInfo, info, messages, setMessages }) {
+export function LeftSideLearnSide({ lesson, step, show, setNodeInfo, info, messages, setMessages, content, setContent }) {
     const [loading, setLoading] = useState(true);
     const [nodes, setNodes] = useNodesState([]);
     const [edges, setEdges] = useEdgesState([]);
     const [nodesAndEdges, setNodesAndEdges] = useState<object[]>([]);
 
-    const getRandomPosition = useCallback(() => ({
-        x: Math.random() * 600 - 200,
-        y: Math.random() * 600 - 200,
-    }), []);
+    //Math calculations to place nodes around
+    //an imaginary circle
+
+    const ratioOfWidth = window.innerWidth * 0.458;
+    const circleDiameter = ratioOfWidth - 60;
+    const circleRadius = circleDiameter / 2;
+    const stepCount = (lesson.steps && lesson.steps[`Step${step + 1}`] && lesson.steps[`Step${step + 1}`].Teach) ? Object.keys(lesson.steps[`Step${step + 1}`].Teach.good).length + Object.keys(lesson.steps[`Step${step + 1}`].Teach.bad).length : 7;
+    const ratio = (2.5 * Math.PI) / stepCount; //Why does 2.5PI work? Is 2.5PI the new 2PI?
+    
+    let currentAngle = 0;
+
+    function getRandomNumber(min, max) {
+        return Math.random() * (max - min) + min;
+    }
+    
+    const getRandomPosition = useCallback(() => {
+        const position = {
+            x: circleRadius * Math.cos(currentAngle) + getRandomNumber(-20, 20),
+            y: circleRadius * Math.sin(currentAngle) + getRandomNumber(-20, 20),
+        };
+        currentAngle += ratio;
+        return position;
+    }, [circleRadius, ratio]);
 
     useEffect(() => {
         setLoading(true); // Set loading to true when fetching new step data
@@ -22,12 +41,16 @@ export function LeftSideLearnSide({ lesson, step, show, setNodeInfo, info, messa
             const initialNodes = [];
             const initialEdges = [];
 
+            //TODO; cry
+            //This took me 4 hours to realize the numbering
+            //system was screwed up.
+            //Added +1 because it would be screwed up, overlapping
             if (lesson.steps && lesson.steps[`Step${step}`] && lesson.steps[`Step${step}`].Teach) {
                 lesson.steps[`Step${step}`].Teach.good.forEach((s, index) => {
                     initialNodes.push({ id: `Step${step}-${index}`, position: getRandomPosition(), data: { label: `${s}` } });
                 });
                 lesson.steps[`Step${step}`].Teach.bad.forEach((s, index) => {
-                    initialNodes.push({ id: `Step${step}-${index}`, position: getRandomPosition(), data: { label: `${s}` } });
+                    initialNodes.push({ id: `Step${step}-${Object.keys(lesson.steps[`Step${step}`].Teach.good).length + 1 + index}`, position: getRandomPosition(), data: { label: `${s}` } });
                 });
             }
 
@@ -68,8 +91,19 @@ export function LeftSideLearnSide({ lesson, step, show, setNodeInfo, info, messa
 
     const onConnect = useCallback((params) => {
         const { source, target } = params;
-        setNodeInfo(source)
+
         console.log(`Connected edge from ${source} to ${target}`);
+        
+
+        const sourceNode = nodes.find(node => node.id === source);
+        const targetNode = nodes.find(node => node.id === target);
+
+        console.log(JSON.stringify(sourceNode) + " - " + JSON.stringify(targetNode))
+
+        const updatedStepContent = `${content[step - 1]} ${(content[step - 1] == "") ? sourceNode?.data.label : ""} ${targetNode?.data.label}`;
+
+
+        setContent((step - 1), updatedStepContent);
 
         setEdges(prevEdges => addEdge(params, prevEdges));
         setNodesAndEdges(prevNodesAndEdges => ({
@@ -81,6 +115,7 @@ export function LeftSideLearnSide({ lesson, step, show, setNodeInfo, info, messa
         }));
 
     }, [setEdges, setNodeInfo]);
+
 
     if (loading) {
         return <div className='w-full h-full loading'><LoaderCircle /></div>;
@@ -110,7 +145,7 @@ export function LeftSideLearnSide({ lesson, step, show, setNodeInfo, info, messa
                             </div>
                         </div>
                     </div>
-                    <div className='w-full h-[90%]'>
+                    <div className='w-[95%] h-[90%]'>
                         <ReactFlow
                             nodes={nodes}
                             edges={edges}

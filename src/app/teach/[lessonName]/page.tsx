@@ -12,7 +12,7 @@ import {
   } from "@/components/ui/dropdown-menu"
   import Link from "next/link";
 import { Menu, Terminal, Bell } from "lucide-react";
-import React, { createContext, useContext } from "react";
+import React, { createContext, useContext, useState } from "react";
 import { Textarea } from "@/components/ui/textarea"
 import { TeachComponent } from "@/components/ui/TeachComponent";
 import { LeftSideLearnSide } from "@/components/ui/LearnLeft";
@@ -29,7 +29,7 @@ import {
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert"
 import { Button } from "@/components/ui/button"
 import { Progress } from "@/components/ui/progress"
-
+import { Overview } from "@/components/ui/AIOverview";
 
 const nodesAndEdges: object[] = [];
 const text: object[] = [];
@@ -39,24 +39,96 @@ export default function TeachingPage({ params }: { params: { lessonName: string 
     const lesson = getLessonByParamName(lessonName);
     const Icon = returnIcon(lesson.icon);
 
+    const initialContent = {};
+    Object.keys(lesson.steps).forEach((key, index) => {
+        initialContent[`${index}`] = "";
+    });
+
     const [step, setStep] = React.useState(0);
     const [tabs, setTabs] = React.useState<any>(null);
+    const [content, setContent] = useState(initialContent);
+
+    const submit = () => {
+        const positiveFeedbackMessages = [
+            "I found this explanation very clear and helpful!",
+            "This lesson is really insightful, thank you!",
+            "I appreciate how detailed this curriculum is!",
+            "This makes the concept much easier to understand!",
+            "Great, this is exactly what I needed to know!"
+        ];
+        Object.keys(content).map((key, index) => {
+            const messageId = Date.now().toString();
+            const userMessage = content[key];
+
+            // Add the user message to messages
+            setMessages((prevMessages) => ({
+                ...prevMessages,
+                [messageId]: { text: userMessage, type: 'user' }
+            }));
+            const randomPositiveFeedback = positiveFeedbackMessages[Math.floor(Math.random() * positiveFeedbackMessages.length)];
+
+            const aiMessageId = Date.now().toString();
+
+            // Add the AI message and positive feedback message to messages
+            setMessages((prevMessages) => ({
+                ...prevMessages,
+                [aiMessageId]: { text: `${randomPositiveFeedback}`, type: 'ai' }
+            }));
+        })
+        setTimeout(() => {
+            window.location.href = "/lessons";
+        }, 500);
+    };
+    
+
+    const grammer = (s: string) => {
+        return s.substring(0, 1).toUpperCase() + s.substring(1) + ".";
+    }
+
+    const getTextMessage = async (index: number) => {
+        if (model && lesson) {
+            try {
+                const title = content[Object.keys(content)[index]];
+
+                const topic = lesson.steps[Object.keys(lesson.steps)[index]];
+
+                const answers = await findAnswers((topic.Title + " does what?"), title);
+                const bestAnswer = answers.length > 0 ? answers.sort((a, b) => b.score - a.score)[0] : answers[0];
+                const aiResponse = bestAnswer ? bestAnswer.text : "I'm sorry, I couldn't find an answer.";
+                return aiResponse;
+            } catch (error) {
+                console.error('Error fetching answers:', error);
+                // Handle error state if necessary
+            }
+        }
+    };
+
+    const setThisContent = (key, value) => {
+        setContent(prevContent => {
+            const obj = { ...prevContent, [key]: value };
+            console.log(prevContent); // Logs the previous content state
+            console.log(obj); // Logs the updated object
+            return obj; // Return the updated object to setContent
+        });
+    };
+    
 
     const returnMessageBasedOnInput = (topic, name) => {
         const displayMessages = {
             "typing": {
-                1: `What are ${name} in Java? I've heard about them but I'm not quite sure what they do. Could you explain?`,
-                2: `I need to learn about ${name}. Could you help explain to me about it? Thanks.`,
-                3: `Can you provide some examples of ${name} in Java?`,
-                4: `I'm writing about ${name}. Is this explanation correct?`
+                1: `What are the ${name} in Java? I've heard about them but I'm not quite sure what they do. Could you explain?`,
+                2: `Also, I need to learn about the ${name}. Could you help explain it to me? Thanks.`,
+                3: `Could you provide some examples of the ${name} in Java?`,
+                4: `By the way, I'm writing about the ${name}. Is this explanation correct?`
             },
             "nodes": {
-                1: `I need to connect these nodes to explain ${name}. Could you help me start with the first node?`,
-                2: `Where should I place the node for ${name} in relation to the other nodes?`,
-                3: `Should the node for ${name} connect directly to the main class node?`,
-                4: `Is this the right way to arrange the nodes to show how ${name} works?`
+                1: `I was wondering, what are the ${name} in Java? I've heard about them but I'm not quite sure what they do. Could you explain?`,
+                2: `Could you enlighten me about the ${name}? I need to learn more about it. Thanks.`,
+                3: `Do you have any examples of the ${name} in Java?`,
+                4: `I'm curious about the ${name}. Is this explanation correct?`
             }
         };
+        
     
         if (displayMessages[topic]) {
             const messages = displayMessages[topic];
@@ -68,17 +140,11 @@ export default function TeachingPage({ params }: { params: { lessonName: string 
     };    
 
     const [change, setChange] = React.useState(false);
-
     const [nodeInfo, setNodeInfo] = React.useState("Infor");
-
     const [showLeftSide, setshowLeftSide] = React.useState(false);
-
     const stepKeys = Object.keys(lesson.steps);
-
     const [flags, setFlags] = React.useState(new Array(stepKeys.length).fill(false));
-
     const [randomArray, setRanArray] = React.useState(stepKeys.map(() => Math.round(Math.random())));
-    
     const [messages, setMessages] = React.useState({});
 
     const setnewinfo = (s: string) => {
@@ -89,9 +155,10 @@ export default function TeachingPage({ params }: { params: { lessonName: string 
         if (tabs) {
             const obj = tabs[step];
             setshowLeftSide(obj.rannum == 1);
+            const messageId = Date.now().toString();
 
-            if (flags[step] === false && step != 0) {
-                const messageId = Date.now().toString();
+            if (flags[step + 1] === false && step != 0) {
+                
 
                 const topic = (showLeftSide) ? "nodes" : "typing";
                 
@@ -103,14 +170,14 @@ export default function TeachingPage({ params }: { params: { lessonName: string 
                 
                 setFlags((prevFlags) => {
                     const newFlags = [...prevFlags];
-                    newFlags[step] = true;
+                    newFlags[step + 1] = true;
                     return newFlags;
                 });
             }
             
                 
         }
-    }, [step, tabs])
+    }, [step])
 
     React.useEffect(() => {
         const lessonStepsTabs = Object.keys(lesson.steps).map((key, index) => {
@@ -122,7 +189,7 @@ export default function TeachingPage({ params }: { params: { lessonName: string 
               value: `step${index + 1}`,
               rannum: rannum,
               content: <>
-                <TeachComponent thisStep={thisStep} rannum={rannum} info={nodeInfo}/>
+                <TeachComponent thisStep={thisStep} rannum={rannum} info={nodeInfo} content={content} setContent={setThisContent} step={index}/>
               </>,
             };
           }).filter(tab => tab !== null);
@@ -131,43 +198,12 @@ export default function TeachingPage({ params }: { params: { lessonName: string 
             {
               title: 'Overview',
               value: 'overview',
-              content: <Card className="border-none">
-                <CardHeader>
-                    <CardTitle>Overview</CardTitle>
-                    <CardDescription>In this simulation, you will teach {lesson.name} to AI. There are two ways to teach, by giving a diagram through connecting nodes and writing to give an explanation.</CardDescription>
-                </CardHeader>
-                <CardContent>
-                    <div className="flex flex-row w-full">
-                        <div className="w-1/2">Hello</div>
-                        <div className="w-1/2">Hello</div>
-                    </div>
-                </CardContent>
-                <CardFooter className="!flex-col !gap-4">
-                    <Alert>
-                        <Bell className="h-4 w-4" />
-                        <AlertTitle>Heads up!</AlertTitle>
-                        <AlertDescription>
-                            There is a bug in this section, to get the sentence to render in a dragging nodes section, you need to click another tab and go back. Sorry! It will be fixed.
-                        </AlertDescription>
-                    </Alert>
-                    <div className="flex flex-row gap-4 w-full">
-                        <Button className="relative w-[70%]">
-                            Submit
-                        </Button>
-                        <div className="grid place-items-center w-[30%]">
-                            <div className="flex flex-col w-full">
-                                <Progress value={33} />
-                                
-                            </div>
-                        </div>
-                    </div>
-                </CardFooter>
-                </Card>,
+              content: <Overview content={content} lesson={lesson} submit={submit}/>,
             },
             ...lessonStepsTabs,
           ]);
           
-    }, [lesson.steps, nodeInfo, randomArray])
+    }, [lesson.steps, nodeInfo, randomArray, content])
 
     const getRandomPosition = () => ({
         x: Math.random() * 800,
@@ -202,7 +238,7 @@ export default function TeachingPage({ params }: { params: { lessonName: string 
                             </span>
                         </div>
                         <div className="h-[100%] w-full ">
-                            <LeftSideLearnSide step={step} lesson={lesson} show={showLeftSide} nodesAndEdges={nodesAndEdges} setNodeInfo={setnewinfo} info={nodeInfo} messages={messages} setMessages={setMessages}/>
+                            <LeftSideLearnSide step={step} lesson={lesson} show={showLeftSide} setNodeInfo={setnewinfo} info={nodeInfo} messages={messages} setMessages={setMessages} content={content} setContent={setThisContent}/>
                         </div>
                     </div>
                 </div>

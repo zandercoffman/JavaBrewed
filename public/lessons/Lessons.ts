@@ -200,7 +200,7 @@ export const AccessModifiers = {
                 3: { type: "code", content: ["private static int employeeCount = 1020;", "protected Data companyData;", "private ArrayList<Employee> list;", "", "public static void addEmployee(Employee wkr) {", "\tlist.add(wkr);", "\temployeeCount++;", "}", "class Employee {...} //default modifier - no attribute"] }
             },
             Teach: {
-                good: ["default", "accessor", "no modifiers", "viewed", "same", "package"],
+                good: ["default", "accessor", "no modifiers", "viewed", "same", "package", "is", "is", "a"],
                 bad: ["public", "private", "global"],
                 title: "access modifiers"
             }
@@ -227,7 +227,7 @@ export const AccessModifiers = {
                 3: { type: "code", content: ["public static void main(String[] args) {", "\tSystem.out.println(\"Hello world!\");", "} //JVM calls Class.main() to start the program", "//The JVM needs access to call the method"] }
             },
             Teach: {
-                good: ["default", "accessor", "no modifiers", "viewed", "same", "package"],
+                good: ["default", "accessor", "no modifiers", "viewed", "same", "package", "is", "is", "a"],
                 bad: ["public", "private", "global"],
                 title: "public keyword"
             }
@@ -255,10 +255,11 @@ export const AccessModifiers = {
                 4: {type: "code",content: ["package family;", "Space familyHouse; //Only allowed in 'family'", "package Community;", "public Space communityPark; //Allowed anywhere"]}
             },
             Teach: {
-                good: ["default", "accessor", "no modifiers", "viewed", "same", "package"],
+                good: ["default", "accessor", "no modifiers", "viewed", "same", "package", "is", "is", "a"],
                 bad: ["public", "private", "global"],
                 title: "default keyword"
-            }
+            },
+            Overview: "Understand how the default keyword operates regarding code accessibility."
         },
         Step4: {
             QuestionType: "default",
@@ -283,10 +284,11 @@ export const AccessModifiers = {
                 3: {type: "remember",content: ["People who are in royalty have information related to its kingdom."]},
             },
             Teach: {
-                good: ["default", "accessor", "no modifiers", "viewed", "same", "package"],
+                good: ["default", "accessor", "no modifiers", "viewed", "same", "package", "is", "is", "a"],
                 bad: ["public", "private", "global"],
                 title: "protected keyword (1/2)"
-            }
+            },
+            Overview: "Understand how the protected keyword influences code accessibility."
         },
         Step5: {
             "QuestionType": "default",
@@ -314,10 +316,11 @@ export const AccessModifiers = {
                 "3": {"type": "remember","content": ["A checking account must have basic information from an original source."]},
             },
             Teach: {
-                good: ["default", "accessor", "no modifiers", "viewed", "same", "package"],
+                good: ["default", "accessor", "no modifiers", "viewed", "same", "package", "is", "is", "a"],
                 bad: ["public", "private", "global"],
                 title: "protected keyword (2/2)"
-            }
+            },
+            Overview: "Understand how the protected keyword has a different case and how that affects visibility."
         },
         Step6: {
             QuestionType: "default",
@@ -346,11 +349,12 @@ export const AccessModifiers = {
                 3: {type: "remember",content: ["Genetic-controlled factors cannot be changed by others."]},
             },
             Teach: {
-                good: ["default", "accessor", "no modifiers", "viewed", "same", "package"],
+                good: ["default", "accessor", "no modifiers", "viewed", "same", "package", "is", "is", "a"],
                 bad: ["public", "private", "global"],
                 title: "private keyword"
-            }
-        },
+            },
+            Overview: "Understand how the private keyword affects code accessibility."
+        },  
         Step7: {
             Title: "Match the Correct Answer",
             QuestionType: "question",
