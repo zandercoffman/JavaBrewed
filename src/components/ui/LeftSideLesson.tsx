@@ -164,7 +164,7 @@ const LeftSideLesson: React.FC<LeftSideLessonProps> = (params: { lesson: any, st
                     onEdgesChange={onEdgesChange}
                     onConnect={onConnect}
                     snapToGrid={true}
-                    nodesDraggable={false}
+                    nodesDraggable={true}
                     nodesConnectable={(thisStep == Object.keys(thisLesson.steps).length) ? true : false}
                     fitView
                     

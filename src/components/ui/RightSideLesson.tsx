@@ -28,7 +28,8 @@ export default function RightSideLesson(params: { lesson: any, stepNum: number})
                     return <CodePiece key={key} code={obj.content} className="w-full code-sectionRightSide"/>;
                 case "points":
                     return <div key={key}>
-                        <h2 className="text-2xl font-semibold text-gray-700">Key Takeaway(s)</h2>
+                        <h2 className="scroll-m-20 border-b pb-2 text-3xl font-semibold tracking-tight first:mt-0">Key Takeaway(s)</h2>
+                        <Separator/>
                         <ul className="flex flex-col gap-3 !list-disc m-2" >
                             {obj.content.map((point: string, index: number) => {
                                 return <li key={index} className="flex flex-row gap-3"><CircleDashed />{point}</li>
@@ -37,7 +38,7 @@ export default function RightSideLesson(params: { lesson: any, stepNum: number})
                     </div>
                 case "remember":
                     return <div key={key}>
-                        <h2 className="text-2xl font-semibold text-gray-700">How to Remember</h2>
+                        <h2 className="scroll-m-20 border-b pb-2 text-3xl font-semibold tracking-tight first:mt-0">How to Remember</h2>
                         <ul className="!list-disc m-2" >
                             {obj.content.map((point: string, index: number) => {
                                 return <li key={index} className="flex flex-row gap-3"><CircleDashed />{point}</li>
@@ -49,7 +50,7 @@ export default function RightSideLesson(params: { lesson: any, stepNum: number})
                         <Link href={obj.content.link} className="underline text-purple-950">{obj.content.text}</Link>
                     </div>
                 case "title":
-                    return <h2 className="text-2xl">{obj.content}</h2>
+                    return <h2 className="scroll-m-20 border-b pb-2 text-3xl font-semibold tracking-tight first:mt-0">{obj.content}</h2>
                 default:
                     return null;
             }
@@ -58,7 +59,7 @@ export default function RightSideLesson(params: { lesson: any, stepNum: number})
 
     return <>
         <div className="w-full overflow-auto pt-2">
-            <h2 className="text-3xl font-bold">{step.Title}</h2>
+            <h1 className="scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl">{step.Title}</h1>
             <Separator />
             {renderContent()}
         </div>

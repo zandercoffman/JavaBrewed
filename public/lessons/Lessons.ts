@@ -22,6 +22,28 @@ export const filters = [
     "Exception Handling"
 ];
 
+export const filterUnits: number[] = [
+    1,  // Basics
+    1,  // Data Types
+    1,  // Variables
+    1,  // Operators
+    1,  // String Manipulation
+    3,  // Control Statements
+    4,  // Loops
+    5,  // Functions
+    3,  // Boolean Logic
+    6,  // Collections
+    6,  // Data Structures
+    6,  // Intermediate Concepts
+    2,  // Object-Oriented Programming
+    2,  // Classes and Objects
+    9,  // Inheritance
+    9,  // Polymorphism
+    9,  // Encapsulation
+    6,  // Algorithms
+    3   // Exception Handling
+];
+
 export const filterButtons = {
     1: {title: "Level",options: ["Basics", "Intermediate Concepts"],},
     2: {title: "AP Unit",options: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]},
@@ -35,6 +57,16 @@ export const WhatIsJava = {
     unit: 1,
     goals: ["Understand the history of Java", "Learn the basic syntax of Java", "Identify the key features that make Java unique"],
     filters: ["Basics"],
+
+    passage: "provides a foundational exploration of the Java programming language, focusing on its essential syntax, object-oriented principles, and platform-independent nature through the Java Virtual Machine (JVM). This course guides learners through understanding the history and significance of Java, mastering basic programming constructs like classes, objects, methods, and variables. By emphasizing practical applications such as setting up development environments and utilizing IDEs, students gain proficiency in writing and executing Java programs across diverse platforms. Whether starting from scratch or aiming to deepen Java knowledge, this course equips learners with the fundamental skills to build robust applications and leverage Java's versatility in real-world scenarios.",
+
+    vocab: {
+        1: {"name": "Java","desc": "Java is a high-level, object-oriented programming language known for its platform independence, allowing programs written in Java to run on any device or operating system that supports Java Virtual Machine (JVM)."},
+        2: {"name": "Object-Oriented Programming","desc": "Object-Oriented Programming (OOP) is a programming paradigm based on the concept of objects, which can contain data in the form of fields (attributes or properties) and code in the form of procedures (methods). Java follows OOP principles."},
+        3: {"name": "Syntax","desc": "Syntax in Java refers to the set of rules that defines the combinations of symbols that are considered to be correctly structured programs in Java. It includes rules for declaring classes, methods, variables, and other elements."},
+        4: {"name": "JVM (Java Virtual Machine)","desc": "The JVM is an abstract computing machine that enables a computer to run Java programs as well as programs written in other languages that are compiled to Java bytecode."}
+    },
+    
 
     steps: {
         Step1: {
@@ -60,6 +92,11 @@ export const WhatIsJava = {
             Content: {
                 1: { type: "text", content: "Java is a high-level (self-memory managing), object-oriented language. An object-oriented language is where code is bundled into a class which can be used as an object for easy data transfer, access, and more." },
                 2: { type: "points", content: ["Platform Independance: The motto of Java is \"Write once, run anywhere\", meaning that no matter what code you write, most platforms support it via the Java Virtual Machine (JVM).", "Self-Memory Managing: Java features automatic memory management through garbage collection, enhancing stability by handling memory allocation and deallocation to prevent leaks."] },
+            },
+            Teach: {
+                good: ["Java","high-level","object-oriented"," language","object"],
+                bad: ["public", "private", "global"],
+                title: "about Java"
             }
         },
         Step2: {
@@ -84,6 +121,11 @@ export const WhatIsJava = {
                 5: {type: "link", content: {link: "https://www.eclipse.org/downloads/", text: "Eclipse"}},
                 6: {type: "link", content: {link: "https://www.java.com/en/", text: "Java Runtime Enviroment"}},
                 7: {type: "link", content: {link: "https://code.visualstudio.com/Download", text: "VS Code"}}
+            },
+            Teach: {
+                good: [],
+                bad: ["public", "private", "global"],
+                title: "to install Java"
             }
         },
         Step3: {
@@ -103,6 +145,11 @@ export const WhatIsJava = {
             Content: {
                 1: { type: "text", content: "Object-Oriented Programming (OOP) is a programming style based on the concept of \"objects\", which can contain data and code: data in the form of fields (often known as attributes or properties), and code in the form of procedures (often known as methods)." },
                 2: { type: "points", content: ["Class: A blueprint for creating objects. It defines a type of object according to the methods and properties.", "Object: An instance of a class. When a class is defined, no memory is allocated until an object of that class is created."]}
+            },
+            Teach: {
+                good: ["fields","attributes","properties"," procedures","Class"," blueprint","instance"],
+                bad: [],
+                title: "Object Oriented Programming"
             }
         },
         Step4: {
@@ -125,14 +172,30 @@ export const WhatIsJava = {
             Overview: "Learn about access modifiers and how they control access to variables and methods in Java.",
             Content: {
                 1: { type: "text", content: "Each Java program is able to be runned by the method main() which is listed in the diagram. Let us analyze each part of this method as an introduction." },
-                2: { type: "points", content: ["public: Any"]}
+                2: { type: "points", content: ["public: Any class is able to see it (JVM needs to see the class' method to run the program!)", "static: It belongs to the class itself and not an object made from the class.", "void: States that this method doesn't have to return anything (optional)", "main: reserved keyword so the JVM knows which method to start the program", "String[] args: An array of arguments passed in the program to then be used."]}
+            },
+            Teach: {
+                good: ["Main Method","Java program","method","public","static",'void'],
+                bad: [],
+                title: "Main Method"
             }
         },
         Step5: {
             QuestionType: "default",
             Boxes: {
-                Box1: { id: 'S4-1', position: {x: 220, y: 150}, data: {label: "void"} },
-
+                Box1: { id: 'S4-1', position: {x: 230, y: 150}, data: {label: "void"} },
+                Box2: { id: 'S4-2', position: {x: 170, y: 150}, data: {label: "static"} },
+                Box3: { id: 'S4-3', position: {x: 90, y: 150}, data: {label: "public"} },
+                Box4: { id: 'S4-4', position: {x: 280, y: 150}, data: {label: "main("} },
+                Box5: { id: 'S4-5', position: {x: 340, y: 150}, data: {label: "String[]"} },
+                Box6: { id: 'S4-6', position: {x: 430, y: 150}, data: {label: "args) {"} },
+                Box7: { id: 'S4-7', position: {x: 170, y: 200}, data: {label: "System.out.println(\"Hello world!\");"} },
+                Box8: { id: 'S4-8', position: {x: 90, y: 250}, data: {label: "}"} },
+                //public class goes here
+                Box9: {id: 'S4-9', position: {x: 30, y: 90}, data: {label: "public"}},
+                Box10: {id: 'S4-10', position: {x: 100, y: 90}, data: {label: "class"}},
+                Box11: {id: 'S4-11', position: {x: 160, y: 90}, data: {label: "Program {"}},
+                Box12: {id: 'S4-12', position: {x: 30, y: 302}, data: {label: "}"}}
             },
             Edges: {
                 Edge1: { id: 'e1-2', source: '1', target: '2', animated: true },
@@ -141,9 +204,72 @@ export const WhatIsJava = {
             SubTitle: "Syntax",
             Overview: "Learn about access modifiers and how they control access to variables and methods in Java.",
             Content: {
-                1: { type: "text", content: "Access Modifiers control how variables and methods are accessed within a class, by other classes in the same package, or by classes in different packages, ensuring proper data handling, validation, and security." },
-                2: { type: "text", content: "The four modifiers are `public`, `default`, `protected`, and `private`." },
-                3: { type: "code", content: ["private static int employeeCount = 1020;", "protected Data companyData;", "private ArrayList<Employee> list;", "", "public static void addEmployee(Employee wkr) {", "\tlist.add(wkr);", "\temployeeCount++;", "}", "class Employee {...} //default modifier - no attribute"] }
+                1: { type: "text", content: "Understanding the proper syntax is crucial to writing code. Here is some of the basic syntax in Java:" },
+                2: { type: "points", content: ["Parentheses (): Used when calling methods, instantiating an object.", "Curly Braces {}: Traps the code within a certain class, method or control structure.", "Semicolons ';': Used for the end of every statement in Java.", "Square Brackets []: Used when defining an array.", "// This is a single-line comment", "/* This is a multiline comment */", "/** @category This is JavaDocs */"]},
+                3: { type: "text", content: "You will learn a lot more in-depth about all of these, but these are the basics."}
+            },
+            Teach: {
+                good: ["Syntax","Java","Parentheses ()","Curly Braces {}","Semicolons ;","Square Brackets []"," comments","single-line comment","multiline comment",'JavaDocs'],
+                bad: [],
+                title: "Syntax"
+            }
+        },
+        Step6: {
+            QuestionType: "default",
+            Boxes: {
+                Box1: { id: 'S6-1', position: {x: 220, y: 150}, data: {label: "class"} },
+                Box2: { id: 'S6-2', position: {x: 270, y: 150}, data: {label: "Dog"} },
+                Box3: { id: 'S6-3', position: {x: 320, y: 150}, data: {label: "{"} },
+                Box4: { id: 'S6-4', position: {x: 270, y: 215}, data: {label: "void"} },
+                Box5: { id: 'S6-5', position: {x: 320, y: 215}, data: {label: "Bark()"} },
+                Box6: { id: 'S6-6', position: {x: 220, y: 265}, data: {label: "}"} },
+                Box7: { id: 'S6-7', position: {x: 220, y: 340}, data: {label: "Dog"} },
+                Box8: { id: 'S6-8', position: {x: 275, y: 340}, data: {label: "Rufus"} },
+                Box9: { id: 'S6-9', position: {x: 340, y: 340}, data: {label: "= new"} },
+                Box10: { id: 'S6-10', position: {x: 410, y: 340}, data: {label: "Dog();"} },
+                Box11: {id: 'S6-11', position: {x: 510, y: 215}, data: {label: "Class"}},
+                Box12: {id: "S6-12", position: {x: 510, y: 375}, data: {label: "Object"}},
+                Box13: {id: "S6-13", position: {x: 220, y: 410}, data: {label: "Rufus"}},
+                Box14: {id: "S6-14", position: {x: 290, y: 410}, data: {label: ".bark();"}},
+            },
+            Edges: {
+                Edge1: { id: 'e11-3', source: 'S6-11', target: 'S6-3', animated: true },
+                Edge2: {id: 'e6-11', source: 'S6-6', target: "S6-11", animated: true},
+                Edge3: {id: 'e12-10', source: "S6-12", target: "S6-10", animated: true},
+                Edge4: {id: 'e13-12', source: "S6-13", target: "S6-12", animated: true}
+            },
+            Title: "Using Objects and Classes",
+            SubTitle: "Using it",
+            Overview: "Learn about Using Objects and Classes and how they control access to stuff in Java.",
+            Content: {
+                1: { type: "text", content: "Objects and classes in Java help organize data and functions. Classes are like templates for creating objects, which are instances of these templates."},
+                2: {type: "text", content: "In this example, you can see a class Dog which has the basic properties for a typical dog, it can bark, play and do more stuff."},
+                3: {type: "text", content: "Down below, you can see an object, which is an instance of a Dog called Rufus. And then, Rufus barks."},
+                4: {type: "text", content: "In this example, Dog defines properties (name and age) and methods (bark() and play()). The object Rufus is an instance of Dog, demonstrating how classes and objects work together in Java to model real-world entities and their behaviors."}
+            },
+            Teach: {
+                good: ["Objects","Classes","Templates",'Instances','Properties',"Methods"],
+                bad: [],
+                title: "Syntax"
+            }
+        },
+        Step7: {
+            Title: "Match the Correct Answer",
+            QuestionType: "question",
+            Boxes: {
+                Q1: {
+                    QNode: {label: "A thing that represents a blueprint for creating objects. It defines the properties and behaviors that the objects will have.",id: "q1"},
+                    ANode: {"label": "class","id": "a1"}
+                },
+                Q2: {
+                    QNode: {"label": "An instance of a class. It is created based on the blueprint defined by the class and has its own state and behavior.","id": "q2"},
+                    ANode: {"label": "object","id": "a2"}
+                }
+            },
+            Edges: {
+
+            },
+            Content: {
             }
         }
     }

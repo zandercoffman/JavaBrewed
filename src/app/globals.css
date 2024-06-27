@@ -446,3 +446,7 @@ ol, ul, menu {
 button {
   transition: all 1s;
 }
+
+.recharts-tooltip-wrapper {
+  border-radius: 2rem !important;
+}

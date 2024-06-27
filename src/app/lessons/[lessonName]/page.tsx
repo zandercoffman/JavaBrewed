@@ -43,7 +43,7 @@ const LessonComponent = ({ params }: { params: { lessonName: string } }) => {
     const [normal, setNormal] = React.useState(true);
 
     //TODO: update step code whenever i mess with it
-    const [step, setStep] = React.useState(4);
+    const [step, setStep] = React.useState(5);
 
     const text = "You will earn ";
   const textArray = text.split("");
