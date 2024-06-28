@@ -8,9 +8,12 @@ var storedTopicData = topicData;
 var storedAPData = apData;
 
 try {
-    if (localStorage.getItem("TopicData") && localStorage.getItem("APData")) {
-        storedTopicData = JSON.parse(localStorage.getItem("TopicData"));
-        storedAPData = JSON.parse(localStorage.getItem("APData"));
+    const topicDataStr = localStorage.getItem("TopicData");
+    const apDataStr = localStorage.getItem("APData");
+
+    if (topicDataStr && apDataStr) {
+        storedTopicData = JSON.parse(topicDataStr);
+        storedAPData = JSON.parse(apDataStr);
     } else {
         localStorage.setItem("TopicData", JSON.stringify(topicData));
         localStorage.setItem("APData", JSON.stringify(apData));
@@ -20,6 +23,7 @@ try {
     localStorage.setItem("TopicData", JSON.stringify(topicData));
     localStorage.setItem("APData", JSON.stringify(apData));
 }
+
 
 
 // Combine into a single data object
