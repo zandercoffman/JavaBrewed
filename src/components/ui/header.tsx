@@ -48,7 +48,7 @@ export default function Header() {
   return (
     <>
       <header className='flex flex-col lg:flex-row w-full py-12 px-24  text-2xl text-center header'>
-        <Link href={"/"} className='font-semibold w-full lg:w-[20%]'>JavaBrewed♨️</Link>
+        <Link href={"/"} className='font-semibold w-full lg:w-[20%]'>♨️JavaBrewed</Link>
         <div className='flex justify-end gap-[2rem] flex-col lg:flex-row w-full lg:w-[80%] ml-[2rem] mr-[2rem] '>
           <Button icon={MessageCircle} link="/chatbot" title="ChatBot"/>
           <Button icon={BookOpenCheck} link="/lessons" title="Lessons"/>

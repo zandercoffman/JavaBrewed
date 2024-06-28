@@ -70,17 +70,18 @@ const apScoring = [
     { name: 'Unit 10', value: 7.5 },
   ];
   const COLORS = [
-    '#808080',   // gray
-    '#A0A0A0',   // slightly lighter gray
-    '#C0C0C0',   // even lighter gray
-    '#E0E0E0',   // very light gray
-    '#D0E0FF',   // light blueish-gray
-    '#A0C0FF',   // medium blueish-gray
-    '#7090FF',   // darker blueish-gray
-    '#4050FF',   // even darker blueish-gray
-    '#2030FF',   // very dark blueish-gray
-    '#1010FF',   // very, very dark blueish-gray
+    '#4B0082',   // indigo
+    '#8A2BE2',   // blue violet
+    '#5F9EA0',   // cadet blue
+    '#20B2AA',   // light sea green
+    '#3CB371',   // medium sea green
+    '#FFD700',   // gold
+    '#FFA500',   // orange
+    '#FF4500',   // orange red
+    '#DC143C',   // crimson
+    '#8B0000',   // dark red
   ];
+  
   
 
 

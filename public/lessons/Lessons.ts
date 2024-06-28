@@ -44,6 +44,11 @@ export const filterUnits: number[] = [
     3   // Exception Handling
 ];
 
+export const combinedFilters = filters.map((filter, index) => ({
+    name: filter,
+    value: filterUnits[index]
+}));
+
 export const filterButtons = {
     1: {title: "Level",options: ["Basics", "Intermediate Concepts"],},
     2: {title: "AP Unit",options: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]},
@@ -657,7 +662,7 @@ export const ArrayListUsage = {
 };
 
 export const DemorgansLaw = {
-    name: "Simplifying Boolean Expressions (De Morgan's Law)",
+    name: "Simplifying Boolean Expressions",
     icon: "WrapText",
     description: "Learn how to simplify Boolean expressions using De Morgan's laws, which state the equivalence between negating logical conjunctions (AND) and disjunctions (OR), and vice versa.",
     filters: ["Intermediate Concepts", "Boolean Logic"],
@@ -732,7 +737,7 @@ export const UsingClasses = {
     name: "Using Classes",
     icon: "Box",
     description: "Explore how to effectively use classes in Java for creating objects, accessing fields and methods, and implementing inheritance.",
-    filters: ["Intermediate Concepts", "Object-Oriented Programming", "Classes and Objects"],
+    filters: ["Object-Oriented Programming", "Classes and Objects"],
     unit: 2,
     steps: {}
 };
@@ -840,7 +845,7 @@ export const IPPVSPPI = {
 export const Lessons = [
     WhatIsJava,
     AccessModifiers,
-    DefiningNumbers,
+    /*DefiningNumbers,
     DefiningBooleans,
     DefiningStrings,
     DefiningCharacters,
@@ -875,7 +880,7 @@ export const Lessons = [
     Polymorphism,
     Encapsulation,
     EnumUsage,
-    IPPVSPPI
+    IPPVSPPI*/
 ];
 
 
