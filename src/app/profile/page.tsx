@@ -292,7 +292,7 @@ export default function ProfilePage() {
                         })}
                     </CardDescription>
                     <Alert className="mt-2">
-                        <AIMessage message={<AlertTitle>{messages[Math.floor(Math.random() * messages.length)]}</AlertTitle>}/>
+                        <AIMessage message={messages[Math.floor(Math.random() * messages.length)]}/>
                     </Alert>
                     <Alert className="mt-2">
                         <BookOpenText className="h-5 w-5" />
