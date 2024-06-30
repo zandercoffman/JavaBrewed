@@ -191,7 +191,7 @@ export default function ProfilePage() {
     const { toast } = useToast()
 
      const APCout = OutliersAP;
-     const TopicCout = OutlitersTopic;
+     const TopicCout = OutliersTopic;
 
     const [userData, setData] = React.useState<thisData>({
         name: "User",
