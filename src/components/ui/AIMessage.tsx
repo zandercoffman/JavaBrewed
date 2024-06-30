@@ -2,6 +2,7 @@ import { CircleDashed } from "lucide-react";
 
 interface Params {
     message: string;
+    thinking?: boolean;
 }
 
 export function AIMessage(params: Params) {
