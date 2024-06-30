@@ -7,15 +7,15 @@ const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', '
 //const apData = new Array(10).fill(Math.random() * 10);
 
 interface DrawerScoreTabProps {
+    id: number;
     subtitle: string;
     title: string;
-    id: string;
-    setSelectedId: (id: string) => void;
-    data: number[]; // Assuming `data` is an array of numbers
+    setSelectedId: (id: number | null) => void; // Adjust the setSelectedId prop type to match
+    data: any; // Adjust data type as needed
 }
 
 export function DrawerScoreTab({ subtitle, title, id, setSelectedId, data }: DrawerScoreTabProps) {
-    const thisData = data.map((value, index) => ({
+    const thisData = data.map((value: any, index: number) => ({
         name: months[index % months.length], // Use modulo to handle cases where there are more data points than months
         "Amount of Lessons done on this topic": value,
         pv: Math.random() * 10000, // You can replace this with actual data if available
@@ -24,7 +24,7 @@ export function DrawerScoreTab({ subtitle, title, id, setSelectedId, data }: Dra
 
     return (
         <motion.div
-            layoutId={id}
+            layoutId={id.toString()}
             onClick={() => setSelectedId(id)}
             className="cursor-pointer mb-4 text-center flex flex-col items-center"
             style={{ transformOrigin: "bottom right" }}
