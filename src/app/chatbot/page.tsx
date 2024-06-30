@@ -47,12 +47,20 @@ interface Lesson {
     steps: { [key: string]: LessonStep };
 }
 
+interface Message {
+    id: string;
+    type: string;
+    text: string;
+}
+
+import { DefaultLesson } from "../../../public/lessons/Lessons"
+
 export default function ChatBotPage() {
 
     const [topic, setTopic] = React.useState("");
-    const [lesson, setLesson] = React.useState<object>({});
+    const [lesson, setLesson] = React.useState<Lesson>(DefaultLesson);
     const [model, setModel] = React.useState<any>(null);
-    const [messages, setMessages] = React.useState({});
+    const [messages, setMessages] = React.useState<{ [key: string]: Message }>({});
     const [thinking, setThinking] = React.useState(false);
 
     const setter = (s: string) => {
@@ -77,7 +85,7 @@ export default function ChatBotPage() {
         const messageId = Date.now().toString(); // Unique message ID
         setMessages((prevMessages) => ({
             ...prevMessages,
-            [messageId]: { text: message, type: 'user' }
+            [messageId]: { id: messageId, text: message, type: 'user' }
         }));
 
     
@@ -85,11 +93,12 @@ export default function ChatBotPage() {
             try {
                 setThinking(true);
                 const answers = await findAnswers(message, "Java is really cool.");
-                const bestAnswer = answers.length > 0 ? answers.sort((a, b) => b.score - a.score)[0] : answers[0];
+                const bestAnswer = answers.length > 0 ? answers.sort((a: { score: number }, b: { score: number }) => b.score - a.score)[0] : answers[0];
                 const aiResponse = bestAnswer ? bestAnswer.text : "I'm sorry, I couldn't find an answer.";
+                const aiMessageId = Date.now().toString();
                 setMessages((prevMessages) => ({
                     ...prevMessages,
-                    [Date.now().toString()]: { text: grammer(aiResponse), type: 'ai' }
+                    [aiMessageId]: { id: aiMessageId, text: grammer(aiResponse), type: 'ai' }
                 }));
                 setThinking(false);
             } catch (error) {
@@ -100,11 +109,11 @@ export default function ChatBotPage() {
     };
     
 
-    const handleInputChange = (e) => {
+    const handleInputChange = (e: { target: { value: React.SetStateAction<string> } }) => {
         setTopic(e.target.value);
     };
 
-    const handleInputKeyPress = (e) => {
+    const handleInputKeyPress = (e: { key: string }) => {
         if (e.key === 'Enter' && topic.trim() !== '') {
             sendMessage(topic);
             setTopic('');
@@ -117,7 +126,7 @@ export default function ChatBotPage() {
                 <div className=" border border-gray-200 rounded-[1rem] w-full h-[88%] overflow-y-auto lg:px-16 py-5">
                     {(model) ? <>
                         {Object.keys(messages).map((messageId, index) => {
-                                const message = messages[messageId];
+                                const message: Message = messages[messageId];
                                 const isLastAIMessage = message.type === 'ai' && index === Object.keys(messages).length - 1;
                                 return message.type === 'ai' ? (
                                     <>{(isLastAIMessage) ? <><AIMessage key={messageId} message={message.text} thinking={thinking}/></> : <><AIMessage key={messageId} message={message.text} /></>}</>
@@ -159,19 +168,17 @@ export default function ChatBotPage() {
                         <h1 className="text-2xl font-bold text-center">Select a topic</h1>
                         <Carousel className="w-full max-w-xs align-middle text-center content-evenly max-h-[40vh]">
                             <CarouselContent>
-                                {Lessons.map((lesson: object, index: any) => (
+                                {Lessons.map((lesson: Lesson, index: number) => (
                                     <CarouselItem key={index}>
-                                        <div className="p-1">
-                                            <Card className="!bg-white !rounded-[1rem]">
-                                                <CardContent className="flex aspect-auto items-center justify-center p-6">
-                                                    <CardHeader>
-                                                        <CardTitle>{lesson.name}</CardTitle>
-                                                        <CardDescription>{lesson.description}</CardDescription>
-                                                        <Button onClick={() => setter(lesson.name)} className="!bg-black !rounded-[1rem] !text-white">Select This Lesson</Button>
-                                                    </CardHeader>
-                                                </CardContent>
-                                            </Card>
-                                        </div>
+                                        {/* Updated CardTitle and CardDescription to access properties of 'lesson' */}
+                                        <CardTitle>{lesson.name}</CardTitle>
+                                        <CardDescription>{lesson.description}</CardDescription>
+                                        <Button
+                                        onClick={() => setter(lesson.name)}
+                                        className="!bg-black !rounded-[1rem] !text-white"
+                                        >
+                                        Select This Lesson
+                                        </Button>
                                     </CarouselItem>
                                 ))}
                             </CarouselContent>
