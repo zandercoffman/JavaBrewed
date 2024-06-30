@@ -162,10 +162,11 @@ export default function LessonPage() {
     }
 
     return <>
-        <main className="flex min-h-screen flex-col items-center justify-between p-12 lg:p-24 pt-5">
+        <main className="flex min-h-screen flex-col items-center justify-between p-12 lg:p-24 pt-1">
             <div className="z-10 w-full items-center justify-between lg:flex mr-0">
                 <div className="flex flex-col gap-2 max-w-full" >
                     <div className=" w-[100%] h-fit mb-4">
+                        <h1 className="text-5xl font-bold mb-5">Lessons Page</h1>
                         <div className="flex flex-row gap-3 ">
                             {Object.values(filterButtons).map((filter, index) => (
                                 <LessonFilter key={index} title={filter.title} options={["N/A", ...filter.options]} changeFilters={changeFilters}/>

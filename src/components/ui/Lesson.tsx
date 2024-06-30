@@ -62,17 +62,17 @@ export default function Lesson(params: any) {
     const link = `${(lesson.name.trim().replace(/\s+/g, '').toLowerCase())}`;
 
     return <>
-        <div className="relative flex flex-col gap-[20px] w-full min-h-[340px] max-h-[340px] overflow-hidden transition-all bg-white shadow-sm rounded-[20px] border-none p-[30px] pb-[90px]">
+        <div className="relative flex flex-col gap-[20px] w-full min-h-[340px] max-h-[340px] overflow-hidden transition-all dark:bg-slate-500 bg-white  shadow-sm rounded-[20px] border-none p-[30px] pb-[90px]">
             <div className="flex flex-row gap-[10px]">
                 <div className="w-auto h-auto">
                     {GotIcon && <GotIcon className="w-[40px] h-[40px]"/>}
                 </div>
-                <h1 className="font-bold text-2xl">{lesson.name}</h1>
+                <h1 className="font-bold text-2xl dark:!text-black">{lesson.name}</h1>
             </div>
             <h2 className="text-gray-700 text-1xl">{getCutOffText(lesson.description)}</h2>
             <div className="flex flex-wrap gap-2">
                 {
-                    lesson.filters.map(filter => {
+                    lesson.filters.map((filter: any) => {
                         return <Badge key={filter} className="border-[1px] border-black">{filter}</Badge>
                     })
                 }

@@ -30,8 +30,7 @@ import {
 } from "@/components/ui/popover"
 
 import { Badge } from "@/components/ui/badge"
-
-
+import { RotateMatch } from "@/components/ui/RotateMatch";
 
 
 const LessonComponent = ({ params }: { params: { lessonName: string } }) => {
@@ -51,7 +50,14 @@ const LessonComponent = ({ params }: { params: { lessonName: string } }) => {
   const otext = "You earned";
   const otextArr = otext.split("");
 
+  const [hasGivenPoints, setHasGivenPoints] = React.useState(false);
   const [isLastStep, setLastStep] = React.useState(step === Object.keys(lesson.steps).length);
+
+  const givePoints = () => {
+    if (!hasGivenPoints) {
+      setHasGivenPoints(true);
+    }
+  }
 
   React.useEffect(() => {
     setLastStep(step === Object.keys(lesson.steps).length);
@@ -125,7 +131,7 @@ const LessonComponent = ({ params }: { params: { lessonName: string } }) => {
                     <ul className="steps w-full justify-around">
                       {
                         Object.keys(lesson.steps).map((key, index) => {
-                          const thisStep = lesson.steps[key];
+                          const thisStep: any = lesson.steps[key];
                           if (thisStep.QuestionType !== "default") return <></>
                           return <li key={key} className="step cursor-pointer" onClick={() => {setThisStep(index + 1)}}><Badge>{thisStep.SubTitle}</Badge></li>;
                         })
@@ -155,9 +161,9 @@ const LessonComponent = ({ params }: { params: { lessonName: string } }) => {
               <>
                 <div className="flex flex-col w-[70vw]">
                   <h1 className="text-[38px] font-semibold p-[20px] pb-0 pl-[80px] pt-[40px]">In this lesson, you will learn...</h1>
-                  <ul className="p-[20px] pl-[120px] text-[28px] list-disc">
+                  <ul className="p-[20px] pl-[120px] text-[28px] list-disc max-h-[230px] overflow-y-auto">
                     {
-                      lesson.goals.map((goal, index) => {
+                      lesson.goals && lesson.goals.map((goal: any, index: any) => {
                         return <li key={index} className="goals-index">{goal}</li>
                       })
                     }
@@ -187,9 +193,18 @@ const LessonComponent = ({ params }: { params: { lessonName: string } }) => {
                   (step < Object.keys(lesson.steps).length + 1) ? 
                   <>
                     <ResizablePanelGroup direction={!isLastStep ? "horizontal" : "vertical"} className={"max-h-[80vh] overflow-y-auto gap-2 resizeable-lesson" + ((isLastStep) ? " !flex-col-reverse !text-center" : " ")}>
-                      <ResizablePanel defaultSize={55} className={isLastStep ? ` !max-h-[90%]` : ""}><LeftSideLesson step={step} lesson={lesson} /></ResizablePanel>
+                      <ResizablePanel defaultSize={55} className={isLastStep ? ` !max-h-[84%]` : ""}>
+                       {(isLastStep && lesson.steps[`Step${step}`].GameType) ? <>
+                        <RotateMatch step={lesson.steps[`Step${step}`]} setStep={setStep} stepNum={step}/>
+                       </>: <>
+                        <LeftSideLesson step={step} lesson={lesson} />
+                       </>}
+                        
+                      </ResizablePanel>
                       <ResizableHandle withHandle/>
-                      <ResizablePanel defaultSize={45} className={"!overflow-y-auto !overflow-x-hidden pt-2" + ((isLastStep) ? ' !max-h-[10%] pt-2' : "")}><RightSideLesson stepNum={step} lesson={lesson}/></ResizablePanel>
+                      <ResizablePanel defaultSize={45} className={"!overflow-y-auto !overflow-x-hidden pt-2" + ((isLastStep) ? ' !max-h-[16%] pt-2' : "")}>
+                        <RightSideLesson stepNum={step} lesson={lesson}/>
+                      </ResizablePanel>
                     </ResizablePanelGroup>
                   </> : 
                   <>
@@ -198,8 +213,8 @@ const LessonComponent = ({ params }: { params: { lessonName: string } }) => {
                         <div className="p-2">
                           <h1 className="text-5xl font-bold">Complete!</h1>
                           <h2 className="text-3xl">You learned...</h2>
-                          <ul className="flex flex-col gap-4 p-4">
-                            {Object.entries(lesson.vocab).map(([key, item]) => {
+                          <ul className="flex flex-col gap-4 p-4 max-h-[230px] overflow-y-auto">
+                            {lesson.vocab && Object.entries(lesson.vocab).map(([key, item]) => {
                               return <div key={key} className="!bg-white text-center p-2 rounded-[1rem] vocab">
                                 <Popover>
                                   <PopoverTrigger>{item.name}</PopoverTrigger>

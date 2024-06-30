@@ -50,7 +50,9 @@ export default function RightSideLesson(params: { lesson: any, stepNum: number})
                         <Link href={obj.content.link} className="underline text-purple-950">{obj.content.text}</Link>
                     </div>
                 case "title":
-                    return <h2 className="scroll-m-20 border-b pb-2 text-3xl font-semibold tracking-tight first:mt-0">{obj.content}</h2>
+                    return <h2 className="scroll-m-20 mt-2 border-b text-3xl font-semibold tracking-tight first:mt-0">{obj.content}</h2>
+                case "seperator": 
+                    return <Separator/>
                 default:
                     return null;
             }

@@ -304,6 +304,15 @@ ol, ul, menu {
   animation-delay: 2.5s;
 }
 
+.goals-index:nth-child(4), .vocab:nth-child(4) {
+  animation-delay: 3.5s;
+}
+
+
+.goals-index:nth-child(5), .vocab:nth-child(5) {
+  animation-delay: 4.5s;
+}
+
 .vocab:nth-child(4) {
   animation-delay: 3.5s;
 }
@@ -462,4 +471,65 @@ button {
 
 .spin {
 animation: spin 0.7s infinite;
+}
+
+.custom-shape-divider-bottom-1719687637 {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  overflow: hidden;
+  line-height: 0;
+  transform: rotate(180deg);
+}
+
+.custom-shape-divider-bottom-1719687637 svg {
+  position: relative;
+  display: block;
+  width: calc(136% + 1.3px);
+  height: 174px;
+}
+
+.custom-shape-divider-bottom-1719687637 .shape-fill {
+  fill: #2A3E83;
+}
+
+.custom-shape-divider-top-1719687952 {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  overflow: hidden;
+  line-height: 0;
+}
+
+.custom-shape-divider-top-1719687952 svg {
+  position: relative;
+  display: block;
+  width: calc(136% + 1.3px);
+  height: 131px;
+}
+
+.custom-shape-divider-top-1719687952 .shape-fill {
+  fill: #2A3E83;
+}
+
+.custom-shape-divider-top-1719688745 {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  overflow: hidden;
+  line-height: 0;
+}
+
+.custom-shape-divider-top-1719688745 svg {
+  position: relative;
+  display: block;
+  width: calc(136% + 1.3px);
+  height: 131px;
+}
+
+.custom-shape-divider-top-1719688745 .shape-fill {
+  fill: #2A3E83;
 }

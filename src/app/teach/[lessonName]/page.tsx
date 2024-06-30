@@ -25,6 +25,7 @@ import {
     CardTitle,
   } from "@/components/ui/card"
   
+  
 
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert"
 import { Button } from "@/components/ui/button"
@@ -34,9 +35,29 @@ import { Overview } from "@/components/ui/AIOverview";
 const nodesAndEdges: object[] = [];
 const text: object[] = [];
 
+interface LessonStep {
+    SubTitle: string;
+    QuestionType: string;
+    Teach: {
+        title: string;
+    };
+    // Add other properties as needed
+}
+
+interface Lesson {
+    name: string;
+    icon: string;
+    description: string;
+    filters: string[];
+    unit: number | string;
+    passage?: string; // Ensure this matches your lesson structure
+    steps: { [key: string]: LessonStep };
+}
+
+
 export default function TeachingPage({ params }: { params: { lessonName: string } }) {
     const {lessonName} = params;
-    const lesson = getLessonByParamName(lessonName);
+    const lesson: Lesson = getLessonByParamName(lessonName);
     const Icon = returnIcon(lesson.icon);
 
     const initialContent = {};
