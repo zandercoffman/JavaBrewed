@@ -162,6 +162,25 @@ const store = {
     }
 };
 
+interface LessonStep {
+    Title: string;
+    SubTitle: string;
+    QuestionType: string;
+    Teach: {
+        title: string;
+    };
+    // Add other properties as needed
+}
+
+interface Lesson {
+    name: string;
+    icon: string;
+    description: string;
+    filters: string[];
+    unit: number | string;
+    passage?: string; // Ensure this matches your lesson structure
+    steps: { [key: string]: LessonStep };
+}
 
 const itemsArray = Object.values(store);
 const halfIndex = Math.ceil(itemsArray.length / 2);
@@ -206,7 +225,7 @@ export default function ProfilePage() {
     const months = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10'];
 
     const getData = (data: any) => {
-        const thisData = data.map((value, index) => ({
+        const thisData = data.map((value: any, index: number) => ({
             name: months[index % months.length], // Use modulo to handle cases where there are more data points than months
             "Amount of Lessons done on this topic": value,
             pv: Math.random() * 10000, // You can replace this with actual data if available
@@ -215,7 +234,7 @@ export default function ProfilePage() {
         return thisData;
     }
 
-    const [focus, setFocus] = React.useState(localStorage.getItem("Focus"));
+    const [focus, setFocus] = React.useState(localStorage.getItem("Focus") || "");
     const messages = [
         "Happy studying!",
         "Enjoy your learning journey!",
@@ -298,7 +317,7 @@ export default function ProfilePage() {
                                         <Tooltip/>
                                         <Bar key={`bar-c`} dataKey="Amount of Lessons done on this topic" />
                                         {
-                                            getData(item.data).map((entry, index) => (
+                                            getData(item.data).map((entry: any, index: number) => (
                                                 <Cell
                                                     key={`cell-${index}`}
                                                     fill={
@@ -357,7 +376,7 @@ export default function ProfilePage() {
                                 
                                 <Carousel className="w-[95%] relative justify-center align-middle h-[70vh]">
                                     <CarouselContent className="!h-[60vh]">
-                                        {Lessons.map((lesson: Object, index) => (
+                                        {Lessons.map((lesson: Lesson, index) => (
                                             <>
                                                 {focus?.includes("Unit ") ? 
                                                 <>
