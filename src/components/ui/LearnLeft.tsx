@@ -11,16 +11,28 @@ interface Message {
 }
 
 interface LessonStep {
+    Title: string;
+    SubTitle: string;
+    QuestionType: string;
+    Boxes: object;
+    Edges: object;
+    Content: object;
     Teach: {
         good: string[];
         bad: string[];
+        title: string;
     };
+    // Add other properties as needed
 }
 
 interface Lesson {
-    steps: {
-        [key: string]: LessonStep;
-    };
+    name: string;
+    icon: string;
+    description: string;
+    filters: string[];
+    unit: number | string;
+    passage?: string; // Ensure this matches your lesson structure
+    steps: { [key: string]: LessonStep };
 }
 
 interface NodesAndEdges {

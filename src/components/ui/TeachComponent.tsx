@@ -10,10 +10,7 @@ import {
 } from "@/components/ui/card";
 
 interface TeachComponentProps {
-    thisStep: {
-        Title: string;
-        Overview: string;
-    };
+    thisStep: any;
     rannum: number;
     info: any; // Adjust 'any' to the specific type of 'info' if known
     content: { [key: string]: string }; // Assuming 'content' is an object with string keys and string values

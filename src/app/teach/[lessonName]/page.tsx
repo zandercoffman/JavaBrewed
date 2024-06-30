@@ -16,20 +16,6 @@ import React, { createContext, useContext, useState } from "react";
 import { Textarea } from "@/components/ui/textarea"
 import { TeachComponent } from "@/components/ui/TeachComponent";
 import { LeftSideLearnSide } from "@/components/ui/LearnLeft";
-import {
-    Card,
-    CardContent,
-    CardDescription,
-    CardFooter,
-    CardHeader,
-    CardTitle,
-  } from "@/components/ui/card"
-  
-  
-
-import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert"
-import { Button } from "@/components/ui/button"
-import { Progress } from "@/components/ui/progress"
 import { Overview } from "@/components/ui/AIOverview";
 import { findAnswers, loadModel } from "../../../../public/ai/tensorflowai";
 
@@ -40,7 +26,12 @@ interface LessonStep {
     Title: string;
     SubTitle: string;
     QuestionType: string;
+    Boxes: object;
+    Edges: object;
+    Content: object;
     Teach: {
+        good: string[];
+        bad: string[];
         title: string;
     };
     // Add other properties as needed
@@ -276,7 +267,7 @@ export default function TeachingPage({ params }: { params: { lessonName: string 
                             </span>
                         </div>
                         <div className="h-[100%] w-full ">
-                            <LeftSideLearnSide step={step} lesson={lesson} show={showLeftSide} setNodeInfo={setnewinfo} info={nodeInfo} messages={messages} setMessages={setMessages} content={content} setContent={setThisContent}/>
+                            <LeftSideLearnSide step={step} lesson={lesson as Lesson} show={showLeftSide} setNodeInfo={setnewinfo} info={nodeInfo} messages={messages} setMessages={setMessages} content={content} setContent={setThisContent}/>
                         </div>
                     </div>
                 </div>
