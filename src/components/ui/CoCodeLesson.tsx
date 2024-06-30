@@ -24,6 +24,21 @@ import React from "react";
 import CoCodeCodePiece from "./CoCodeCodePiece";
 import Link from "next/link";
 
+interface CoCodeChallenges {
+    easy: {
+        question: string;
+        expected: string;
+    };
+    medium: {
+        question: string;
+        expected: string;
+    };
+    hard: {
+        question: string;
+        expected: string;
+    };
+}
+
 export default function CoCodeLesson(params: any) {
     const lesson = params.lesson;
     const Icon = returnIcon(lesson.icon);
@@ -34,15 +49,7 @@ export default function CoCodeLesson(params: any) {
     const [difficulty, setDifficulty] = React.useState("");
 
     const cocode = lesson.cocode;
-    var easy: object;
-    var medium: object;
-    var hard: object;
-
-    if (cocode) {
-        easy = cocode.easy;
-        medium = cocode.medium;
-        hard = cocode.hard;
-    }
+    const { easy, medium, hard }: CoCodeChallenges = lesson.cocode || { easy: { question: "", expected: "" }, medium: { question: "", expected: "" }, hard: { question: "", expected: "" } };
 
     const set = (difficulty: string) => {
         if (cocode && easy && medium && hard) {

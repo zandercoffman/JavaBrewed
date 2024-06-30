@@ -1,7 +1,7 @@
 "use client"
 
 import { Tabs } from "@/components/ui/3DTabs"
-import { getLessonByParamName, returnIcon } from "../../../../public/lessons/Lessons";
+import { DefaultLesson, getLessonByParamName, returnIcon } from "../../../../public/lessons/Lessons";
 import {
     DropdownMenu,
     DropdownMenuContent,
@@ -31,11 +31,13 @@ import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert"
 import { Button } from "@/components/ui/button"
 import { Progress } from "@/components/ui/progress"
 import { Overview } from "@/components/ui/AIOverview";
+import { findAnswers, loadModel } from "../../../../public/ai/tensorflowai";
 
 const nodesAndEdges: object[] = [];
 const text: object[] = [];
 
 interface LessonStep {
+    Title: string;
     SubTitle: string;
     QuestionType: string;
     Teach: {
@@ -54,16 +56,25 @@ interface Lesson {
     steps: { [key: string]: LessonStep };
 }
 
+interface DisplayMessages {
+    typing: { [key: number]: string };
+    nodes: { [key: number]: string };
+}
+
 
 export default function TeachingPage({ params }: { params: { lessonName: string } }) {
     const {lessonName} = params;
-    const lesson: Lesson = getLessonByParamName(lessonName);
+    const lesson: Lesson = getLessonByParamName(lessonName) || DefaultLesson;
     const Icon = returnIcon(lesson.icon);
 
-    const initialContent = {};
+    const initialContent: { [key: string]: string } = {};
     Object.keys(lesson.steps).forEach((key, index) => {
         initialContent[`${index}`] = "";
     });
+
+    const [model, setModel] = React.useState(loadModel());
+
+
 
     const [step, setStep] = React.useState(0);
     const [tabs, setTabs] = React.useState<any>(null);
@@ -107,14 +118,14 @@ export default function TeachingPage({ params }: { params: { lessonName: string 
     }
 
     const getTextMessage = async (index: number) => {
-        if (model && lesson) {
+        if (await model && lesson) {
             try {
                 const title = content[Object.keys(content)[index]];
 
                 const topic = lesson.steps[Object.keys(lesson.steps)[index]];
 
                 const answers = await findAnswers((topic.Title + " does what?"), title);
-                const bestAnswer = answers.length > 0 ? answers.sort((a, b) => b.score - a.score)[0] : answers[0];
+                const bestAnswer = answers.length > 0 ? answers.sort((a: { score: number; }, b: { score: number; }) => b.score - a.score)[0] : answers[0];
                 const aiResponse = bestAnswer ? bestAnswer.text : "I'm sorry, I couldn't find an answer.";
                 return aiResponse;
             } catch (error) {
@@ -124,7 +135,7 @@ export default function TeachingPage({ params }: { params: { lessonName: string 
         }
     };
 
-    const setThisContent = (key, value) => {
+    const setThisContent = (key: any, value: any) => {
         setContent(prevContent => {
             const obj = { ...prevContent, [key]: value };
             console.log(prevContent); // Logs the previous content state
@@ -134,22 +145,28 @@ export default function TeachingPage({ params }: { params: { lessonName: string 
     };
     
 
-    const returnMessageBasedOnInput = (topic, name) => {
-        const displayMessages = {
-            "typing": {
+    const returnMessageBasedOnInput = (topic: keyof DisplayMessages, name: string) => {
+        const displayMessages: {
+            typing: {
+                [key: number]: string;
+            };
+            nodes: {
+                [key: number]: string;
+            };
+        } = {
+            typing: {
                 1: `What are the ${name} in Java? I've heard about them but I'm not quite sure what they do. Could you explain?`,
                 2: `Also, I need to learn about the ${name}. Could you help explain it to me? Thanks.`,
                 3: `Could you provide some examples of the ${name} in Java?`,
                 4: `By the way, I'm writing about the ${name}. Is this explanation correct?`
             },
-            "nodes": {
+            nodes: {
                 1: `I was wondering, what are the ${name} in Java? I've heard about them but I'm not quite sure what they do. Could you explain?`,
                 2: `Could you enlighten me about the ${name}? I need to learn more about it. Thanks.`,
                 3: `Do you have any examples of the ${name} in Java?`,
                 4: `I'm curious about the ${name}. Is this explanation correct?`
             }
-        };
-        
+        };        
     
         if (displayMessages[topic]) {
             const messages = displayMessages[topic];
@@ -231,7 +248,7 @@ export default function TeachingPage({ params }: { params: { lessonName: string 
         y: Math.random() * 600,
     });
 
-    const createNode = (id, label) => ({
+    const createNode = (id: any, label: any) => ({
         id,
         position: getRandomPosition(),
         data: { label },

@@ -98,7 +98,7 @@ export default function Header() {
           <CommandGroup heading="Lessons">
             {
               Object.keys(Lessons).map((key: string, index: number) => (
-                <SearchItem lesson={Lessons[key]} key={index}/>
+                <SearchItem lesson={Lessons[key as keyof typeof Lessons]} key={index}/>
               ))              
             }
           </CommandGroup>

@@ -1,7 +1,7 @@
 "use client"
 
 import { MoveLeft, MoveRight, Menu, AlignLeft, AlignRight, BadgeInfo } from "lucide-react";
-import { getLessonByParamName, returnIcon } from "../../../../public/lessons/Lessons";
+import { DefaultLesson, getLessonByParamName, returnIcon } from "../../../../public/lessons/Lessons";
 import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
@@ -32,11 +32,52 @@ import {
 import { Badge } from "@/components/ui/badge"
 import { RotateMatch } from "@/components/ui/RotateMatch";
 
+interface LessonStep {
+  SubTitle: string;
+  QuestionType: string;
+  Teach: {
+    title: string;
+  };
+  GameType?: string;
+  // Add other properties as needed
+}
+
+interface VocabularyItem {
+  name: string;
+  desc: string;
+  // Add other properties if needed
+}
+
+interface Lesson {
+  vocab?: {
+    [key: string]: VocabularyItem;
+  };
+  name: string;
+  icon: string;
+  description: string;
+  filters: string[];
+  unit: number | string;
+  goals?: string[]; // Make goals optional
+  passage?: string;
+  steps: {
+    [key: string]: LessonStep;
+  };
+}
+
+
+interface VocabularyItem {
+  name: string;
+  desc: string;
+  // Add other properties as needed
+}
+
+
+
 
 const LessonComponent = ({ params }: { params: { lessonName: string } }) => {
 
     const {lessonName} = params;
-    const lesson = getLessonByParamName(lessonName);
+    const lesson: Lesson = getLessonByParamName(lessonName) || DefaultLesson;
     const Icon = returnIcon(lesson.icon);
 
     const [normal, setNormal] = React.useState(true);
@@ -112,7 +153,7 @@ const LessonComponent = ({ params }: { params: { lessonName: string } }) => {
               </Button>
             </div> {/* Bottom right corner */}
             <div className="fixed z-20 bottom-0 w-10 h-10  m-3">
-                <Button variant={"outline"} className="rounded-[1rem] flex flex-row flex-row-reverse gap-2 bg-gray-700 text-white hover:bg-gray-700 hover:text-white hover:cursor-default">
+                <Button variant={"outline"} className="rounded-[1rem] flex flex-row gap-2 bg-gray-700 text-white hover:bg-gray-700 hover:text-white hover:cursor-default">
                   <p>{((step / Object.keys(lesson.steps).length) * 100).toFixed(0)}%</p>
                 </Button>
             </div> {/* Bottom right corner */}
@@ -129,13 +170,15 @@ const LessonComponent = ({ params }: { params: { lessonName: string } }) => {
                 <div className="w-full ml-2 mr-2 p-2">
                   <div className="navbar bg-base-100 rounded-[1rem] border-0">
                     <ul className="steps w-full justify-around">
-                      {
-                        Object.keys(lesson.steps).map((key, index) => {
-                          const thisStep: any = lesson.steps[key];
-                          if (thisStep.QuestionType !== "default") return <></>
-                          return <li key={key} className="step cursor-pointer" onClick={() => {setThisStep(index + 1)}}><Badge>{thisStep.SubTitle}</Badge></li>;
-                        })
-                      }
+                      {Object.keys(lesson.steps).map((key, index) => {
+                          const thisStep: LessonStep = lesson.steps[key];
+                          if (thisStep.QuestionType !== "default") return null;
+                          return (
+                              <li key={key} className="step cursor-pointer" onClick={() => setThisStep(index + 1)}>
+                                  <Badge>{thisStep.SubTitle}</Badge>
+                              </li>
+                          );
+                      })}
                     </ul>
                   </div>
                 </div>

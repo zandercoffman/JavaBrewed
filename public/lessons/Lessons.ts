@@ -1301,7 +1301,9 @@ export const DefaultLesson = {
     filters: [],
     unit: "N/A",
     passage: "",
-    steps: {}
+    steps: {},
+    vocab: {},
+    
 };
 
 export const getLessonByParamName = (finder: string) => {
