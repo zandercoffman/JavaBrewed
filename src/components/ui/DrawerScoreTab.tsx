@@ -6,7 +6,15 @@ const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', '
 //const topicData = new Array(filters.length).fill(Math.random() * 10);
 //const apData = new Array(10).fill(Math.random() * 10);
 
-export function DrawerScoreTab({ subtitle, title, id, setSelectedId, data }) {
+interface DrawerScoreTabProps {
+    subtitle: string;
+    title: string;
+    id: string;
+    setSelectedId: (id: string) => void;
+    data: number[]; // Assuming `data` is an array of numbers
+}
+
+export function DrawerScoreTab({ subtitle, title, id, setSelectedId, data }: DrawerScoreTabProps) {
     const thisData = data.map((value, index) => ({
         name: months[index % months.length], // Use modulo to handle cases where there are more data points than months
         "Amount of Lessons done on this topic": value,

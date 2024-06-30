@@ -8,11 +8,20 @@ import {
     CardHeader,
     CardTitle,
 } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
-import { Plus } from "lucide-react";
-import { Input } from "@/components/ui/input";
 
-export function TeachComponent({ thisStep, rannum, info, content, setContent, step }) {
+interface TeachComponentProps {
+    thisStep: {
+        Title: string;
+        Overview: string;
+    };
+    rannum: number;
+    info: any; // Adjust 'any' to the specific type of 'info' if known
+    content: { [key: string]: string }; // Assuming 'content' is an object with string keys and string values
+    setContent: (key: string, value: string) => void;
+    step: number;
+}
+
+export function TeachComponent({ thisStep, rannum, info, content, setContent, step }: TeachComponentProps) {
     const [gottenInfo, setGottenInfo] = useState(info);
     const [thisContent, setThisContent] = useState(content[`${step + 1}`] || "");
     const [fullContent, setFullContent] = useState(content);
@@ -26,7 +35,7 @@ export function TeachComponent({ thisStep, rannum, info, content, setContent, st
         setFullContent(content);
     }, [step, content]);
 
-    const handleTextareaChange = (event) => {
+    const handleTextareaChange = (event: { target: { value: any; }; }) => {
         const { value } = event.target;
         setThisContent(value);
         setContent(`${step + 1}`, value + ".")

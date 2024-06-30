@@ -1,7 +1,6 @@
 "use client"
 
 import { Tabs } from "@/components/ui/3DTabs"
-import { getLessonByParamName, returnIcon } from "../../../../public/lessons/Lessons";
 import {
     DropdownMenu,
     DropdownMenuContent,
@@ -30,9 +29,18 @@ import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert"
 import { Button } from "@/components/ui/button"
 import { Progress } from "@/components/ui/progress"
 
-export function Overview(params) {
+interface Params {
+    content: Content;
+    submit: Function;
+    lesson: { name: string };
+}
+interface Content {
+    [key: string]: string; // assuming content is an object with string keys and string values
+}
 
-    const [content, setContent] = React.useState(params.content);
+export function Overview(params: Params) {
+
+    const [content, setContent] = React.useState<Content>(params.content);
     React.useEffect(() => {
         setContent(params.content);
     }, [params.content])
@@ -40,7 +48,7 @@ export function Overview(params) {
     const isValid = () => {
         let num = 0;
         Object.keys(content).map((key, index) => {
-            const obj = content[key];
+            const obj = content[key as keyof Content];
             if (obj !== "")
                num++;
         })

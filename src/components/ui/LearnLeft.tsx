@@ -1,14 +1,57 @@
 import React, { useState, useEffect, useCallback } from 'react';
-import ReactFlow, { useNodesState, useEdgesState, addEdge, Controls, Background } from 'react-flow-renderer';
+import ReactFlow, { useNodesState, useEdgesState, addEdge, Controls, Background, Connection, Edge } from 'react-flow-renderer';
 import { Bot, LoaderCircle } from 'lucide-react';
 import { AIMessage } from './AIMessage';
 import { UserMessage } from './UserMessage';
 
-export function LeftSideLearnSide({ lesson, step, show, setNodeInfo, info, messages, setMessages, content, setContent }) {
+interface Message {
+    id: string;
+    type: 'ai' | 'user';
+    text: string;
+}
+
+interface LessonStep {
+    Teach: {
+        good: string[];
+        bad: string[];
+    };
+}
+
+interface Lesson {
+    steps: {
+        [key: string]: LessonStep;
+    };
+}
+
+interface NodesAndEdges {
+    nodes: Node[];
+    edges: Edge[];
+}
+
+interface Node {
+    id: string;
+    data: {label: string};
+    position: {x: number, y: number};
+}
+
+interface LeftSideLearnSideProps {
+    lesson: Lesson;
+    step: number;
+    show: boolean;
+    setNodeInfo: (info: any) => void;
+    info: any;
+    messages: { [key: string]: Message };
+    setMessages: (messages: { [key: string]: Message }) => void;
+    content: { [key: number]: string };
+    setContent: (step: number, content: string) => void;
+}
+
+
+export function LeftSideLearnSide({ lesson, step, show, setNodeInfo, info, messages, setMessages, content, setContent }: LeftSideLearnSideProps) {
     const [loading, setLoading] = useState(true);
     const [nodes, setNodes] = useNodesState([]);
     const [edges, setEdges] = useEdgesState([]);
-    const [nodesAndEdges, setNodesAndEdges] = useState<object[]>([]);
+    const [nodesAndEdges, setNodesAndEdges] = useState<{ [key: number]: NodesAndEdges }>({});
 
     //Math calculations to place nodes around
     //an imaginary circle
@@ -21,7 +64,7 @@ export function LeftSideLearnSide({ lesson, step, show, setNodeInfo, info, messa
     
     let currentAngle = 0;
 
-    function getRandomNumber(min, max) {
+    function getRandomNumber(min: number, max: number) {
         return Math.random() * (max - min) + min;
     }
     
@@ -38,8 +81,8 @@ export function LeftSideLearnSide({ lesson, step, show, setNodeInfo, info, messa
         setLoading(true); // Set loading to true when fetching new step data
 
         const initializeNodesAndEdges = () => {
-            const initialNodes = [];
-            const initialEdges = [];
+            const initialNodes: Node[] = [];
+            const initialEdges: Edge[] = [];
 
             //TODO; cry
             //This took me 4 hours to realize the numbering
@@ -89,7 +132,7 @@ export function LeftSideLearnSide({ lesson, step, show, setNodeInfo, info, messa
         }
     }, [show, setNodes, setEdges]);
 
-    const onConnect = useCallback((params) => {
+    const onConnect = useCallback((params: Edge<any> | Connection) => {
         const { source, target } = params;
 
         console.log(`Connected edge from ${source} to ${target}`);

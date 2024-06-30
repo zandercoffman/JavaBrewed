@@ -1,6 +1,6 @@
 import { CircleDashed, UserRound } from "lucide-react";
 
-export function UserMessage(params) {
+export function UserMessage(params: any) {
     const d = new Date();
     const hrs = d.getHours();
     const min = d.getMinutes();

@@ -2,7 +2,12 @@
 
 import { LoaderCircle } from 'lucide-react';
 import React, { useState, useEffect } from 'react';
-import ReactFlow, { Node, Edge, addEdge, ReactFlowProps, useNodesState, useEdgesState, Controls, Background, MiniMap } from 'react-flow-renderer';
+import ReactFlow, { Node, Edge, addEdge, ReactFlowProps, useNodesState, useEdgesState, Controls, Background, MiniMap, ReactFlowActions } from 'react-flow-renderer';
+
+interface onconnectparams {
+    source: string;
+    target: string;
+}
 
 const doStuff = (lesson: any, stepNum: number): { nodes: Node[], edges: Edge[] } => {
     var nodes: Node[] = [];
@@ -90,10 +95,10 @@ const LeftSideLesson: React.FC<LeftSideLessonProps> = (params: { lesson: any, st
     const [edges, setEdges, onEdgesChange] = useEdgesState(initialEdges);
    
     const onConnect = React.useCallback(
-        (params) => {
+        (params: any) => {
             const { source, target } = params;
-            const char1 = [...source];
-            const char2 = [...target];
+            const char1 = source.charAt(0);
+            const char2 = target.charAt(0);
 
             const answer = (char1[0] == 'q' && char2[0] == 'a') ? char2 : (char2[0] == 'q' && char1[0] == 'a') ? char1 : null;
 
@@ -107,7 +112,7 @@ const LeftSideLesson: React.FC<LeftSideLessonProps> = (params: { lesson: any, st
             
             
             if (answer) {
-                const element = document.querySelector(`[data-id="a${answer[1]}"]`);
+                const element = document.querySelector(`[data-id="a${answer[1]}"]`) || document.createElement("P");
                 element.className += " !transition-all "
                 element.className += " !shadow-sm !shadow-green-500";
             }
@@ -125,9 +130,10 @@ const LeftSideLesson: React.FC<LeftSideLessonProps> = (params: { lesson: any, st
         setNodes(updatedNodes);
         setEdges(updatedEdges);
         
-        if (document.querySelector(".react-flow__controls-fitview") && thisStep == Object.keys(thisLesson.steps).length) {
+        const fitViewButton = document.querySelector(".react-flow__controls-fitview") as HTMLElement;
+        if (fitViewButton && thisStep === Object.keys(thisLesson.steps).length) {
             setTimeout(() => {
-                document.querySelector(".react-flow__controls-fitview").click();
+                fitViewButton.click();
             }, 500);
         }
             

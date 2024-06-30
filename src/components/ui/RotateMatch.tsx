@@ -1,11 +1,11 @@
 "use client";
-import { motion } from "framer-motion";
+import { MotionStyle, motion } from "framer-motion";
 import { Slider } from "@/components/ui/slider";
 import React, { useState } from "react";
 import { ArrowBigUp } from "lucide-react";
 
 export function RotateMatch(params: any) {
-    const squareStyle = {
+    const squareStyle: MotionStyle = {
         width: "180px",
         height: "150px",
         backgroundColor: "white",
@@ -15,7 +15,7 @@ export function RotateMatch(params: any) {
         placeItems: "center",
     };
 
-    const littlesquareStyle = {
+    const littlesquareStyle: MotionStyle = {
         width: "40px",
         height: "40px",
         backgroundColor: "white",

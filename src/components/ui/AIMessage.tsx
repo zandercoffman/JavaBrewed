@@ -1,6 +1,10 @@
 import { CircleDashed } from "lucide-react";
 
-export function AIMessage(params) {
+interface Params {
+    message: string;
+}
+
+export function AIMessage(params: Params) {
     const d = new Date();
     const hrs = d.getHours();
     const min = d.getMinutes();
