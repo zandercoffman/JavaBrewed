@@ -83,15 +83,33 @@ const apScoring = [
   ];
   
   
+  interface LessonStep {
+    Title: string;
+    SubTitle: string;
+    QuestionType: string;
+    Teach: {
+        title: string;
+    };
+    // Add other properties as needed
+}
 
+interface Lesson {
+    name: string;
+    icon: string;
+    description: string;
+    filters: string[];
+    unit: number | string;
+    passage?: string; // Ensure this matches your lesson structure
+    steps: { [key: string]: LessonStep };
+}
 
   
 export default function LessonPage() {
 
-    const [appliedFilters, setFilters] = React.useState<object>({});
+    const [appliedFilters, setFilters] = React.useState<{[key: string]: string}>({});
     const [isTeachMode, setIsTeachMode] = React.useState(false);
     var curColorI = 0;
-    const [selectedId, setSelectedId] = React.useState(null);
+    const [selectedId, setSelectedId] = React.useState<number | null>(null);
 
     const {topicData, apData} = data;
     const apUnits = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10'];
@@ -128,7 +146,7 @@ export default function LessonPage() {
         return Object.keys(appliedFilters).some(key => appliedFilters[key] !== "N/A");
     }
 
-    const isJobFilterShow = (lesson: object) => {
+    const isJobFilterShow = (lesson: Lesson) => {
         return Object.keys(appliedFilters).every((filter: string) => {
             let bool = true;
             if (appliedFilters[filter] === "N/A") {
@@ -150,16 +168,29 @@ export default function LessonPage() {
     }
     
 
-    function getData(data: any[]): any[] | undefined {
+    function getData(data: any[]): any[] {
+        if (!data || !Array.isArray(data) || data.length === 0) {
+            return [{
+                name: "0",
+                "Amount of Lessons done on this topic": 0,
+                pv: Math.random() * 10000,
+                amt: Math.random() * 2500
+            }];
+        }
+    
         const datagotten = data.map((value, index) => ({
             name: apUnits[index % apUnits.length], // Use modulo to handle cases where there are more data points than months
             "Amount of Lessons done on this topic": value,
-            pv: Math.random() * 10000, // You can replace this with actual data if available
-            amt: Math.random() * 2500  // You can replace this with actual data if available
+            pv: Math.random() * 10000,
+            amt: Math.random() * 2500
         }));
-
+    
         return datagotten;
-    }
+    }   
+    
+    const findItem = (id: number | null | undefined) => {
+        return items.find(item => item.id === id);
+    };
 
     return <>
         <main className="flex min-h-screen flex-col items-center justify-between p-12 lg:p-24 pt-1">
@@ -214,7 +245,7 @@ export default function LessonPage() {
                                                 {selectedId && (
                                                     <motion.div
                                                         key={selectedId}
-                                                        layoutId={selectedId}
+                                                        layoutId={selectedId !== null ? String(selectedId) : undefined}
                                                         initial={{ opacity: 0, scale: 0.8 }}
                                                         animate={{ opacity: 1, scale: 1 }}
                                                         exit={{ opacity: 0, scale: 0.8 }}
@@ -225,7 +256,7 @@ export default function LessonPage() {
 
                                                             <Card className="shadow-[0px_20px_20px_10px_#00000024]">
                                                                 <CardHeader>
-                                                                    <CardTitle>{items.find(item => item.id === selectedId)?.title}</CardTitle>
+                                                                    <CardTitle>{findItem(selectedId)?.title ?? ""}</CardTitle>
                                                                     <CardDescription>Learn about your scores more in-depth with a graph.</CardDescription>
                                                                 </CardHeader>
                                                                 <CardContent>
@@ -239,14 +270,14 @@ export default function LessonPage() {
                                                                                     <BarChart
                                                                                         width={500}
                                                                                         height={200}
-                                                                                        data={getData(items.find(item => item.id === selectedId).data)}
+                                                                                        data={getData(findItem(selectedId)?.data ?? [])}
                                                                                         className="cursor-pointer"
                                                                                     >
                                                                                         <XAxis dataKey="name" />
                                                                                         <Tooltip />
                                                                                         <Bar key={`bar-${curColorI}`} dataKey="Amount of Lessons done on this topic">
                                                                                         {
-                                                                                            getData(items.find(item => item.id === selectedId).data).map((entry, index) => (
+                                                                                            getData(findItem(selectedId)?.data ?? []).map((entry, index) => (
                                                                                                 <Cell
                                                                                                     key={`cell-${index}`}
                                                                                                     fill={
@@ -328,12 +359,12 @@ export default function LessonPage() {
                             </div>
                             <Carousel>
                                 <CarouselContent>
-                                    {Lessons.map((lesson: Object) => (
+                                    {Lessons.map((lesson: Lesson, index: number) => (
                                         <>
                                             {isJobFilterShow(lesson) && <>
-                                            <CarouselItem key={lesson.id} className="md:basis-1/2 lg:basis-1/3 min-h-full">
-                                                <Lesson lessonObj={lesson} isTeachMode={isTeachMode}/>
-                                            </CarouselItem>
+                                                <CarouselItem key={index} className="md:basis-1/2 lg:basis-1/3 min-h-full">
+                                                    <Lesson lessonObj={lesson} isTeachMode={isTeachMode}/>
+                                                </CarouselItem>
                                             </>}
                                         </>
                                             
