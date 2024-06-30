@@ -18,7 +18,7 @@ interface thisData {
 }
 
 import { Badge } from "@/components/ui/badge"
-import { data, OutliersAP, OutlitersTopic } from "../../../public/data/UserData";
+import { data, OutliersAP, OutliersTopic } from "../../../public/data/UserData";
 import { DrawerScoreTab } from "@/components/ui/DrawerScoreTab";
 import { BarChart, Bar, XAxis, YAxis, Tooltip, Legend, CartesianGrid, Cell } from 'recharts';
 import { combinedFilters, filterUnits } from "../../../public/lessons/Lessons";
@@ -234,7 +234,13 @@ export default function ProfilePage() {
         return thisData;
     }
 
-    const [focus, setFocus] = React.useState(localStorage.getItem("Focus") || "");
+    const [focus, setFocus] = React.useState(() => {
+        if (typeof window !== 'undefined') {
+            return localStorage.getItem("Focus") || "";
+        }
+        return "";
+    });
+    
     const messages = [
         "Happy studying!",
         "Enjoy your learning journey!",
