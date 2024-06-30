@@ -50,7 +50,7 @@ interface Lesson {
 export default function ChatBotPage() {
 
     const [topic, setTopic] = React.useState("");
-    const [lesson, setLesson] = React.useState<Lesson>({});
+    const [lesson, setLesson] = React.useState<object>({});
     const [model, setModel] = React.useState<any>(null);
     const [messages, setMessages] = React.useState({});
     const [thinking, setThinking] = React.useState(false);
