@@ -68,7 +68,12 @@ export function LeftSideLearnSide({ lesson, step, show, setNodeInfo, info, messa
     //Math calculations to place nodes around
     //an imaginary circle
 
-    const ratioOfWidth = window.innerWidth * 0.458;
+    const [ratioOfWidth, setRatioOfWidth] = useState(0);
+
+    useEffect(() => {
+        setRatioOfWidth(window.innerWidth * 0.458);
+    }, []);
+    
     const circleDiameter = ratioOfWidth - 60;
     const circleRadius = circleDiameter / 2;
     const stepCount = (lesson.steps && lesson.steps[`Step${step + 1}`] && lesson.steps[`Step${step + 1}`].Teach) ? Object.keys(lesson.steps[`Step${step + 1}`].Teach.good).length + Object.keys(lesson.steps[`Step${step + 1}`].Teach.bad).length : 7;

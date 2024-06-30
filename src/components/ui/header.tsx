@@ -60,7 +60,7 @@ export default function Header() {
     return () => document.removeEventListener("keydown", down)
   }, [])
 
-  if (window.location.href.includes("lessons/") || window.location.href.includes("teach/") || window.location.href.includes("cocode/")){
+  if (typeof window !== "undefined" && (window.location.href.includes("lessons/") || window.location.href.includes("teach/") || window.location.href.includes("cocode/"))){
     return <>
     <CommandDialog open={open} onOpenChange={setOpen}>
         <CommandInput placeholder="Type a command or search..." />
