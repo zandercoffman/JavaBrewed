@@ -28,10 +28,29 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Lessons, returnIcon } from "../../../public/lessons/Lessons"
 import { findAnswers, loadModel } from "../../../public/ai/tensorflowai"
 
+interface LessonStep {
+    SubTitle: string;
+    QuestionType: string;
+    Teach: {
+        title: string;
+    };
+    // Add other properties as needed
+}
+
+interface Lesson {
+    name: string;
+    icon: string;
+    description: string;
+    filters: string[];
+    unit: number | string;
+    passage?: string; // Ensure this matches your lesson structure
+    steps: { [key: string]: LessonStep };
+}
+
 export default function ChatBotPage() {
 
     const [topic, setTopic] = React.useState("");
-    const [lesson, setLesson] = React.useState<object>({});
+    const [lesson, setLesson] = React.useState<Lesson>({});
     const [model, setModel] = React.useState<any>(null);
     const [messages, setMessages] = React.useState({});
     const [thinking, setThinking] = React.useState(false);
@@ -65,7 +84,7 @@ export default function ChatBotPage() {
         if (model && lesson) {
             try {
                 setThinking(true);
-                const answers = await findAnswers(message, lesson.passage || "About java");
+                const answers = await findAnswers(message, "Java is really cool.");
                 const bestAnswer = answers.length > 0 ? answers.sort((a, b) => b.score - a.score)[0] : answers[0];
                 const aiResponse = bestAnswer ? bestAnswer.text : "I'm sorry, I couldn't find an answer.";
                 setMessages((prevMessages) => ({
