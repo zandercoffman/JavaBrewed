@@ -1,6 +1,6 @@
 "use client"
 
-import { Lessons, filters, filterButtons, filterUnits } from "../../../public/lessons/Lessons";
+import { Lessons, filters, filterButtons, filterUnits, apUnits } from "../../../public/lessons/Lessons";
 import Lesson from "@/components/ui/Lesson";
 import LessonFilter from "@/components/ui/LessonFilter";
 import PersonalizedFilter from "@/components/ui/PersonalizedFilter";
@@ -23,6 +23,9 @@ import {
     DrawerTrigger,
   } from "@/components/ui/drawer"
 import { CircleX, SlidersHorizontal } from "lucide-react";
+
+import { data, outlierIndicesAP, outlierIndicesTopic } from "../../../public/data/UserData";
+
 import { Badge } from "@/components/ui/badge";
 import { Switch } from "@/components/ui/switch"
 import { Label } from "@/components/ui/label"
@@ -34,7 +37,6 @@ import { DrawerScoreTab } from "@/components/ui/DrawerScoreTab";
 
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import POverview from "@/components/ui/POverview";
-import { data } from "../../../public/data/UserData";
 import {
     Card,
     CardContent,
@@ -44,7 +46,7 @@ import {
     CardTitle,
   } from "@/components/ui/card"
   import { Button } from "@/components/ui/button"
-  import { BarChart, Bar, XAxis, YAxis, Tooltip, Legend, CartesianGrid } from 'recharts';
+  import { BarChart, Bar, XAxis, YAxis, Tooltip, Legend, CartesianGrid, LabelList } from 'recharts';
   import { PieChart, Pie, Cell, ResponsiveContainer } from 'recharts';
   
   const badData = [
@@ -103,6 +105,106 @@ interface Lesson {
     steps: { [key: string]: LessonStep };
 }
 
+import { ChartContainer, ChartConfig, ChartTooltipContent, ChartTooltip } from "@/components/ui/chart";
+
+const chartConfig = {
+    topic: {
+      label: "Topic Data",
+      color: "#2563eb",
+    },
+    ap: {
+      label: "AP Data",
+      color: "#60a5fa",
+    },
+  } satisfies ChartConfig;
+
+  const chartConfigAP = {
+    scoring: {
+      label: "AP Scoring",
+    },
+    unit1: {
+      label: "Unit 1",
+      color: COLORS[0],
+    },
+    unit2: {
+      label: "Unit 2",
+      color: COLORS[1],
+    },
+    unit3: {
+      label: "Unit 3",
+      color: COLORS[2],
+    },
+    unit4: {
+      label: "Unit 4",
+      color: COLORS[3],
+    },
+    unit5: {
+      label: "Unit 5",
+      color: COLORS[4],
+    },
+    unit6: {
+      label: "Unit 6",
+      color: COLORS[5],
+    },
+    unit7: {
+      label: "Unit 7",
+      color: COLORS[6],
+    },
+    unit8: {
+      label: "Unit 8",
+      color: COLORS[7],
+    },
+    unit9: {
+      label: "Unit 9",
+      color: COLORS[8],
+    },
+    unit10: {
+      label: "Unit 10",
+      color: COLORS[9],
+    },
+  } satisfies ChartConfig;
+
+  interface CustomTooltipProps {
+    active?: boolean;
+    payload?: Array<{ payload: { name: string; "Amount of Lessons done on this topic": number } }>;
+  }
+
+  const CustomTooltip: React.FC<CustomTooltipProps> = ({ active, payload }) => {
+    if (active && payload && payload.length) {
+      return (
+        <div className="bg-white p-5 rounded-[1rem] shadow-[0px_20px_20px_10px_#00000024]">
+          <p>{`Unit: ${payload[0].payload.name}`}</p>
+          <p>{`Amount of Lessons Done: ${payload[0].payload["Amount of Lessons done on this topic"]}`}</p>
+        </div>
+      );
+    }
+
+    return null;
+  };
+
+  interface CustomTooltipProps2 {
+    payload: { payload: Record<string, any>, color: string }[];
+    label: string;
+    nameKey: string;
+    valueKey: string;
+  }
+  
+  const CustomTooltipContent: React.FC<CustomTooltipProps2> = ({ payload, nameKey, valueKey }) => {
+    if (payload && payload.length) {
+      const data = payload[0].payload;
+      const color = payload[0].color; // Get the color from the payload
+      return (
+        <div className="bg-white flex flex-row gap-2 p-5 rounded-[1rem] shadow-[0px_20px_20px_10px_#00000024]">
+          <div style={{ backgroundColor: color }} className="w-5 h-5"></div>
+          <p>{`${data[nameKey]}: ${data[valueKey]}%`}</p>
+        </div>
+      );
+    }
+    return null;
+  };
+  
+  
+
   
 export default function LessonPage() {
 
@@ -119,16 +221,26 @@ export default function LessonPage() {
             id: 1,
             subtitle: "Subtitle 1",
             title: "Scores (by AP topic)",
-            data: apData
+            data: apData,
+            outliers: outlierIndicesAP,
+            guideline: apUnits,
+            config: chartConfigAP
         },
         {
             id: 2,
             subtitle: "Subtitle 2",
             title: "Scores (By Topic)",
-            data: topicData
+            data: topicData,
+            outliers: outlierIndicesTopic,
+            guideline: filterUnits,
+            config: chartConfigAP
         },
         // More items as needed
     ];
+
+    const [focusedItem, setFocusedItem] = React.useState(items[0]);
+
+    
     
 
     const handleSwitchChange = (checked: boolean) => {
@@ -188,9 +300,13 @@ export default function LessonPage() {
         return datagotten;
     }   
     
-    const findItem = (id: number | null | undefined) => {
-        return items.find(item => item.id === id);
-    };
+    React.useEffect(() => {
+        const findItemById = (id: number | null | undefined) => {
+            return items.find(item => item.id === id) || items[0];
+        };
+    
+        setFocusedItem(findItemById(selectedId));
+    }, [selectedId]);
 
     return <>
         <main className="flex min-h-screen flex-col items-center justify-between p-12 lg:p-24 pt-1">
@@ -204,7 +320,7 @@ export default function LessonPage() {
                             ))}
                             <Drawer>
                                 <DrawerTrigger><PersonalizedFilter className="ml-[10px]"/></DrawerTrigger>
-                                <DrawerContent className="!bg-white ml-4 mr-4 rounded-t-[2rem] h-[95vh]">
+                                <DrawerContent className="bg-white dark:bg-gray-800 dark:border-none ml-4 mr-4 rounded-t-[2rem] h-[95vh]">
                                     <DrawerHeader>
                                         <DrawerTitle className="flex flex-row gap-2 text-center lg:text-left">Personalized<Sparkles/></DrawerTitle>
                                         <DrawerDescription>Tailored Feedback for Your Progress. Dive into interactive lessons designed to adapt to your pace and provide custom feedback, ensuring a learning experience that fits your journey perfectly.</DrawerDescription>
@@ -237,7 +353,9 @@ export default function LessonPage() {
                                                         id={item.id}
                                                         setSelectedId={setSelectedId}
                                                         data={item.data}
-                                                    />
+                                                        outliers={item.outliers} 
+                                                        guideline={item.guideline} 
+                                                        config={item.config}                                                    />
                                                 ))}
                                             </div>
 
@@ -254,78 +372,108 @@ export default function LessonPage() {
                                                     >
                                                         <motion.div className="w-[90%]">
 
-                                                            <Card className="shadow-[0px_20px_20px_10px_#00000024]">
-                                                                <CardHeader>
-                                                                    <CardTitle>{findItem(selectedId)?.title ?? ""}</CardTitle>
+                                                            <Card className="shadow-[0px_20px_20px_10px_#00000024] max-h-[98vh] flex flex-col lg:flex-row justify-center p-4">
+                                                                <CardHeader className="relative">
+                                                                    <CardTitle>{focusedItem?.title ?? ""}</CardTitle>
                                                                     <CardDescription>Learn about your scores more in-depth with a graph.</CardDescription>
+                                                                    {JSON.stringify(focusedItem?.outliers) !== "undefined" && (
+                                                                            <div className="flex flex-col gap-2">
+                                                                                <h3 className="font-bold text-lg">Outliers:</h3>
+                                                                                <ul className="!list-disc">
+                                                                                    {focusedItem?.outliers.map((outlier, index) => (
+                                                                                        <li key={index}>
+                                                                                            <h3 className="scroll-m-20 text-2xl font-semibold tracking-tight">
+                                                                                               {focusedItem.id == 1 ? <>
+                                                                                                Unit {focusedItem?.guideline[outlier]}
+                                                                                               </> : <>
+                                                                                               {filters[index]}
+                                                                                               </>} 
+                                                                                            </h3>
+                                                                                        </li>
+                                                                                    ))}
+                                                                                </ul>
+                                                                            </div>
+                                                                        )}
+                                                                    <motion.button className="text-right absolute bottom-0 right:0 lg:left-0">
+                                                                        <Button onClick={() => setSelectedId(null)}>Close</Button>
+                                                                    </motion.button>
                                                                 </CardHeader>
                                                                 <CardContent>
                                                                     <div className="grid place-items-center w-full">
-                                                                       <div className="flex flex-row gap-3">
+                                                                       <div className="flex flex-col lg:flex-row gap-3 max-h-[50vh] lg:max-h-[95vh] overflow-auto">
                                                                             <Card>
                                                                                 <CardHeader>
-                                                                                    <CardTitle>Number of lessons completed per unit/lesson</CardTitle>
+                                                                                    <CardTitle>Number of Lessons Completed</CardTitle>
+                                                                                    <CardDescription>{focusedItem?.title ?? ""}</CardDescription>
                                                                                 </CardHeader>
                                                                                 <CardContent>
-                                                                                    <BarChart
-                                                                                        width={500}
-                                                                                        height={200}
-                                                                                        data={getData(findItem(selectedId)?.data ?? [])}
-                                                                                        className="cursor-pointer"
-                                                                                    >
-                                                                                        <XAxis dataKey="name" />
-                                                                                        <Tooltip />
-                                                                                        <Bar key={`bar-${curColorI}`} dataKey="Amount of Lessons done on this topic">
-                                                                                        {
-                                                                                            getData(findItem(selectedId)?.data ?? []).map((entry, index) => (
+                                                                                    <ChartContainer config={chartConfig} className="w-full">
+                                                                                        <BarChart data={getData(focusedItem?.data ?? [])}>
+                                                                                            <XAxis 
+                                                                                                dataKey="name" 
+                                                                                                tickLine={false}
+                                                                                                tickMargin={10}
+                                                                                                axisLine={false}
+                                                                                                tickFormatter={(value) => value.slice(0, 3)}
+                                                                                            />
+                                                                                            <ChartTooltip content={<CustomTooltip />} />
+                                                                                            <Bar dataKey="Amount of Lessons done on this topic" radius={4}>
+                                                                                            {
+                                                                                                getData(focusedItem?.data ?? []).map((entry, index) => (
                                                                                                 <Cell
                                                                                                     key={`cell-${index}`}
-                                                                                                    fill={
-                                                                                                        (items.find(item => item.id === selectedId)?.id === 1) ? COLORS[index] : COLORS[filterUnits[index] - 1]
-                                                                                                    }
-                                                                                                    
+                                                                                                    fill={focusedItem?.id === 1 ? COLORS[index] : COLORS[filterUnits[index] - 1]}
                                                                                                 />
-                                                                                            ))                                                                                            
-                                                                                        }
-                                                                                        </Bar>
-                                                                                    </BarChart>
+                                                                                                ))
+                                                                                            }
+                                                                                            </Bar>
+                                                                                        </BarChart>
+                                                                                    </ChartContainer>
                                                                                 </CardContent>
                                                                             </Card>
                                                                             <Card>
                                                                                 <CardHeader>
                                                                                     <CardTitle>Exam Overview</CardTitle>
+                                                                                    <CardDescription>(Number is in %)</CardDescription>
                                                                                 </CardHeader>
-                                                                                <CardContent>
-                                                                                    <ResponsiveContainer width={300} height={300}>
+                                                                                <CardContent className="w-[350px] h-[350px]">
+                                                                                    <ChartContainer
+                                                                                    config={chartConfigAP}
+                                                                                    className="aspect-square"
+                                                                                    >
                                                                                         <PieChart>
+                                                                                            <ChartTooltip content={<ChartTooltipContent/>} />
                                                                                             <Pie
-                                                                                            data={apScoring}
-                                                                                            cx="50%"
-                                                                                            cy="50%"
-                                                                                            labelLine={false}
-                                                                                            outerRadius={150}
-                                                                                            fill="#8884d8"
-                                                                                            dataKey="value"
-                                                                                            startAngle={90}
-                                                                                            endAngle={-270}
-                                                                                            >
-                                                                                            {apScoring.map((entry, index) => (
-                                                                                                <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
-                                                                                            ))}
+                                                                                                data={apScoring}
+                                                                                                cx="50%"
+                                                                                                cy="50%"
+                                                                                                labelLine={false}
+                                                                                                outerRadius={150}
+                                                                                                fill="#8884d8"
+                                                                                                dataKey="value"
+                                                                                                startAngle={90}
+                                                                                                endAngle={-270}
+                                                                                                >
+                                                                                                    <LabelList
+                                                                                                        dataKey="label"
+                                                                                                        className="fill-background"
+                                                                                                        stroke="none"
+                                                                                                        fontSize={12}
+                                                                                                        formatter={(value: keyof typeof chartConfig) =>
+                                                                                                        chartConfig[value]?.label
+                                                                                                        }
+                                                                                                    />
+                                                                                                {apScoring.map((entry, index) => (
+                                                                                                    <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
+                                                                                                ))}
                                                                                             </Pie>
-                                                                                            <Tooltip/>
                                                                                         </PieChart>
-                                                                                    </ResponsiveContainer>
+                                                                                    </ChartContainer>
                                                                                 </CardContent>
                                                                             </Card>
                                                                        </div>
                                                                     </div>
                                                                 </CardContent>
-                                                                <CardFooter>
-                                                                    <motion.button>
-                                                                        <Button onClick={() => setSelectedId(null)}>Close</Button>
-                                                                    </motion.button>
-                                                                </CardFooter>
                                                             </Card>
                                                         </motion.div>
                                                     </motion.div>
@@ -359,21 +507,26 @@ export default function LessonPage() {
                             </div>
                             <Carousel>
                                 <CarouselContent>
-                                    {Lessons.map((lesson: Lesson, index: number) => (
-                                        <>
-                                            {isJobFilterShow(lesson) && <>
+                                    {Lessons.filter(lesson => isJobFilterShow(lesson)).length === 0 ? (
+                                        <div className="grid place-items-center m-3 w-full h-[200px]">
+                                            <h4 className="scroll-m-20 text-xl font-semibold tracking-tight">
+                                                It looks like there is nothing here. Maybe select another filter?
+                                             </h4>
+                                        </div>
+                                    ) : (
+                                        Lessons.map((lesson, index) => (
+                                            isJobFilterShow(lesson) && (
                                                 <CarouselItem key={index} className="md:basis-1/2 lg:basis-1/3 min-h-full">
                                                     <Lesson lessonObj={lesson} isTeachMode={isTeachMode}/>
                                                 </CarouselItem>
-                                            </>}
-                                        </>
-                                            
-
-                                    ))}
+                                            )
+                                        ))
+                                    )}
                                 </CarouselContent>
                                 <CarouselPrevious />
                                 <CarouselNext />
                             </Carousel>
+
                         </div>
                     )}
 

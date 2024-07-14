@@ -44,6 +44,19 @@ export const filterUnits: number[] = [
     3   // Exception Handling
 ];
 
+export const apUnits: number[] = [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+]
+
 export const combinedFilters = filters.map((filter, index) => ({
     name: filter,
     value: filterUnits[index]
@@ -74,12 +87,12 @@ export const WhatIsJava = {
 
     cocode: {
         easy: {
-            question: "Create a basic Java class named `HelloWorld` that includes a `main` method and prints `Hello, World!` to the console.",
-            expected: `public class HelloWorld {public static void main(String[] args) {System.out.println("Hello, World!");}}`
+            question: "Create a Java class called Program that has a main method and prints out \"Hello world\".",
+            expected: `publicclassProgram{publicstaticvoidmain(String[]args){System.out.println("Hello world");}}`
         },
         medium: {
             question: "Create a Java class named `Person` with two private fields: `name` (String) and `age` (int). Include a constructor to initialize these fields, and a `main` method to create an instance of `Person` and print the details.",
-            expected: `public class Person {private String name;private int age;public Person(String name, int age) {this.name = name;this.age = age;}public static void main(String[] args) {Person person = new Person("John Doe", 30);System.out.println("Name: " + person.name + ", Age: " + person.age);}}`
+            expected: `publicclassPerson{private String name;privateintage;publicPerson(Stringname,int age){this.name=name;this.age=age;}publicstaticvoidmain(String[]args){Person person=newPerson("John Doe",30);System.out.println("Name: " + person.name + ", Age: " + person.age);}}`
         },
         hard: {
             question: "Create a Java class named `Calculator` that includes methods for addition, subtraction, multiplication, and division. Write a `main` method to demonstrate the use of these methods.",
@@ -315,6 +328,20 @@ export const AccessModifiers = {
         3: {"name": "protected","desc": "The protected access modifier allows the member to be accessed within its own package and by subclasses. If a member is declared protected, it can be accessed by any class in the same package and by subclasses even if they are in different packages."},
         4: { "name": "default","desc": "When no access modifier is specified, Java uses the default access level, which makes the member accessible only within its own package. This is also known as package-private access."}
     },
+    cocode: {
+        easy: {
+            question: "",
+            expected: ""
+        },
+        medium: {
+            question: "",
+            expected: ""
+        },
+        hard: {
+            question: "",
+            expected: ""
+        }
+    },
 
     steps: {
         Step1: {
@@ -548,6 +575,20 @@ export const DefiningNumbers = {
         4: {"name": "short", "desc": "A primitive data type in Java used to store smaller integer values than int, occupying 16 bits (2 bytes) of memory and accommodating values from -32,768 to +32,767, prioritizing memory efficiency."},
         5: {"name": "float", "desc": "A primitive data type in Java used to store single-precision floating-point numbers, occupying 32 bits (4 bytes) of memory and offering moderate precision, approximately 7 decimal digits, suitable for scenarios where memory efficiency and moderate precision are sufficient."},
         6: {"name": "byte", "desc": "A primitive data type in Java used to store small integer values, occupying 8 bits (1 byte) of memory and accommodating values from -128 to +127, optimizing memory usage in applications requiring compact data representation."}
+    },
+    cocode: {
+        easy: {
+            question: "",
+            expected: ""
+        },
+        medium: {
+            question: "",
+            expected: ""
+        },
+        hard: {
+            question: "",
+            expected: ""
+        }
     },
     steps: {
         Step1: {
@@ -860,18 +901,633 @@ export const DefiningCharacters = {
     description: "Learn how to define characters in Java using the char data type, and understand basic operations and conversions involving characters.",
     filters: ["Basics", "Variables", "Data Types"],
     unit: 1,
-    steps: {},
+    steps: {
+        Step1: {
+            QuestionType: "default",
+            Boxes: {
+                Box1: { id: '1-1', position: {x: 220, y: 150}, data: {label: "Numbers"} },
+                Box2: { id: '1-2', position: {x: 60, y: 0}, data: {label: "Integers"}},
+                Box3: {id: '1-3', position: {x: 10, y: 240}, data: {label: "Double"}},
+                Box4: {id: '1-4', position: {x: 210, y: 340}, data: {label: "Byte"}},
+                Box5: {id: '1-5', position: {x: 460, y: 260}, data: {label: "Longs"}},
+                Box6: {id: '1-6', position: {x: 420, y: 10}, data: {label: "Shorts"}}
+            },
+            Edges: {
+                Edge1: { id: '1-2-1-1', source: '1-2', target: '1-1', animated: true },
+                Edge2: {id: '1-6-1-1', source: '1-6', target: '1-1', animated: true},
+                Edge3: {id: '1-1-1-3', source: '1-1', target: '1-3', animated: true},
+                Edge4: {id: '1-1-1-4', source: '1-1', target: '1-4', animated: true},
+                Edge5: {id: '1-1-1-5', source: '1-1', target: '1-5', animated: true}
+            },
+            Title: "Introduction to Number Types",
+            SubTitle: "Introduction",
+            Overview: "Learn about Introduction to Number Types and how they are different to preserve memory in Java.",
+            Content: {
+                1: { type: "text", content: "In this lesson, we will explore the fundamental concepts of number types in Java. Understanding how different data types manage and preserve memory is crucial for efficient programming. Let's dive into the world of number types!" },
+                2: { type: "text", content: "The number types in Java are:byte, short, int, long, float, double" },
+                3: {type: "text", content: "The main ones you will be working with are integers and doubles."},
+                4: {type: "text", content: "To fully understand numbering systems, you will also need to have a basic understanding of the binary system. It is not required, but highly useful."},
+                5: { type: "code", content: ["int integer = 2;", "double a = 2; //yes, this works - is 2.0", "byte b = 1;"] }
+            },
+            Teach: {
+                good: ["default", "accessor", "no modifiers", "viewed", "same", "package", "is", "is", "a"],
+                bad: ["public", "private", "global"],
+                title: "access modifiers"
+            }
+        },
+        Step2: {
+            QuestionType: "default",
+            Boxes: {
+                Box3: {id: "s1e-3", position: {x: 40, y: 110}, data: {label: "2^0"}},
+                Box4: {id: "s1e-4", position: {x: 40, y: 165}, data: {label: "2^1"}},
+                Box5: {id: "s1e-5", position: {x: 40, y: 220}, data: {label: "2^2"}},
+                Box6: {id: "s1e-6", position: {x: 40, y: 275}, data: {label: "2^3"}},
+                Box7: {id: "s1e-7", position: {x: 40, y: 330}, data: {label: "2^4"}},
+                Box8: {id: "s1e-8", position: {x: 40, y: 385}, data: {label: "2^5"}},
+                Box9: {id: "s1e-9", position: {x: 40, y: 440}, data: {label: "2^6"}},
+                Box10: {id: "s1e-10", position: {x: 40, y: 495}, data: {label: "2^7"}},
+            },
+            Edges: {
+                Edge1: { id: '1-2-1-1', source: '1-2', target: '1-1', animated: true },
+                Edge2: {id: '1-6-1-1', source: '1-6', target: '1-1', animated: true},
+                Edge3: {id: '1-1-1-3', source: '1-1', target: '1-3', animated: true},
+                Edge4: {id: '1-1-1-4', source: '1-1', target: '1-4', animated: true},
+                Edge5: {id: '1-1-1-5', source: '1-1', target: '1-5', animated: true}
+            },
+            Title: "Introduction to Binary",
+            SubTitle: "Binary",
+            Overview: "Learn about Introduction to Binary and how all complex number types stem from it.",
+            Content: {
+                1: { type: "text", content: "The binary system uses a base-2 system, where numbers are represented using only two digits: 0 and 1. Each digit in this system is called a 'bit'. On its own, a bit can't do much, so bits are usually grouped together into sets of 8, called a 'byte'. With bytes, we can represent a lot more information, especially numbers." },
+                2: { type: "text", content: "Because it uses only two digits, a single bit can either be 0 or 1. Understanding this simple concept is very important for learning how numbers work in Java. By grasping the basics of the binary system, you'll have a solid foundation for understanding more complex number types in Java." },
+            },
+            Teach: {
+                good: ["default", "accessor", "no modifiers", "viewed", "same", "package", "is", "is", "a"],
+                bad: ["public", "private", "global"],
+                title: "access modifiers"
+            }
+        },
+        Step3: {
+            QuestionType: "default",
+            Boxes: {
+                Box1: {id: "s2-1", position: {x: 40, y: 0}, data: {label: "-1.7976931348623157E+308"}},
+                Box2: {id: "s2-2", position: {x: 40, y: 55}, data: {label: "-9,223,372,036,854,775,808"}},
+                Box3: {id: "s2-3", position: {x: 40, y: 110}, data: {label: "-3.4028235E+38"}},
+                Box4: {id: "s2-4", position: {x: 40, y: 165}, data: {label: "-2^31"}},
+                Box5: {id: "s2-5", position: {x: 40, y: 220}, data: {label: "-32,768"}},
+                Box6: {id: "s2-6", position: {x: 40, y: 275}, data: {label: "-128"}},
+                Box7: {id: "s2-7", position: {x: 40, y: 330}, data: {label: "127"}},
+                Box8: {id: "s2-8", position: {x: 40, y: 385}, data: {label: "32,767"}},
+                Box9: {id: "s2-9", position: {x: 40, y: 440}, data: {label: "2^31 - 1"}},
+                Box10: {id: "s2-10", position: {x: 40, y: 495}, data: {label: "3.4028235E+38"}},
+                Box11: {id: "s2-11", position: {x: 40, y: 550}, data: {label: "9,223,372,036,854,775,807"}},
+                Box12: {id: "s2-12", position: {x: 40, y: 605}, data: {label: "1.7976931348623157E+308"}},
+
+                //Title boxes start here
+                Box15: {id: "s2-15", position: {x: 310, y: 302.5}, data: {label: "Integer"}},
+                Box18: {id: "s2-18", position: {x: 670, y: 302.5}, data: {label: "Double"}}
+            },
+            Edges: {
+               Edge5: {id: "int-1", source: "s2-15", target: "s2-4"},
+               Edge6: {id: "int-2", source: "s2-9", target: "s2-15"},
+           
+               Edge11: {id: "double-1", source: "s2-18", target: "s2-1"},
+               Edge12: {id: "double-2", source: "s2-12", target: "s2-18"}
+            },
+            Title: "Integers and Doubles",
+            SubTitle: "Int & Double",
+            Overview: "Understand how the public access modifier works and its implications for code accessibility.",
+            Content: {
+                1: { type: "text", content: "The most common types of numbers that you will use in Java are Integers and Doubles. Integers represent numbers that do not have any decimal points and take up 32 bits of memory (4 bytes). Doubles can represent Integers and also represent numbers that have a decimal point. They take up 64 bits of memory (8 bytes)." },
+                2: { type: "points", content: ["Integers represent whole numbers", "Doubles represent whole numbers (and/or) with decimal places."] },
+                3: { type: "code", content: ["int x = 2;", "double a = 4.0;", "//is the same as", "double a = 4;"] }
+            },
+            Teach: {
+                good: ["default", "accessor", "no modifiers", "viewed", "same", "package", "is", "is", "a"],
+                bad: ["public", "private", "global"],
+                title: "public keyword"
+            }
+            
+        },
+        Step4: {
+            QuestionType: "default",
+            Boxes: {
+                Box1: {id: "s2-1", position: {x: 40, y: 0}, data: {label: "-1.7976931348623157E+308"}},
+                Box2: {id: "s2-2", position: {x: 40, y: 55}, data: {label: "-9,223,372,036,854,775,808"}},
+                Box3: {id: "s2-3", position: {x: 40, y: 110}, data: {label: "-3.4028235E+38"}},
+                Box4: {id: "s2-4", position: {x: 40, y: 165}, data: {label: "-2^31"}},
+                Box5: {id: "s2-5", position: {x: 40, y: 220}, data: {label: "-32,768"}},
+                Box6: {id: "s2-6", position: {x: 40, y: 275}, data: {label: "-128"}},
+                Box7: {id: "s2-7", position: {x: 40, y: 330}, data: {label: "127"}},
+                Box8: {id: "s2-8", position: {x: 40, y: 385}, data: {label: "32,767"}},
+                Box9: {id: "s2-9", position: {x: 40, y: 440}, data: {label: "2^31 - 1"}},
+                Box10: {id: "s2-10", position: {x: 40, y: 495}, data: {label: "3.4028235E+38"}},
+                Box11: {id: "s2-11", position: {x: 40, y: 550}, data: {label: "9,223,372,036,854,775,807"}},
+                Box12: {id: "s2-12", position: {x: 40, y: 605}, data: {label: "1.7976931348623157E+308"}},
+
+                //Title boxes start here
+                Box14: {id: "s2-14", position: {x: 200, y: 302.5}, data: {label: "Short"}},
+                Box15: {id: "s2-15", position: {x: 310, y: 302.5}, data: {label: "Integer"}},
+                Box16: {id: "s2-16", position: {x: 430, y: 302.5}, data: {label: "Long"}},
+                Box18: {id: "s2-18", position: {x: 670, y: 302.5}, data: {label: "Double"}}
+            },
+            Edges: {
+                Edge3: {id: "short-1", source: "s2-14", target: "s2-5"},
+                Edge4: {id: "short-2", source: "s2-8", target: "s2-14"},
+
+                Edge5: {id: "int-1", source: "s2-15", target: "s2-4"},
+                Edge6: {id: "int-2", source: "s2-9", target: "s2-15"},
+
+                Edge7: {id: "long-1", source: "s2-16", target: "s2-3"},
+                Edge8: {id: "long-2", source: "s2-10", target: "s2-16"},
+            
+                Edge11: {id: "double-1", source: "s2-18", target: "s2-1"},
+                Edge12: {id: "double-2", source: "s2-12", target: "s2-18"}
+            },
+            Title: "Long and Short",
+            SubTitle: "Long & Short",
+            Content: {
+                1: {type: "title", content: "Long Data Type"},
+                2: {type: "text", content: "The long data type in Java is used to store very large integer values that are larger than what int can handle. It takes up 64 bits (8 bytes) of memory."},
+                3: {type: "points", content: ["Memory Usage: Takes up 8 bytes (64 bits).", "Declaration: Add L at the end of the number to specify it as a long."]},
+                4: {type: "code", content: ["long bigNumber = 100000L; //'L' indicates a long number"]},
+                5: {type: "seperator"},
+                6: {type: "title", content: "Short Data Type"},
+                7: {type: "text", content: "The short data type in Java is used for storing smaller integer values. It takes up 16 bits (2 bytes) of memory."},
+                8: {type: "points", content: ["Memory Usage: Takes up 2 bytes (16 bits)."]},
+                9: {type: "code", content: ["short smallNumber = 100; //Does not have an ending"]}
+            },
+            Teach: {
+                good: ["default", "accessor", "no modifiers", "viewed", "same", "package", "is", "is", "a"],
+                bad: ["public", "private", "global"],
+                title: "default keyword"
+            },
+            Overview: "Understand how the default keyword operates regarding code accessibility."
+        },
+        Step5: {
+            QuestionType: "default",
+            Boxes: {
+                Box1: {id: "s2-1", position: {x: 40, y: 0}, data: {label: "-1.7976931348623157E+308"}},
+                Box2: {id: "s2-2", position: {x: 40, y: 55}, data: {label: "-9,223,372,036,854,775,808"}},
+                Box3: {id: "s2-3", position: {x: 40, y: 110}, data: {label: "-3.4028235E+38"}},
+                Box4: {id: "s2-4", position: {x: 40, y: 165}, data: {label: "-2^31"}},
+                Box5: {id: "s2-5", position: {x: 40, y: 220}, data: {label: "-32,768"}},
+                Box6: {id: "s2-6", position: {x: 40, y: 275}, data: {label: "-128"}},
+                Box7: {id: "s2-7", position: {x: 40, y: 330}, data: {label: "127"}},
+                Box8: {id: "s2-8", position: {x: 40, y: 385}, data: {label: "32,767"}},
+                Box9: {id: "s2-9", position: {x: 40, y: 440}, data: {label: "2^31 - 1"}},
+                Box10: {id: "s2-10", position: {x: 40, y: 495}, data: {label: "3.4028235E+38"}},
+                Box11: {id: "s2-11", position: {x: 40, y: 550}, data: {label: "9,223,372,036,854,775,807"}},
+                Box12: {id: "s2-12", position: {x: 40, y: 605}, data: {label: "1.7976931348623157E+308"}},
+
+                //Title boxes start here
+                Box13: {id: "s2-13", position: {x: 110, y: 302.5}, data: {label: "Byte"}},
+                Box14: {id: "s2-14", position: {x: 200, y: 302.5}, data: {label: "Short"}},
+                Box15: {id: "s2-15", position: {x: 310, y: 302.5}, data: {label: "Integer"}},
+                Box16: {id: "s2-16", position: {x: 430, y: 302.5}, data: {label: "Long"}},
+                Box18: {id: "s2-18", position: {x: 670, y: 302.5}, data: {label: "Double"}}
+            },
+            Edges: {
+                Edge1: {id: "Byte-1", source: "s2-13", target: "s2-6"},
+                Edge2: {id: "Byte-2", source: "s2-7", target: "s2-13"},
+
+                Edge3: {id: "short-1", source: "s2-14", target: "s2-5"},
+                Edge4: {id: "short-2", source: "s2-8", target: "s2-14"},
+
+                Edge5: {id: "int-1", source: "s2-15", target: "s2-4"},
+                Edge6: {id: "int-2", source: "s2-9", target: "s2-15"},
+
+                Edge7: {id: "long-1", source: "s2-16", target: "s2-3"},
+                Edge8: {id: "long-2", source: "s2-10", target: "s2-16"},
+            
+                Edge11: {id: "double-1", source: "s2-18", target: "s2-1"},
+                Edge12: {id: "double-2", source: "s2-12", target: "s2-18"}
+            },
+            Title: "About Bytes",
+            SubTitle: "Byte",
+            Content: {
+                1: {type: "text",content: "Bytes range from these values based on how the binary system works. The first bit is represented as the sign, and the rest of the bits are able to be expressed as the actual number."},
+                2: {type: "remember",content: ["8 bits make up a byte; with the sign it leaves 7 bits which maxes out at 127.", "Bytes have 8 bits which represent powers of two.", "[2^7] [2^6] [2^5] [2^4] [2^3] [2^2] [2^1] [2^0]", "[128] [64] [32] [16] [8] [4] [2] [1]", "0 = positive; 1 = negative "]},
+                3: {type: "points", content: ["Bytes are signed integers, which mean they use a bit to represent the sign.", "First digit represents the sign."]},
+                4: {type: "code", content: ["byte b = 0b01111111; // Represents 127 in binary", "byte a = (byte) 0b10000000; //Represents 128 in binary", "// Needs explicit casting to byte to interpret as ", "// signed byte, resulting in -128"]}
+            },
+            Teach: {
+                good: ["default", "accessor", "no modifiers", "viewed", "same", "package", "is", "is", "a"],
+                bad: ["public", "private", "global"],
+                title: "protected keyword (1/2)"
+            },
+            Overview: "Understand how the protected keyword influences code accessibility."
+        },
+        Step6: {
+            "QuestionType": "default",
+            "Boxes": {
+                Box1: {id: "s2-1", position: {x: 40, y: 0}, data: {label: "-1.7976931348623157E+308"}},
+                Box2: {id: "s2-2", position: {x: 40, y: 55}, data: {label: "-9,223,372,036,854,775,808"}},
+                Box3: {id: "s2-3", position: {x: 40, y: 110}, data: {label: "-3.4028235E+38"}},
+                Box4: {id: "s2-4", position: {x: 40, y: 165}, data: {label: "-2^31"}},
+                Box5: {id: "s2-5", position: {x: 40, y: 220}, data: {label: "-32,768"}},
+                Box6: {id: "s2-6", position: {x: 40, y: 275}, data: {label: "-128"}},
+                Box7: {id: "s2-7", position: {x: 40, y: 330}, data: {label: "127"}},
+                Box8: {id: "s2-8", position: {x: 40, y: 385}, data: {label: "32,767"}},
+                Box9: {id: "s2-9", position: {x: 40, y: 440}, data: {label: "2^31 - 1"}},
+                Box10: {id: "s2-10", position: {x: 40, y: 495}, data: {label: "3.4028235E+38"}},
+                Box11: {id: "s2-11", position: {x: 40, y: 550}, data: {label: "9,223,372,036,854,775,807"}},
+                Box12: {id: "s2-12", position: {x: 40, y: 605}, data: {label: "1.7976931348623157E+308"}},
+
+                //Title boxes start here
+                Box13: {id: "s2-13", position: {x: 110, y: 302.5}, data: {label: "Byte"}},
+                Box14: {id: "s2-14", position: {x: 200, y: 302.5}, data: {label: "Short"}},
+                Box15: {id: "s2-15", position: {x: 310, y: 302.5}, data: {label: "Integer"}},
+                Box16: {id: "s2-16", position: {x: 430, y: 302.5}, data: {label: "Long"}},
+                Box17: {id: "s2-17", position: {x: 550, y: 302.5}, data: {label: "Float"}},
+                Box18: {id: "s2-18", position: {x: 670, y: 302.5}, data: {label: "Double"}}
+            },
+            "Edges": {
+                
+                Edge1: {id: "Byte-1", source: "s2-13", target: "s2-6"},
+                Edge2: {id: "Byte-2", source: "s2-7", target: "s2-13"},
+
+                Edge3: {id: "short-1", source: "s2-14", target: "s2-5"},
+                Edge4: {id: "short-2", source: "s2-8", target: "s2-14"},
+
+                Edge5: {id: "int-1", source: "s2-15", target: "s2-4"},
+                Edge6: {id: "int-2", source: "s2-9", target: "s2-15"},
+
+                Edge7: {id: "long-1", source: "s2-16", target: "s2-3"},
+                Edge8: {id: "long-2", source: "s2-10", target: "s2-16"},
+
+                Edge9: {id: "float-1", source: "s2-17", target: "s2-2"},
+                Edge10: {id: "float-2", source: "s2-11", target: "s2-17"},
+
+                Edge11: {id: "double-1", source: "s2-18", target: "s2-1"},
+                Edge12: {id: "double-2", source: "s2-12", target: "s2-18"}
+
+            },
+            "Title": "About Floats",
+            "SubTitle": "Float",
+            "Content": {
+                "1": {"type": "text","content": "In Java, floating-point numbers are used to represent decimal values with fractions. The float and double data types handle these numbers, with float being single-precision and double being double-precision."},
+                "2": {"type": "points","content": ["Memory: Uses 32 bits (4 bytes).","Precision: Less precise than double.","Declaration: Add F at the end of the value."]},
+                "3": {"type": "code","content": ["float num = 12.375F; "]},
+                4: {type: "title", content: "Three Parts of a Float"},
+                5: {type: "points", content: ["Sign bit: 1 bit, indicates the sign of the number (0 for positive, 1 for negative).", "Exponent: 8 bits, represents the exponent of the number in base 2.", "Actual Number: 23 bits, represents the significant digits of the number in base 2."]}
+            },
+            Teach: {
+                good: ["default", "accessor", "no modifiers", "viewed", "same", "package", "is", "is", "a"],
+                bad: ["public", "private", "global"],
+                title: "protected keyword (2/2)"
+            },
+            Overview: "Understand how the protected keyword has a different case and how that affects visibility."
+        },
+        Step7: {
+            Title: "Point to the Correct Answer",
+            QuestionType: "question",
+            GameType: "rotateMatch",
+
+            MainBox: "What does an integer hold?",
+            Boxes: {
+                Left: {
+                    Text: "Integers hold numbers that have a whole number and a decimal number.",
+                    Right: false
+                },
+                Top: {
+                    Text: "Integers represent whole numbers, including both positive and negative values.",
+                    Right: true
+                },
+                Right: {
+                    Text: "Integers specifically represent only positive numbers within the set of whole numbers.",
+                    Right: false
+                }
+            },
+            Content: {
+            }
+        }
+
+    },
     passage: "",
+    cocode: {
+        easy: {
+            question: "",
+            expected: ""
+        },
+        medium: {
+            question: "",
+            expected: ""
+        },
+        hard: {
+            question: "",
+            expected: ""
+        }
+    },
 };
 
 export const DefiningBooleans = {
     name: "Defining Booleans",
     icon: "Code",
-    description: "Learn how to define booleans in Java, and understand boolean logic.",
-    filters: ["Basics", "Variables", "Data Types", "Control Statements"],
+    description: "Learn how to define numbers in Java, and explore their arithmetic operations.",
+    filters: ["Basics", "Variables", "Data Types"],
     unit: 1,
-    steps: {},
-    passage: "",
+    passage: "In Java, int handles whole numbers within a range of approximately -2 billion to +2 billion using 32 bits (4 bytes), while double manages high-precision floating-point numbers with 64 bits (8 bytes) and about 15 decimal digits. long extends int to cover a wider range from -9 quintillion to +9 quintillion, using 64 bits, and short conserves memory with 16 bits for smaller integers from -32,768 to +32,767. float provides moderate precision with 32 bits (4 bytes) for single-precision floating-point numbers, approximately 7 decimal digits. byte uses 8 bits (1 byte) for small integers from -128 to +127, optimizing memory usage.",
+
+    "vocab": {
+        "1": {"name": "boolean", "desc": "A primitive data type in Java used to store values that can be either true or false, representing binary states in logical expressions and conditions."},
+        "2": {"name": "true", "desc": "A literal value in Java's boolean type representing the true state in logical operations and conditions."},
+        "3": {"name": "false", "desc": "A literal value in Java's boolean type representing the false state in logical operations and conditions."},
+        "4": {"name": "&&", "desc": "The AND operator in Java's boolean expressions, combining two boolean values. It returns true only if both operands are true; otherwise, it returns false."},
+        "5": {"name": "||", "desc": "The OR operator in Java's boolean expressions, combining two boolean values. It returns true if at least one operand is true; it returns false only if both operands are false."},
+        "6": {"name": "!", "desc": "The NOT operator in Java's boolean expressions, used to invert the boolean value of its operand. It returns true if the operand is false, and false if the operand is true."}
+    },
+    "cocode": {
+        "easy": {
+            "question": "Create a Java program that declares a boolean variable `isSunny` and initializes it to true. Print out the value of `isSunny`.",
+            "expected": "true"
+        },
+        "medium": {
+            "question": "Write a Java program that checks if an integer variable `age` is greater than 18. Store the result in a boolean variable `isAdult` and print out `isAdult`.",
+            "expected": "true or false"
+        },
+        "hard": {
+            "question": "Develop a Java program that simulates a login system. Ask the user to input their username and password. Use boolean variables to verify if the username is 'admin' and the password is 'password123'. Print 'Login successful' if both conditions are met; otherwise, print 'Login failed'.",
+            "expected": "Login successful or Login failed"
+        }
+    },
+    steps: {
+        Step1: {
+            QuestionType: "default",
+            Boxes: {
+                Box1: {id: 's1-1', position: {"x":-75,"y":-15}, data: {"label":"Is today a weekday?"}},
+                Box2: {id: 's1-2', position: {"x":-90,"y":90}, data: {"label":"Yes ✅"}},
+                Box3: {id: 's1-3', position: {"x":60,"y":90}, data: {"label":"No ❌"}},
+                Box4: {id: 's1-4', position: {"x":90,"y":210}, data: {"label":"Relax Today😴"}},
+                Box5: {id: 's1-5', position: {"x":-225,"y":210}, data: {"label":"Do I have work today?"}},
+                Box6: {id: 's1-6', position: {"x":-240,"y":285}, data: {"label":"Yes ✅"}},
+                Box7: {id: 's1-7', position: {"x":-75,"y":285}, data: {"label":"No ❌"}},
+                Box8: {id: 's1-8', position: {"x":-180,"y":375}, data: {"label":"Work 🏢"}}
+            },
+            Edges: {
+                Edge1: {id: 'e1-2', source: "s1-1", target: "s1-2", animated: false, type: "step"},
+                Edge2: {id: 'e1-3', source: "s1-1", target: "s1-3", animated: false, type: "smoothstep"},
+                Edge3: {id: 'e3-4', source: "s1-3", target: "s1-4", animated: false, type: "smoothstep"},
+                Edge4: {id: 'e2-5', source: "s1-2", target: "s1-5", animated: false, type: "smoothstep"},
+                Edge5: {id: 'e5-6', source: "s1-5", target: "s1-6", animated: false, type: "smoothstep"},
+                Edge6: {id: 'e5-7', source: "s1-5", target: "s1-7", animated: false, type: "smoothstep"},
+                Edge7: {id: 'e7-4', source: "s1-7", target: "s1-4", animated: false, type: "straight"},
+                Edge8: {id: 'e6-8', source: "s1-6", target: "s1-8", animated: false, type: "smoothstep"}
+            },
+            Title: "Introduction to Booleans",
+            SubTitle: "Introduction",
+            Overview: "Learn about Introduction to Booleans and how they provide access to certain code based on circumstances.",
+            Content: {
+                1: { type: "text", content: "In this lesson, we will explore the fundamental concepts of booleans in Java." },
+                2: { type: "text", content: "The boolean type describes one of two states: ON or OFF, also known as TRUE or FALSE. It controls the flow of code to determine which piece(s) of code to run." },
+                3: {type: "text", content: "Booleans are all around us! For instance, the header you are seeing with the steps is only shown when the link includes \"lessons/\". If it is, then show the lesson header, if not then show the regular header."},
+                4: { type: "code", content: ["boolean isLessonPage = URL.includes(\"lessons/\");", "", "if (isLessonPage) { // = if (true)", "\tpage.showLessonHeader();", "} else {", "\tpage.showNormalHeader();", "}"] },
+                5: {type: "text", content: "Here is the actual code that determines when to show the Header (sneak peek):"},
+                6: {type: "code", content: [
+                    "React.useEffect(() => {",
+                    "  const handleRouteChange = (url: string) => {",
+                    "    setIsLessonPage(url.includes('lessons/')",
+                    "    || url.includes('teach/')",
+                    "    || url.includes('cocode/'));",
+                    "  };",
+                    "",
+                    "  handleRouteChange(pathname);",
+                    "}, [pathname]);"
+                  ]}
+            },
+            Teach: {
+                good: ["default", "accessor", "no modifiers", "viewed", "same", "package", "is", "is", "a"],
+                bad: ["public", "private", "global"],
+                title: "access modifiers"
+            }
+        },
+        Step2: {
+            QuestionType: "default",
+            Boxes: {
+                Box1: {id: 's2-1', position: {"x":-135,"y":0}, data: {"label":"if"}},
+                Box2: {id: 's2-2', position: {"x":-90,"y":0}, data: {"label":"(true)"}},
+                Box3: {id: 's2-3', position: {"x":-90,"y":90}, data: {"label":"doStuff();"}},
+                Box4: {id: 's2-4', position: {"x":-135,"y":150}, data: {"label":"else"}},
+                Box5: {id: 's2-5', position: {"x":-90,"y":225}, data: {"label":"doOtherStuff():"}}
+            },
+            Edges: {
+                Edge1: {id: 'e2-1', source: "s2-2", target: "s2-1", animated: false, type: "smoothstep"},
+                Edge2: {id: 'e2-3', source: "s2-2", target: "s2-3", animated: false, type: "smoothstep"},
+                Edge3: {id: 'e4-5', source: "s2-4", target: "s2-5", animated: false, type: "smoothstep"}
+            },
+            Title: "Explicit Booleans",
+            SubTitle: "Explicit",
+            Overview: "Understand how explicit variables provide direct access to visualize code more easier.",
+            Content: {
+                1: { type: "text", content: "Explicit booleans are boolean variables that are directly assigned a value of either true or false at the time of declaration. This straightforward assignment clearly indicates the intended state of the variable." },
+                3: { type: "code", content: [
+                    "public class ExplicitBooleanExample {",
+            "\tpublic static void main(String[] args) {",
+            "\t\tboolean isJavaFun = true; ",
+            "\t\t// Explicitly setting the boolean to true",
+            "\t\tboolean isFishTasty = false;",
+            "\t\t// Explicitly setting the boolean to false",
+            "",
+            "\t\tSystem.out.println(\"Is Java fun? \" + isJavaFun);",
+            "\t\t// Output: Is Java fun? true",
+            "\t\tSystem.out.println(\"Is fish tasty? \" + isFishTasty);",
+            "\t\t// Output: Is fish tasty? false",
+            "\t}",
+            "}"
+                ] }
+            },
+            Teach: {
+                good: ["default", "accessor", "no modifiers", "viewed", "same", "package", "is", "is", "a"],
+                bad: ["public", "private", "global"],
+                title: "public keyword"
+            }
+            
+        },
+        Step3: {
+            QuestionType: "default",
+            Boxes: {
+                Box1: {id: 's3-1', position: {"x":-60,"y":15}, data: {"label":"hasEnergy ⚡"}},
+                Box2: {id: 's3-2', position: {"x":-90,"y":135}, data: {"label":"then"}},
+                Box3: {id: 's3-3', position: {"x":30,"y":135}, data: {"label":"otherwise"}},
+                Box4: {id: 's3-4', position: {"x":-135,"y":255}, data: {"label":"code(); 🧑‍💻"}},
+                Box5: {id: 's3-5', position: {"x":45,"y":255}, data: {"label":"rest(); 💤"}}
+            },
+            Edges: {
+                Edge1: {id: 'e1-2', source: "s3-1", target: "s3-2", animated: false, type: "bezier"},
+                Edge2: {id: 'e1-3', source: "s3-1", target: "s3-3", animated: false, type: "bezier"},
+                Edge3: {id: 'e2-4', source: "s3-2", target: "s3-4", animated: false, type: "smoothstep"},
+                Edge4: {id: 'e3-5', source: "s3-3", target: "s3-5", animated: false, type: "smoothstep"}
+            },
+            Title: "Conditional Booleans",
+            SubTitle: "Conditional",
+            Content: {
+                1: {type: "text", content: "Conditional booleans are boolean variables that derive their value from an expression or condition. These booleans dynamically evaluate to true or false based on the given condition."},
+                2: {type: "code", content: [
+                    "public class ConditionalBooleanExample {",
+            "\tpublic static void main(String[] args) {",
+            "\t\tint a = 5;",
+            "\t\tboolean isGreaterThanTwo = a > 2; // Evaluates the condition a > 2",
+            "",
+            "\t\tSystem.out.println(\"Is a greater than 2? \" + isGreaterThanTwo);"
+            ,"\t\t// Output: Is a greater than 2? true",
+            "",
+            "\t\tint b = 1;",
+            "\t\tboolean isGreaterThanTwoB = b > 2;",
+            "\t\t// Evaluates the condition b > 2",
+            "",
+            "\t\tSystem.out.println(\"Is b greater than 2? \" + isGreaterThanTwoB);",
+            "\t\t// Output: Is b greater than 2? false",
+            "\t}",
+            "}"
+                ]}
+            },
+            Teach: {
+                good: ["default", "accessor", "no modifiers", "viewed", "same", "package", "is", "is", "a"],
+                bad: ["public", "private", "global"],
+                title: "default keyword"
+            },
+            Overview: "Understand how the default keyword operates regarding code accessibility."
+        },
+        Step4: {
+            QuestionType: "default",
+            Boxes: {
+                Box1: {id: 's4-1', position: {"x":-120,"y":30}, data: {"label":"isSunny ☀️"}},
+                Box2: {id: 's4-2', position: {"x":45,"y":30}, data: {"label":"and"}},
+                Box3: {id: 's4-3', position: {"x":150,"y":30}, data: {"label":"isSummer 🌅"}},
+                Box4: {id: 's4-4', position: {"x":0,"y":135}, data: {"label":"then"}},
+                Box5: {id: 's4-5', position: {"x":-105,"y":225}, data: {"label":"swim 🏊"}},
+                Box6: {id: 's4-6', position: {"x":90,"y":135}, data: {"label":"otherwise"}},
+                Box7: {id: 's4-7', position: {"x":135,"y":225}, data: {"label":"enjoy life 🎆"}}
+            },
+            Edges: {
+                Edge1: {id: 'e1-2', source: "s4-1", target: "s4-2", animated: false, type: "step"},
+                Edge2: {id: 'e2-3', source: "s4-2", target: "s4-3", animated: false, type: "smoothstep"},
+                Edge3: {id: 'e2-4', source: "s4-2", target: "s4-4", animated: false, type: "bezier"},
+                Edge4: {id: 'e4-5', source: "s4-4", target: "s4-5", animated: false, type: "smoothstep"},
+                Edge5: {id: 'e2-6', source: "s4-2", target: "s4-6", animated: false, type: "bezier"},
+                Edge6: {id: 'e6-7', source: "s4-6", target: "s4-7", animated: false, type: "smoothstep"}
+            },
+            Title: "And Operator",
+            SubTitle: "And",
+            Content: {
+                1: {type: "text",content: "The And (&&) operator in Java is a binary operator that combines two boolean expressions. It returns true if both expressions evaluate to true; otherwise, it returns false."},
+                2: {type: "code",content: ["boolean a = true;","boolean b = false;","boolean result = a && b; // result is false"]},
+                3: {type: "remember", content: ["The & symbol directly represents AND, making it easy to understand and remember in boolean expressions."]},
+                4: {type: "title", content: "IRL Application"},
+                5: {type: "seperator"},
+                6: {type: "code", content: [
+                    "Data user = getUserData();", "if (user.hasAccess && user.existsInDataBase) {", "\tuser.writeData(new Data(...));", "} else {", "\tpage.redirect(\"404.html\", \"No access\");", "}"
+                ]}
+            },
+            Teach: {
+                good: ["default", "accessor", "no modifiers", "viewed", "same", "package", "is", "is", "a"],
+                bad: ["public", "private", "global"],
+                title: "protected keyword (1/2)"
+            },
+            Overview: "Understand how the protected keyword influences code accessibility."
+        },
+        Step5: {
+            "QuestionType": "default",
+            Boxes: {
+                Box1: {id: 's5-1', position: {"x":-165,"y":0}, data: {"label":"isSunny ☀️"}},
+                Box2: {id: 's5-2', position: {"x":0,"y":0}, data: {"label":"or"}},
+                Box3: {id: 's5-3', position: {"x":90,"y":0}, data: {"label":"isCloudy ☁️"}},
+                Box4: {id: 's5-4', position: {"x":-75,"y":120}, data: {"label":"then"}},
+                Box5: {id: 's5-5', position: {"x":30,"y":120}, data: {"label":"otherwise"}},
+                Box6: {id: 's5-6', position: {"x":-180,"y":240}, data: {"label":"playOutside(); 🌳"}},
+                Box7: {id: 's5-7', position: {"x":45,"y":240}, data: {"label":"stayIndoors(); 🏠"}}
+            },
+            Edges: {
+                Edge1: {id: 'e2-1', source: "s5-2", target: "s5-1", animated: false, type: "smoothstep"},
+                Edge2: {id: 'e2-3', source: "s5-2", target: "s5-3", animated: false, type: "smoothstep"},
+                Edge3: {id: 'e2-4', source: "s5-2", target: "s5-4", animated: false, type: "smoothstep"},
+                Edge4: {id: 'e2-5', source: "s5-2", target: "s5-5", animated: false, type: "smoothstep"},
+                Edge5: {id: 'e4-6', source: "s5-4", target: "s5-6", animated: false, type: "smoothstep"},
+                Edge6: {id: 'e5-7', source: "s5-5", target: "s5-7", animated: false, type: "smoothstep"}
+            },
+            "Title": "Or Operator",
+            "SubTitle": "Or",
+            "Content": {
+                1: {"type": "text","content": "The Or (||) operator in Java is a binary operator used to combine two boolean expressions. It returns true if at least one of the expressions evaluates to true. It returns false only if both expressions are false."},
+                2: {"type": "code","content": ["boolean a = true;","boolean b = false;","boolean result = a || b; // result is true"]},
+                3: {type: "remember", content: ["The || symbol resembles two vertical bars, indicating a choice or alternative, which corresponds to its usage in boolean expressions."]},
+                4: {type: "title", content: "IRL Application"},
+                5: {type: "code", content: ["Data user = getUserData();",
+    "if (user.isAdmin() || user.hasModeratorRights()) {",
+    "\tuser.manageContent(new Content(...));",
+    "} else {",
+    "\tpage.redirect(\"403.html\", \"Access denied\");",
+    "}"]}
+            },
+            Teach: {
+                good: ["default", "accessor", "no modifiers", "viewed", "same", "package", "is", "is", "a"],
+                bad: ["public", "private", "global"],
+                title: "protected keyword (2/2)"
+            },
+            Overview: "Understand how the protected keyword has a different case and how that affects visibility."
+        },
+        Step6: {
+            "QuestionType": "default",
+            Boxes: {
+                Box1: {id: 's6-1', position: {"x":-90,"y":-45}, data: {"label":"if"}},
+                Box2: {id: 's6-2', position: {"x":-45,"y":-45}, data: {"label":"(!"}},
+                Box3: {id: 's6-3', position: {"x":0,"y":-45}, data: {"label":"rainExists)"}},
+                Box4: {id: 's6-4', position: {"x":-60,"y":30}, data: {"label":"enjoyTheWeather();"}},
+                Box5: {id: 's6-5', position: {"x":-90,"y":90}, data: {"label":"else"}},
+                Box6: {id: 's6-6', position: {"x":-60,"y":165}, data: {"label":"watchTheRain();"}}
+            },
+            Edges: {
+                Edge1: {id: 'e1-2', source: "s6-1", target: "s6-2", animated: false, type: "smoothstep"},
+                Edge2: {id: 'e3-2', source: "s6-3", target: "s6-2", animated: false, type: "smoothstep"},
+                Edge3: {id: 'e5-6', source: "s6-5", target: "s6-6", animated: false, type: "smoothstep"},
+                Edge4: {id: 'e3-4', source: "s6-3", target: "s6-4", animated: false, type: "smoothstep"}
+            },
+            "Title": "Not Operator",
+            "SubTitle": "Not",
+            "Content": {
+                1: {"type": "text","content": "The Not (!) operator in Java is an operator used to flip the boolean value of an existing boolean. It flips `true` to `false` and `false` to `true`."},
+                2: {"type": "code","content": ["boolean a = true;", "boolean result = !a; // result is false"]},
+                3: {"type": "remember", "content": ["The dot in ! is in the opposite position from ¡, so that character can flip, much like how it makes booleans flip to the opposite value."]},
+                4: {"type": "title", "content": "IRL Application"},
+                5: {"type": "code", "content": ["Data user = getUserData();",
+                    "if (!user.isActive()) { // = user is NOT active",
+                    "\tuser.activateAccount();",
+                    "} else {",
+                    "\tSystem.out.println(\"Account is already active.\");",
+                    "}"]}
+            },
+            Teach: {
+                good: ["default", "accessor", "no modifiers", "viewed", "same", "package", "is", "is", "a"],
+                bad: ["public", "private", "global"],
+                title: "protected keyword (2/2)"
+            },
+            Overview: "Understand how the protected keyword has a different case and how that affects visibility."
+        },
+        Step7: {
+            Title: "Point to the Correct Answer",
+            QuestionType: "question",
+            GameType: "rotateMatch",
+
+            "MainBox": "What does a boolean represent?",
+            "Boxes": {
+                "Left": {
+                    "Text": "Booleans represent states that can either be true or false.",
+                    "Right": true
+                },
+                "Top": {
+                    "Text": "Booleans are used to make decisions in programming based on conditions.",
+                    "Right": false
+                },
+                "Right": {
+                    "Text": "Booleans can only store numeric values.",
+                    "Right": false
+                }
+            },
+            Content: {
+            }
+        }
+
+    }
 };
 
 export const DefiningStrings = {
@@ -880,8 +1536,218 @@ export const DefiningStrings = {
     description: "Learn how to define strings in Java, and use the .substring() method to manipulate string data.",
     filters: ["Basics", "Variables", "Data Types", "String Manipulation"],
     unit: 1,
-    steps: {},
+    "vocab": {
+        "1": {"name": "String","desc": "A string is a sequence of characters. In Java, strings are immutable, meaning they cannot be changed once created."},
+    },
+    
+    steps: {
+        Step1: {
+            QuestionType: "default",
+            Boxes: {
+                Box1: {id: 's1-1', position: {"x":-135,"y":60}, data: {"label":"H"}},
+                Box2: {id: 's1-2', position: {"x":-105,"y":60}, data: {"label":"e"}},
+                Box3: {id: 's1-3', position: {"x":-45,"y":60}, data: {"label":"l"}},
+                Box4: {id: 's1-4', position: {"x":-75,"y":60}, data: {"label":"l"}},
+                Box5: {id: 's1-5', position: {"x":-15,"y":60}, data: {"label":"o"}},
+                Box6: {id: 's1-6', position: {"x":30,"y":75}, data: {"label":""}},
+                Box7: {id: 's1-7', position: {"x":60,"y":60}, data: {"label":"W"}},
+                Box8: {id: 's1-8', position: {"x":90,"y":60}, data: {"label":"o"}},
+                Box9: {id: 's1-9', position: {"x":120,"y":60}, data: {"label":"r"}},
+                Box10: {id: 's1-10', position: {"x":150,"y":60}, data: {"label":"l"}},
+                Box11: {id: 's1-11', position: {"x":180,"y":60}, data: {"label":"d"}},
+                Box12: {id: 's1-12', position: {"x":-165,"y":45}, data: {"label":"\""}},
+                Box13: {id: 's1-13', position: {"x":210,"y":45}, data: {"label":"\""}}
+            },
+            Edges: {
+                
+            },
+            Title: "What are Strings?",
+            SubTitle: "What are Strings?",
+            Overview: "Learn about access modifiers and how they control access to variables and methods in Java.",
+            Content: {
+                1: { type: "text", content: "In Java, a string is a sequence of characters. It's a data type that's used to represent text. Each character in a string can be a letter, digit, symbol, or whitespace." },
+                2: { type: "points", content: ["Text is all around us. They have the job of carrying names, emails, API keys and more throughout the internet. Understanding how to effectively use and manipulate strings is crucial for any Java programmer."] },
+            },
+            Teach: {
+                good: ["Java","high-level","object-oriented"," language","object"],
+                bad: ["public", "private", "global"],
+                title: "about Java"
+            }
+        },
+        Step2: {
+            QuestionType: "default",
+            Boxes: {
+                Box1: {id: 's1-1', position: {"x":-135,"y":60}, data: {"label":"H"}},
+                Box2: {id: 's1-2', position: {"x":-105,"y":60}, data: {"label":"e"}},
+                Box3: {id: 's1-3', position: {"x":-45,"y":60}, data: {"label":"l"}},
+                Box4: {id: 's1-4', position: {"x":-75,"y":60}, data: {"label":"l"}},
+                Box5: {id: 's1-5', position: {"x":-15,"y":60}, data: {"label":"o"}},
+                Box6: {id: 's1-6', position: {"x":30,"y":75}, data: {"label":""}},
+                Box7: {id: 's1-7', position: {"x":60,"y":60}, data: {"label":"W"}},
+                Box8: {id: 's1-8', position: {"x":90,"y":60}, data: {"label":"o"}},
+                Box9: {id: 's1-9', position: {"x":120,"y":60}, data: {"label":"r"}},
+                Box10: {id: 's1-10', position: {"x":150,"y":60}, data: {"label":"l"}},
+                Box11: {id: 's1-11', position: {"x":180,"y":60}, data: {"label":"d"}},
+                Box12: {id: 's1-12', position: {"x":-165,"y":45}, data: {"label":"\""}},
+                Box13: {id: 's1-13', position: {"x":210,"y":45}, data: {"label":"\""}},
+
+                Box14: {"id":"s2-14","position":{"x":-15,"y":-105},"data":{"label":"greeting"}}
+            },
+            Edges: {
+                Edge1: {id: 'e14-12', source: "s2-14", target: "s1-12", animated: false, type: "smoothstep"},
+                Edge2: {id: 'e14-13', source: "s2-14", target: "s1-13", animated: false, type: "smoothstep"}
+            },
+            Title: "Creating Strings",
+            SubTitle: "Creating",
+            Overview: "Learn about access modifiers and how they control access to variables and methods in Java.",
+            Content: {
+                1: { type: "text", content: "In Java, there are two ways to create strings. You can either litteraly declare a string when making it, or use the String object to make a new object." },
+                2: { type: "title", content: "String Literals" },
+                3: {type: "code", content: ["String greeting = \"Hello, World!\";"]},
+                4: {type: "text", content: "Think of it like having a storage place like a box called greeting, and that is where you store your note \"Hello, World!\""},
+                5: {type: "title", content: "String Object"},
+                6: {type: "code", content: ["String greeting = new String(\"Hello, World!\");"]},
+                7: {type: "text", content: "Imagine a factory creating a new note with \"Hello, World!\" each time you use new, and then placing it in the greeting box."},
+                8: {type: "text", content: "There is no difference on how you create a string; printing both of these variables out will show the same value."}
+            },
+            Teach: {
+                good: ["Java","high-level","object-oriented"," language","object"],
+                bad: ["public", "private", "global"],
+                title: "about Java"
+            }
+        },
+        Step3: {
+            QuestionType: "default",
+            Boxes: {
+                Box1: {id: 's3-1', position: {"x":-120,"y":0}, data: {"label":"H E L L O"}},
+                Box2: {id: 's3-2', position: {"x":-120,"y":90}, data: {"label":"0"}},
+                Box3: {id: 's3-3', position: {"x":-15,"y":0}, data: {"label":"‎ "}},
+                Box4: {id: 's3-4', position: {"x":0,"y":0}, data: {"label":"W O R L D !"}},
+                Box5: {id: 's3-5', position: {"x":-195,"y":-75}, data: {"label":"sub = s.substring(0, 2);"}},
+                Box6: {id: 's3-6', position: {"x":30,"y":-75}, data: {"label":"s = \"HELLO WORLD\""}},
+                Box7: {id: 's3-7', position: {"x":-60,"y":90}, data: {"label":" 2  3  4  5  6  7  8  9  10 11"}},
+                Box8: {id: 's3-8', position: {"x":-90,"y":90}, data: {"label":"1"}},
+                Box9: {id: 's3-9', position: {"x":-240,"y":90}, data: {"label":"sub ="}},
+                Box10: {id: 's3-10', position: {"x":-135,"y":180}, data: {"label":"prints out \"H E\""}}
+            },
+            Edges: {
+                Edge1: {id: 'e2-9', source: "s3-2", target: "s3-9", animated: false, type: "bezier"},
+                Edge2: {id: 'e9-8', source: "s3-9", target: "s3-8", animated: false, type: "bezier"},
+                Edge3: {id: 'e9-10', source: "s3-9", target: "s3-10", animated: true, type: "smoothstep"}
+            },
+            Title: "Substring",
+            SubTitle: "Substring",
+            Overview: "Learn about access modifiers and how they control access to variables and methods in Java.",
+            Content: {
+                1: { type: "text", content: "In Java, the concept of a \"substring\" is taking a portion of text from a string and assigning that to another variable. Let's take a look at how it is used:" },
+                2: { type: "code", content: ["String s = \"Hello world!\";", "String sub = s.substring(0, 2);", "", "System.out.println(sub); // Output: He"] },
+                3: {type: "points", content: ["s.substring(0, 2) takes the substring starting at index 0 and ending just before index 2. The result is the string \"He\".", "Index positions in Java strings start at 0. So, the character at index 0 is 'H', and the character at index 2 is 'l'. Since substring stops before the endIndex, it includes characters up to 'e'.", "In other words, the substring method in the example takes the first i characters in the string. (In this case, the first two)"]},
+                4: {type: "title", content: "The `substring` method has two forms:"},
+                5: {type: "pointsNoTitle", content: ["substring(int beginIndex): Returns a new string that is a substring of this string starting from beginIndex to the end of the string.", "substring(int beginIndex, int endIndex): Returns a new string that is a substring of this string starting from beginIndex to endIndex - 1."]}
+            },
+            Teach: {
+                good: ["Java","high-level","object-oriented"," language","object"],
+                bad: ["public", "private", "global"],
+                title: "about Java"
+            }
+        },
+        Step4: {
+            QuestionType: "default",
+            Boxes: {
+                Box1: {id: 's4-1', position: {"x":-180,"y":-30}, data: {"label":"Variable (S):"}},
+                Box2: {id: 's4-2', position: {"x":-75,"y":60}, data: {"label":"Content: \"Hello world\""}},
+                Box3: {id: 's4-3', position: {"x":-240,"y":135}, data: {"label":"Address: 0x7fffffffffff"}},
+                Box4: {id: 's4-4', position: {"x":165,"y":-120}, data: {"label":"Variable (A)"}},
+                Box5: {id: 's4-5', position: {"x":15,"y":180}, data: {"label":"(A) == (S)"}},
+                Box6: {id: 's4-6', position: {"x":165,"y":180}, data: {"label":"true"}},
+                Box7: {id: 's4-7', position: {"x":-60,"y":255}, data: {"label":"(A).equals((S))"}},
+                Box8: {id: 's4-8', position: {"x":165,"y":255}, data: {"label":"true"}}
+            },
+            Edges: {
+                Edge1: {id: 'e1-2', source: "s4-1", target: "s4-2", animated: false, type: "smoothstep"},
+                Edge2: {id: 'e1-3', source: "s4-1", target: "s4-3", animated: false, type: "smoothstep"},
+                Edge3: {id: 'e4-1', source: "s4-4", target: "s4-1", animated: false, type: "smoothstep"},
+                Edge4: {id: 'e6-5', source: "s4-6", target: "s4-5", animated: true, type: "smoothstep"},
+                Edge5: {id: 'e8-7', source: "s4-8", target: "s4-7", animated: true, type: "smoothstep"}
+            },
+            Title: "Equals",
+            SubTitle: "Equals",
+            Overview: "Learn about access modifiers and how they control access to variables and methods in Java.",
+            Content: {
+                1: { type: "text", content: "In Java, the way to check if the content of a string differs from the normal way to check if two objects are equal." },
+                2: {type: "text", content: "When you assign a variable, it is given two values, a current state and a memory location that is used to reference the variable. Let's checkout an example."},
+                3: {type: "code", content: ["String s = \"Hello world\";", "String a = \"Hello world\";", "", "System.out.println(s == a); // Output: False","System.out.println(s.equals(a)); // Output: True"]},
+                4: {type: "points", content: ["When you use `==` it is checking if the variables have the same memory address.", "When you use `.equals()` it is checking the contents of the variable and if those match."]},
+                5: {type: "text", content: "Let's try another example."},
+                6: {type: "code", content: ["String s = \"Hello world\";", "String a = s;", "", "System.out.println(s == a); // Output: True"]},
+                7: {type: "text", content: "Understanding these differences is crucial for correctly comparing strings in Java and ensuring expected behavior when handling string data."}
+            },
+            Teach: {
+                good: ["Java","high-level","object-oriented"," language","object"],
+                bad: ["public", "private", "global"],
+                title: "about Java"
+            }
+        },
+        Step5: {
+            QuestionType: "default",
+            Boxes: {
+                
+            },
+            Edges: {
+                
+            },
+            Title: "Other Methods",
+            SubTitle: "Other Methods",
+            Overview: "Learn about access modifiers and how they control access to variables and methods in Java.",
+            Content: {
+                1: { type: "text", content: "These other methods will be covered intensively in other lessons, but here are the basic ones that you will use for strings:" },
+                2: {type: "pointsNoTitle", content: ["toLowerCase()","toUpperCase()","startsWith(String prefix)", "endsWith(String suffix)", "length()", "charAt(int index)"]}
+            },
+            Teach: {
+                good: ["Java","high-level","object-oriented"," language","object"],
+                bad: ["public", "private", "global"],
+                title: "about Java"
+            }
+        },
+        Step6: {
+            Title: "Point to the Correct Answer",
+            QuestionType: "question",
+            GameType: "rotateMatch",
+
+            "MainBox": "What does a string represent?",
+            "Boxes": {
+                "Left": {
+                    "Text": "Strings represent an array of characters.",
+                    "Right": true
+                },
+                "Top": {
+                    "Text": "Strings represent either on or off.",
+                    "Right": false
+                },
+                "Right": {
+                    "Text": "Strings represent a data type that can only store numeric values.",
+                    "Right": false
+                }
+            },
+            Content: {
+            }
+        },
+    },
     passage: "",
+    cocode: {
+        easy: {
+            question: "",
+            expected: ""
+        },
+        medium: {
+            question: "",
+            expected: ""
+        },
+        hard: {
+            question: "",
+            expected: ""
+        }
+    },
 };
 
 export const IfStatement = {
@@ -892,6 +1758,20 @@ export const IfStatement = {
     unit: 3,
     steps: {},
     passage: "",
+    cocode: {
+        easy: {
+            question: "",
+            expected: ""
+        },
+        medium: {
+            question: "",
+            expected: ""
+        },
+        hard: {
+            question: "",
+            expected: ""
+        }
+    },
 };
 
 export const ForLoop = {
@@ -902,6 +1782,20 @@ export const ForLoop = {
     unit: 4,
     steps: {},
     passage: "",
+    cocode: {
+        easy: {
+            question: "",
+            expected: ""
+        },
+        medium: {
+            question: "",
+            expected: ""
+        },
+        hard: {
+            question: "",
+            expected: ""
+        }
+    },
 };
 
 export const WhileLoop = {
@@ -912,6 +1806,20 @@ export const WhileLoop = {
     unit: 4,
     steps: {},
     passage: "",
+    cocode: {
+        easy: {
+            question: "",
+            expected: ""
+        },
+        medium: {
+            question: "",
+            expected: ""
+        },
+        hard: {
+            question: "",
+            expected: ""
+        }
+    },
 };
 
 export const DoWhileLoop = {
@@ -922,6 +1830,20 @@ export const DoWhileLoop = {
     unit: 4,
     steps: {},
     passage: "",
+    cocode: {
+        easy: {
+            question: "",
+            expected: ""
+        },
+        medium: {
+            question: "",
+            expected: ""
+        },
+        hard: {
+            question: "",
+            expected: ""
+        }
+    },
 };
 
 export const ForEachLoop = {
@@ -932,6 +1854,20 @@ export const ForEachLoop = {
     unit: 4,
     steps: {},
     passage: "",
+    cocode: {
+        easy: {
+            question: "",
+            expected: ""
+        },
+        medium: {
+            question: "",
+            expected: ""
+        },
+        hard: {
+            question: "",
+            expected: ""
+        }
+    },
 };
 
 export const SwitchStatement = {
@@ -942,6 +1878,20 @@ export const SwitchStatement = {
     unit: 3,
     steps: {},
     passage: "",
+    cocode: {
+        easy: {
+            question: "",
+            expected: ""
+        },
+        medium: {
+            question: "",
+            expected: ""
+        },
+        hard: {
+            question: "",
+            expected: ""
+        }
+    },
 };
 
 export const Methods = {
@@ -952,6 +1902,20 @@ export const Methods = {
     unit: 5,
     steps: {},
     passage: "",
+    cocode: {
+        easy: {
+            question: "",
+            expected: ""
+        },
+        medium: {
+            question: "",
+            expected: ""
+        },
+        hard: {
+            question: "",
+            expected: ""
+        }
+    },
 };
 
 export const EnumUsage = {
@@ -962,6 +1926,20 @@ export const EnumUsage = {
     unit: "N/A",
     steps: {},
     passage: "",
+    cocode: {
+        easy: {
+            question: "",
+            expected: ""
+        },
+        medium: {
+            question: "",
+            expected: ""
+        },
+        hard: {
+            question: "",
+            expected: ""
+        }
+    },
 };
 
 export const ArrayUsage = {
@@ -972,6 +1950,20 @@ export const ArrayUsage = {
     unit: 6,
     steps: {},
     passage: "",
+    cocode: {
+        easy: {
+            question: "",
+            expected: ""
+        },
+        medium: {
+            question: "",
+            expected: ""
+        },
+        hard: {
+            question: "",
+            expected: ""
+        }
+    },
 };
 
 export const TwoDArrayUsage = {
@@ -982,6 +1974,20 @@ export const TwoDArrayUsage = {
     unit: 8,
     steps: {},
     passage: "",
+    cocode: {
+        easy: {
+            question: "",
+            expected: ""
+        },
+        medium: {
+            question: "",
+            expected: ""
+        },
+        hard: {
+            question: "",
+            expected: ""
+        }
+    },
 };
 
 export const ArraysAndArrayLists = {
@@ -992,6 +1998,20 @@ export const ArraysAndArrayLists = {
     unit: "N/A",
     steps: {},
     passage: "",
+    cocode: {
+        easy: {
+            question: "",
+            expected: ""
+        },
+        medium: {
+            question: "",
+            expected: ""
+        },
+        hard: {
+            question: "",
+            expected: ""
+        }
+    },
 };
 
 export const ArrayListUsage = {
@@ -1002,6 +2022,20 @@ export const ArrayListUsage = {
     unit: 7,
     steps: {},
     passage: "",
+    cocode: {
+        easy: {
+            question: "",
+            expected: ""
+        },
+        medium: {
+            question: "",
+            expected: ""
+        },
+        hard: {
+            question: "",
+            expected: ""
+        }
+    },
 };
 
 export const DemorgansLaw = {
@@ -1012,6 +2046,20 @@ export const DemorgansLaw = {
     unit: 3,
     steps: {},
     passage: "",
+    cocode: {
+        easy: {
+            question: "",
+            expected: ""
+        },
+        medium: {
+            question: "",
+            expected: ""
+        },
+        hard: {
+            question: "",
+            expected: ""
+        }
+    },
 };
 
 export const ShortCircuitEvaluation = {
@@ -1022,6 +2070,20 @@ export const ShortCircuitEvaluation = {
     unit: 3,
     steps: {},
     passage: "",
+    cocode: {
+        easy: {
+            question: "",
+            expected: ""
+        },
+        medium: {
+            question: "",
+            expected: ""
+        },
+        hard: {
+            question: "",
+            expected: ""
+        }
+    },
 };
 
 export const DeclarationVsInstantiation = {
@@ -1032,6 +2094,20 @@ export const DeclarationVsInstantiation = {
     unit: 2,
     steps: {},
     passage: "",
+    cocode: {
+        easy: {
+            question: "",
+            expected: ""
+        },
+        medium: {
+            question: "",
+            expected: ""
+        },
+        hard: {
+            question: "",
+            expected: ""
+        }
+    },
 };
 
 export const BasicOOP = {
@@ -1042,6 +2118,20 @@ export const BasicOOP = {
     unit: 5,
     steps: {},
     passage: "",
+    cocode: {
+        easy: {
+            question: "",
+            expected: ""
+        },
+        medium: {
+            question: "",
+            expected: ""
+        },
+        hard: {
+            question: "",
+            expected: ""
+        }
+    },
 };
 
 export const WritingClasses = {
@@ -1052,6 +2142,20 @@ export const WritingClasses = {
     unit: 5,
     steps: {},
     passage: "",
+    cocode: {
+        easy: {
+            question: "",
+            expected: ""
+        },
+        medium: {
+            question: "",
+            expected: ""
+        },
+        hard: {
+            question: "",
+            expected: ""
+        }
+    },
 };
 
 export const Constructors = {
@@ -1062,6 +2166,20 @@ export const Constructors = {
     unit: 5,
     steps: {},
     passage: "",
+    cocode: {
+        easy: {
+            question: "",
+            expected: ""
+        },
+        medium: {
+            question: "",
+            expected: ""
+        },
+        hard: {
+            question: "",
+            expected: ""
+        }
+    },
 };
 
 export const ThisKeyword = {
@@ -1072,6 +2190,20 @@ export const ThisKeyword = {
     unit: 5,
     steps: {},
     passage: "",
+    cocode: {
+        easy: {
+            question: "",
+            expected: ""
+        },
+        medium: {
+            question: "",
+            expected: ""
+        },
+        hard: {
+            question: "",
+            expected: ""
+        }
+    },
 };
 
 export const Scope = {
@@ -1082,6 +2214,20 @@ export const Scope = {
     unit: 5,
     steps: {},
     passage: "",
+    cocode: {
+        easy: {
+            question: "",
+            expected: ""
+        },
+        medium: {
+            question: "",
+            expected: ""
+        },
+        hard: {
+            question: "",
+            expected: ""
+        }
+    },
 };
 
 export const UsingClasses = {
@@ -1092,6 +2238,20 @@ export const UsingClasses = {
     unit: 2,
     steps: {},
     passage: "",
+    cocode: {
+        easy: {
+            question: "",
+            expected: ""
+        },
+        medium: {
+            question: "",
+            expected: ""
+        },
+        hard: {
+            question: "",
+            expected: ""
+        }
+    },
 };
 
 export const AdvancedOOP = {
@@ -1102,6 +2262,20 @@ export const AdvancedOOP = {
     unit: 9,
     steps: {},
     passage: "",
+    cocode: {
+        easy: {
+            question: "",
+            expected: ""
+        },
+        medium: {
+            question: "",
+            expected: ""
+        },
+        hard: {
+            question: "",
+            expected: ""
+        }
+    },
 };
 
 export const RVCTime = {
@@ -1112,6 +2286,20 @@ export const RVCTime = {
     unit: 1,
     steps: {},
     passage: "",
+    cocode: {
+        easy: {
+            question: "",
+            expected: ""
+        },
+        medium: {
+            question: "",
+            expected: ""
+        },
+        hard: {
+            question: "",
+            expected: ""
+        }
+    },
 };
 
 export const Recursion = {
@@ -1122,6 +2310,20 @@ export const Recursion = {
     unit: 10,
     steps: {},
     passage: "",
+    cocode: {
+        easy: {
+            question: "",
+            expected: ""
+        },
+        medium: {
+            question: "",
+            expected: ""
+        },
+        hard: {
+            question: "",
+            expected: ""
+        }
+    },
 };
 
 export const Exception = {
@@ -1132,6 +2334,20 @@ export const Exception = {
     unit: "N/A",
     steps: {},
     passage: "",
+    cocode: {
+        easy: {
+            question: "",
+            expected: ""
+        },
+        medium: {
+            question: "",
+            expected: ""
+        },
+        hard: {
+            question: "",
+            expected: ""
+        }
+    },
 };
 
 export const WrapperClasses = {
@@ -1141,6 +2357,20 @@ export const WrapperClasses = {
     filters: ["Intermediate Concepts", "Variables"],
     unit: 7,
     steps: {},
+    cocode: {
+        easy: {
+            question: "",
+            expected: ""
+        },
+        medium: {
+            question: "",
+            expected: ""
+        },
+        hard: {
+            question: "",
+            expected: ""
+        }
+    },
     passage: "",
 };
 
@@ -1151,6 +2381,20 @@ export const StaticVsNonStatic = {
     filters: ["Intermediate Concepts", "Object-Oriented Programming"],
     unit: 5,
     steps: {},
+    cocode: {
+        easy: {
+            question: "",
+            expected: ""
+        },
+        medium: {
+            question: "",
+            expected: ""
+        },
+        hard: {
+            question: "",
+            expected: ""
+        }
+    },
     passage: "",
 };
 
@@ -1160,6 +2404,20 @@ export const InitializationVSDeclaration = {
     description: "Learn the ins and outs of when to look for Initialization Vs Declaration.",
     filters: ["Basics", "Variables"],
     unit: 1,
+    cocode: {
+        easy: {
+            question: "",
+            expected: ""
+        },
+        medium: {
+            question: "",
+            expected: ""
+        },
+        hard: {
+            question: "",
+            expected: ""
+        }
+    },
     steps: {},
     passage: "",
 };
@@ -1171,6 +2429,20 @@ export const SuperclassVsSubclass = {
     filters: ["Intermediate Concepts", "Object-Oriented Programming", "Inheritance"],
     unit: 9,
     steps: {},
+    cocode: {
+        easy: {
+            question: "",
+            expected: ""
+        },
+        medium: {
+            question: "",
+            expected: ""
+        },
+        hard: {
+            question: "",
+            expected: ""
+        }
+    },
     passage: "",
 };
 
@@ -1181,6 +2453,20 @@ export const Polymorphism = {
     filters: ["Intermediate Concepts", "Object-Oriented Programming", "Polymorphism"],
     unit: 9,
     steps: {},
+    cocode: {
+        easy: {
+            question: "",
+            expected: ""
+        },
+        medium: {
+            question: "",
+            expected: ""
+        },
+        hard: {
+            question: "",
+            expected: ""
+        }
+    },
     passage: "",
 };
 
@@ -1192,6 +2478,20 @@ export const Encapsulation = {
     unit: 9,
     steps: {},
     passage: "",
+    cocode: {
+        easy: {
+            question: "",
+            expected: ""
+        },
+        medium: {
+            question: "",
+            expected: ""
+        },
+        hard: {
+            question: "",
+            expected: ""
+        }
+    },
 };
 
 export const IPPVSPPI = {
@@ -1202,6 +2502,20 @@ export const IPPVSPPI = {
     unit: "N/A",
     steps: {},
     passage: "",
+    cocode: {
+        easy: {
+            question: "",
+            expected: ""
+        },
+        medium: {
+            question: "",
+            expected: ""
+        },
+        hard: {
+            question: "",
+            expected: ""
+        }
+    },
 };
 
 
@@ -1295,15 +2609,28 @@ export const returnIcon = (iconName: string) => {
 };
 
 export const DefaultLesson = {
-    name: "DefaultLesson",
+    name: "",
     icon: "CopyPlus",
-    description: "DefaultLesson",
+    description: "",
     filters: [],
     unit: "N/A",
     passage: "",
     steps: {},
     vocab: {},
-    
+    cocode: {
+        easy: {
+            question: "",
+            expected: ""
+        },
+        medium: {
+            question: "",
+            expected: ""
+        },
+        hard: {
+            question: "",
+            expected: ""
+        }
+    }
 };
 
 export const getLessonByParamName = (finder: string) => {

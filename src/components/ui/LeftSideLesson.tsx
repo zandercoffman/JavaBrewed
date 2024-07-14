@@ -31,7 +31,8 @@ const doStuff = (lesson: any, stepNum: number): { nodes: Node[], edges: Edge[] }
                 source: edge.source,
                 target: edge.target,
                 animated: edge.animated || false,
-                label: edge.label || ""
+                label: edge.label || "",
+                type: edge.type || "bezier"
             });
         });
     } else if (step.QuestionType === "question") {
@@ -154,6 +155,12 @@ const LeftSideLesson: React.FC<LeftSideLessonProps> = (params: { lesson: any, st
 
     if (loading) {
         return <div className='w-full h-full loading'><LoaderCircle /></div>;
+    }
+
+    if (Object.keys(thisLesson.steps[`Step${thisStep}`].Boxes).length == 0) {
+        return <>
+        
+        </>
     }
 
     return (

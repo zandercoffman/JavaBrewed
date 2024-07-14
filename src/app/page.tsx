@@ -1,9 +1,28 @@
+"use client"
+
 import { CodePiece } from "@/components/ui/CodePiece";
 import Image from "next/image";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@/components/ui/carousel"
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card"
+
 
 export default function Home() {
+
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
+    <main className="flex min-h-screen flex-col gap-10 items-center justify-between p-24">
       <div className="z-10 w-full max-w-5xl items-center justify-between font-mono text-sm lg:flex">
         <div className="static h-full left-0 top-0 flex max-w-1/2 justify-center border-b border-gray-300 bg-gradient-to-b from-zinc-200 pb-6 pt-8 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit  lg:w-1/2  lg:rounded-xl lg:border lg:bg-gray-200 lg:p-4 lg:dark:bg-zinc-800/30">
           <div className="text-5xl font-extrabold text-left">
@@ -19,76 +38,73 @@ export default function Home() {
           
         </div>
       </div>
+      <div className="flex flex-row gap-2 justify-center w-full h-[90vh] p-20">
+          <div className="w-1/2 flex flex-col gap-2 mr-14">
+            <h1 className="scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl">
+              Lessons
+            </h1>
+            Welcome to your lessons, the heart of your Java learning journey! This section is designed to cater to all levels of Java learners, from beginners to advanced students, including those preparing for AP and Honors courses. Here's what you can expect:
+            <Carousel>  
+              <CarouselContent>
+              <CarouselItem>
+  <Card>
+    <CardHeader>
+      <CardTitle>Regular Lessons</CardTitle>
+      <CardDescription>Build a strong foundation in Java.</CardDescription>
+    </CardHeader>
+    <CardContent>
+      <p>Begin your journey with our comprehensive Regular Lessons. These cover the fundamental concepts of Java, from basic syntax and data types to object-oriented programming and error handling. Perfect for newcomers or those looking to solidify their foundational knowledge.</p>
+    </CardContent>
+    <CardFooter>
+      <p>Get started with the basics!</p>
+    </CardFooter>
+  </Card>
+</CarouselItem>
 
-      <div className="mb-32 grid text-center lg:mb-0 lg:w-full lg:max-w-5xl lg:grid-cols-4 lg:text-left">
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className="mb-3 text-2xl font-semibold">
-            Docs{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className="m-0 max-w-[30ch] text-sm opacity-50">
-            Find in-depth information about Next.js features and API.
-          </p>
-        </a>
+<CarouselItem>
+  <Card>
+    <CardHeader>
+      <CardTitle>AP Lessons</CardTitle>
+      <CardDescription>Excel in your AP Computer Science A exam.</CardDescription>
+    </CardHeader>
+    <CardContent>
+      <p>Gear up for your AP Computer Science A exam with our specialized AP Lessons. Dive deep into more complex topics and problem-solving techniques that align with the AP curriculum. These lessons are crafted to give you the edge you need to excel in your AP exams.</p>
+    </CardContent>
+  </Card>
+</CarouselItem>
 
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className="mb-3 text-2xl font-semibold">
-            Learn{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className="m-0 max-w-[30ch] text-sm opacity-50">
-            Learn about Next.js in an interactive course with&nbsp;quizzes!
-          </p>
-        </a>
+<CarouselItem>
+  <Card>
+    <CardHeader>
+      <CardTitle>Honors Lessons</CardTitle>
+      <CardDescription>Push your skills to the next level.</CardDescription>
+    </CardHeader>
+    <CardContent>
+      <p>Challenge yourself with our Honors Lessons, designed for advanced learners who seek a deeper understanding of Java. These lessons explore intricate concepts, advanced programming techniques, and real-world applications to push your skills to the next level.</p>
+    </CardContent>
+  </Card>
+</CarouselItem>
 
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className="mb-3 text-2xl font-semibold">
-            Templates{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className="m-0 max-w-[30ch] text-sm opacity-50">
-            Explore starter templates for Next.js.
-          </p>
-        </a>
+<CarouselItem>
+  <Card>
+    <CardHeader>
+      <CardTitle>Personalized Section</CardTitle>
+      <CardDescription>Track your progress and get personalized recommendations.</CardDescription>
+    </CardHeader>
+    <CardContent>
+      <p>Your learning experience should be as unique as you are. In the Personalized Section, you can track your progress, view detailed analytics, and receive customized lesson recommendations based on your learning history and performance. Whether you need to revisit a topic or take on new challenges, our personalized suggestions ensure you stay on the path to mastery.</p>
+    </CardContent>
+  </Card>
+</CarouselItem>
 
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className="mb-3 text-2xl font-semibold">
-            Deploy{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className="m-0 max-w-[30ch] text-balance text-sm opacity-50">
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
+              </CarouselContent>
+            </Carousel>
+
+          </div>
+          <div className="w-1/2">
+            <Image src={"/lessons.png"} alt={""} width={600} height={500} className="rounded-[1rem] shadow-[0px_20px_20px_10px_#00000024]"></Image>
+          </div>
+        </div>
     </main>
   );
 }

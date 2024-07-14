@@ -39,7 +39,7 @@ export default function RightSideLesson(params: { lesson: any, stepNum: number})
                 case "remember":
                     return <div key={key}>
                         <h2 className="scroll-m-20 border-b pb-2 text-3xl font-semibold tracking-tight first:mt-0">How to Remember</h2>
-                        <ul className="!list-disc m-2" >
+                        <ul className="flex flex-col gap-1 !list-disc m-2" >
                             {obj.content.map((point: string, index: number) => {
                                 return <li key={index} className="flex flex-row gap-3"><CircleDashed />{point}</li>
                             })}
@@ -53,6 +53,16 @@ export default function RightSideLesson(params: { lesson: any, stepNum: number})
                     return <h2 className="scroll-m-20 mt-2 border-b text-3xl font-semibold tracking-tight first:mt-0">{obj.content}</h2>
                 case "seperator": 
                     return <Separator/>
+                case "pointsNoTitle": 
+                    return <div key={key}>
+                    
+                    <Separator/>
+                    <ul className="flex flex-col gap-3 !list-disc m-2" >
+                        {obj.content.map((point: string, index: number) => {
+                            return <li key={index} className="flex flex-row gap-3"><CircleDashed />{point}</li>
+                        })}
+                    </ul>
+                </div>
                 default:
                     return null;
             }

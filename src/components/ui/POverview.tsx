@@ -35,7 +35,7 @@ export default function POverview() {
                             {
                                 suggestions.map((suggestion) => {
                                     return <>
-                                        <div className="bg-gray-200 rounded-[1.5rem] w-full h-fit px-4 py-3">
+                                        <div className="light:bg-gray-200 dark:bg-gray-800 rounded-[1.5rem] w-full h-fit px-4 py-3">
                                             <div className="flex flex-row gap-2">
                                                 <SparklesIcon/> {suggestion} 
                                             </div>

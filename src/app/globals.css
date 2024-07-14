@@ -2,75 +2,99 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
-  --totl-primary-background: rgba(255,255,255,.8);
-  --totl-primary-font-color: #000;
-  --totl-primate-font-descolor: #565656;
-  /* Default background color of <body>...etc */
---background: 0 0% 100%;
---foreground: 222.2 47.4% 11.2%;
-
-/* Muted backgrounds such as <TabsList />, <Skeleton /> and <Switch /> */
---muted: 210 40% 96.1%;
---muted-foreground: 215.4 16.3% 46.9%;
-
-/* Background color for <Card /> */
---card: 0 0% 100%;
---card-foreground: 222.2 47.4% 11.2%;
-
-/* Background color for popovers such as <DropdownMenu />, <HoverCard />, <Popover /> */
---popover: 0 0% 100%;
---popover-foreground: 222.2 47.4% 11.2%;
-
-/* Default border color */
---border: 214.3 31.8% 91.4%;
-
-/* Border color for inputs such as <Input />, <Select />, <Textarea /> */
---input: 214.3 31.8% 91.4%;
-
-/* Primary colors for <Button /> */
---primary: 222.2 47.4% 11.2%;
---primary-foreground: 210 40% 98%;
-
-/* Secondary colors for <Button /> */
---secondary: 210 40% 96.1%;
---secondary-foreground: 222.2 47.4% 11.2%;
-
-/* Used for accents such as hover effects on <DropdownMenuItem>, <SelectItem>...etc */
---accent: 210 40% 96.1%;
---accent-foreground: 222.2 47.4% 11.2%;
-
-/* Used for destructive actions such as <Button variant="destructive"> */
---destructive: 0 100% 50%;
---destructive-foreground: 210 40% 98%;
-
-/* Used for focus ring */
---ring: 215 20.2% 65.1%;
-
-/* Border radius for card, input and buttons */
---radius: 0.5rem;
-
-}
-
-@media (prefers-color-scheme: dark) {
+@layer base {
   :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
+    --foreground-rgb: 0, 0, 0;
+    --background-start-rgb: 214, 219, 220;
+    --background-end-rgb: 255, 255, 255;
+    --totl-primary-background: rgba(255,255,255,.8);
+    --totl-primary-font-color: #000;
+    --totl-primate-font-descolor: #565656;
+    /* Default background color of <body>...etc */
+  --background: 0 0% 100%;
+  --foreground: 222.2 47.4% 11.2%;
+  
+  /* Muted backgrounds such as <TabsList />, <Skeleton /> and <Switch /> */
+  --muted: 210 40% 96.1%;
+  --muted-foreground: 215.4 16.3% 46.9%;
+  
+  /* Background color for <Card /> */
+  --card: 0 0% 100%;
+  --card-foreground: 222.2 47.4% 11.2%;
+  
+  /* Background color for popovers such as <DropdownMenu />, <HoverCard />, <Popover /> */
+  --popover: 0 0% 100%;
+  --popover-foreground: 222.2 47.4% 11.2%;
+  
+  /* Default border color */
+  --border: 214.3 31.8% 91.4%;
+  
+  /* Border color for inputs such as <Input />, <Select />, <Textarea /> */
+  --input: 214.3 31.8% 91.4%;
+  
+  /* Primary colors for <Button /> */
+  --primary: 222.2 47.4% 11.2%;
+  --primary-foreground: 210 40% 98%;
+  
+  /* Secondary colors for <Button /> */
+  --secondary: 210 40% 96.1%;
+  --secondary-foreground: 222.2 47.4% 11.2%;
+  
+  /* Used for accents such as hover effects on <DropdownMenuItem>, <SelectItem>...etc */
+  --accent: 210 40% 96.1%;
+  --accent-foreground: 222.2 47.4% 11.2%;
+  
+  /* Used for destructive actions such as <Button variant="destructive"> */
+  --destructive: 0 100% 50%;
+  --destructive-foreground: 210 40% 98%;
+  
+  /* Used for focus ring */
+  --ring: 215 20.2% 65.1%;
+  
+  /* Border radius for card, input and buttons */
+  --radius: 0.5rem;
+  
+  }
+
+  .dark {
+    
+    --foreground-rgb: 255, 255, 255; /* Adjust the RGB values as needed for foreground/text color */
+  --background-start-rgb: 10, 10, 10; /* Very dark RGB values for slate-800 */
+  --background-end-rgb: 20, 20, 20; /* Slightly lighter dark RGB values for stone-800 */
+  /*Seperator*/
+    --card: 222.2 84% 4.9%;
+    --card-foreground: 210 40% 98%;
+    --popover: 222.2 84% 4.9%;
+    --popover-foreground: 210 40% 98%;
+    --primary: 210 40% 98%;
+    --primary-foreground: 222.2 47.4% 11.2%;
+    --secondary: 217.2 32.6% 17.5%;
+    --secondary-foreground: 210 40% 98%;
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+    --accent: 217.2 32.6% 17.5%;
+    --accent-foreground: 210 40% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 212.7 26.8% 83.9%;
+    --chart-1: 220 70% 50%;
+    --chart-2: 160 60% 45%;
+    --chart-3: 30 80% 55%;
+    --chart-4: 280 65% 60%;
+    --chart-5: 340 75% 55%;
   }
 }
 
 body {
-  color: rgb(var(--foreground-rgb));
+  color: rgb(var(--foreground-rgb)) !important;
   background: linear-gradient(
       to bottom,
       transparent,
       rgb(var(--background-end-rgb))
     )
-    rgb(var(--background-start-rgb));
+    rgb(var(--background-start-rgb)) !important;
 }
 
 @layer utilities {
@@ -242,6 +266,10 @@ ol, ul, menu {
 
 .react-flow__edge {
   animation: slideInFromTop 0.7s ease forwards;
+}
+
+.react-flow__edge-textbg {
+  fill: none !important;
 }
 
 @keyframes slideInFromTop {
@@ -532,4 +560,66 @@ animation: spin 0.7s infinite;
 
 .custom-shape-divider-top-1719688745 .shape-fill {
   fill: #2A3E83;
+}
+
+g {
+  transition: all 1s;
+}
+
+.glassmorphic-panel {
+  background: rgba(255, 255, 255, 0.2); /* semi-transparent white */
+  backdrop-filter: blur(10px); /* blur effect */
+  -webkit-backdrop-filter: blur(10px); /* Safari support */
+  border-radius: 1rem; /* rounded corners */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* subtle shadow */
+  border: 1px solid rgba(255, 255, 255, 0.3); /* light border */
+}
+
+
+@keyframes upDown {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(20px)
+  }
+}
+
+.matrix {
+  animation-duration: 1s;
+  animation-fill-mode: forwards;
+  animation-iteration-count: infinite;
+  transition: all 1s;
+}
+
+#matrix1 {
+  transform: matrix(0.577688, 0.816258, 0.846818, -0.531883, 545.922, 529.534);
+}
+
+#matrix2 {
+  transform: matrix(-0.577688, 0.816258, -0.846818, -0.531883, 145.078, 518.925);
+}
+
+@keyframes moveUp1 {
+  0% {
+    transform: matrix(0.577688, 0.816258, 0.846818, -0.531883, 545.922, 529.534);
+  }
+  50% {
+    transform: matrix(0.577688, 0.816258, 0.846818, -0.531883, 545.922, 519.534);
+  }
+  100% {
+    transform: matrix(0.577688, 0.816258, 0.846818, -0.531883, 545.922, 529.534);
+  }
+}
+
+@keyframes moveUp2 {
+  0% {
+    transform: matrix(-0.577688, 0.816258, -0.846818, -0.531883, 145.078, 518.925);
+  }
+  50% {
+    transform: matrix(-0.577688, 0.816258, -0.846818, -0.531883, 145.078, 508.925);
+  }
+  100% {
+    transform: matrix(-0.577688, 0.816258, -0.846818, -0.531883, 145.078, 518.925);
+  }
 }

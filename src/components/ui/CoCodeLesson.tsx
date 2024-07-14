@@ -45,11 +45,11 @@ export default function CoCodeLesson(params: any) {
 
     const linkName = lesson.name.trim().replace(/\s+/g, '').toLowerCase();
 
-    const [text, setText] = React.useState("");
-    const [difficulty, setDifficulty] = React.useState("");
-
     const cocode = lesson.cocode;
     const { easy, medium, hard }: CoCodeChallenges = lesson.cocode || { easy: { question: "", expected: "" }, medium: { question: "", expected: "" }, hard: { question: "", expected: "" } };
+
+    const [text, setText] = React.useState(easy.question);
+    const [difficulty, setDifficulty] = React.useState("easy");
 
     const set = (difficulty: string) => {
         if (cocode && easy && medium && hard) {

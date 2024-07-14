@@ -30,6 +30,7 @@ import { Lessons, returnIcon } from '../../../public/lessons/Lessons';
 
 import { Button as SButton } from "@/components/ui/button"
 import SearchItem from './SearchItem';
+import ThemeSwitcher from './ThemeSwitcher';
 
 
 export default function Header() {
@@ -41,7 +42,7 @@ export default function Header() {
 
   React.useEffect(() => {
     const handleRouteChange = (url: string) => {
-      setIsLessonPage(url.includes('lessons/') || url.includes('teach/'));
+      setIsLessonPage(url.includes('lessons/') || url.includes('teach/') || url.includes("cocode/"));
     };
 
     handleRouteChange(pathname);
@@ -60,7 +61,7 @@ export default function Header() {
     return () => document.removeEventListener("keydown", down)
   }, [])
 
-  if (typeof window !== "undefined" && (window.location.href.includes("lessons/") || window.location.href.includes("teach/") || window.location.href.includes("cocode/"))){
+  if (isLessonPage){
     return <>
     <CommandDialog open={open} onOpenChange={setOpen}>
         <CommandInput placeholder="Type a command or search..." />
@@ -108,12 +109,12 @@ export default function Header() {
         <Link href={"/"} className='font-semibold w-full lg:w-[20%]'>♨️JavaBrewed</Link>
         <div className='flex justify-end gap-[2rem] flex-col lg:flex-row w-full lg:w-[80%] ml-[2rem] mr-[2rem] '>
           
-          <SButton variant="outline" className='flex flex-row gap-2 bg-slate-100' onClick={() =>  setOpen(!open)}>Search JavaBrewed... <CommandShortcut>⌘K</CommandShortcut></SButton>
-
-          <Button icon={MessageCircle} link="/chatbot" title="ChatBot"/>
+          <SButton variant="outline" className='flex flex-row gap-2 bg-slate-100 text-black dark:bg-slate-800 dark:text-white' onClick={() =>  setOpen(!open)}>Search JavaBrewed... <CommandShortcut>⌘K</CommandShortcut></SButton>
+          <ThemeSwitcher/>
           <Button icon={BookOpenCheck} link="/lessons" title="Lessons"/>
           <Button icon={CodeXml} link="/cocode" title="CoCode"/>
           <Button icon={UserRound} link="/profile" title="Profile" />
+          
         </div>
       </header>
         
@@ -128,7 +129,7 @@ function Button(params: any) {
     <TooltipProvider>
       <Tooltip>
         <TooltipTrigger><Link href={params.link}>{<Icon/>}</Link></TooltipTrigger>
-        <TooltipContent>
+        <TooltipContent className='dark:!bg-slate-700 dark:!text-white'>
           {params.title}
         </TooltipContent>
       </Tooltip>

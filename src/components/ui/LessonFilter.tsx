@@ -36,15 +36,15 @@ export default function LessonFilter(params: any) {
     return (
         <DropdownMenu>
             <DropdownMenuTrigger asChild>
-                <Button variant="outline" className="flex flex-row gap-2 rounded-[1rem] bg-white border-none hover:bg-white">
+                <Button variant="outline" className="flex flex-row gap-2 rounded-[1rem] dark:bg-slate-900 dark:text-white">
                     {title}
                     {returnIcon(title)}
                 </Button>
                 
             </DropdownMenuTrigger>
-            <DropdownMenuContent className="w-56 overflow-y-auto max-h-[60vh]">
+            <DropdownMenuContent className="w-56 overflow-y-auto max-h-[60vh] dark:bg-slate-900 dark:text-white dark:border-none">
                 <DropdownMenuSeparator />
-                <DropdownMenuRadioGroup value={position} onValueChange={setPosition}>
+                <DropdownMenuRadioGroup value={position} onValueChange={setPosition} className="">
                     {params.options.map((option: string, index: React.Key | null | undefined) => (
                         <DropdownMenuRadioItem key={index} value={option}>
                             {option}

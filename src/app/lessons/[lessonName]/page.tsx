@@ -1,6 +1,6 @@
 "use client"
 
-import { MoveLeft, MoveRight, Menu, AlignLeft, AlignRight, BadgeInfo } from "lucide-react";
+import { MoveLeft, MoveRight, AlignLeft, AlignRight, BadgeInfo } from "lucide-react";
 import { DefaultLesson, getLessonByParamName, returnIcon } from "../../../../public/lessons/Lessons";
 import { Button } from "@/components/ui/button";
 import {
@@ -28,9 +28,10 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover"
-
+import { ArrowUpFromLine, BookOpenCheck, CircleArrowLeft, CircleArrowRight, CircleDashed, CircleHelp, CodeXml, Menu, MessageCircle, Pencil, SquareTerminal, UserRound, Dock } from 'lucide-react';
 import { Badge } from "@/components/ui/badge"
 import { RotateMatch } from "@/components/ui/RotateMatch";
+import { addToData } from "../../../../public/data/UserData";
 
 interface LessonStep {
   SubTitle: string;
@@ -83,7 +84,7 @@ const LessonComponent = ({ params }: { params: { lessonName: string } }) => {
     const [normal, setNormal] = React.useState(true);
 
     //TODO: update step code whenever i mess with it
-    const [step, setStep] = React.useState(5);
+    const [step, setStep] = React.useState(1);
 
     const text = "You will earn ";
   const textArray = text.split("");
@@ -119,6 +120,14 @@ const LessonComponent = ({ params }: { params: { lessonName: string } }) => {
     setStep((step - 1 < 0) ? 0 : step - 1);
   }
 
+  React.useEffect(() => {
+    if (step >= Object.keys(lesson.steps).length + 1 && !hasGivenPoints) {
+      addToData(Number(lesson.unit), lesson.filters);
+      setHasGivenPoints(true);
+      
+    }
+  }, [hasGivenPoints, lesson.filters, lesson.steps, lesson.unit, step])
+
     return (
       <>
       <style jsx>{`header {
@@ -152,12 +161,13 @@ const LessonComponent = ({ params }: { params: { lessonName: string } }) => {
                   <p>Continue</p>
               </Button>
             </div> {/* Bottom right corner */}
-            <div className="fixed z-20 bottom-0 w-10 h-10  m-3">
-                <Button variant={"outline"} className="rounded-[1rem] flex flex-row gap-2 bg-gray-700 text-white hover:bg-gray-700 hover:text-white hover:cursor-default">
-                  <p>{((step / Object.keys(lesson.steps).length) * 100).toFixed(0)}%</p>
-                </Button>
-            </div> {/* Bottom right corner */}
-
+            {(step < Object.keys(lesson.steps).length) && <>
+              <div className="fixed z-20 bottom-0 w-10 h-10  m-3">
+                  <Button variant={"outline"} className="rounded-[1rem] flex flex-row gap-2 bg-gray-700 text-white hover:bg-gray-700 hover:text-white hover:cursor-default">
+                    <p>{((step / Object.keys(lesson.steps).length) * 100).toFixed(0)}%</p>
+                  </Button>
+              </div> {/* Bottom right corner */}
+            </>}
             <div className="fixed rounded-[1rem] z-10 w-[100vw] items-center justify-between text-sm lg:flex pl-[2vw] pr-[2vw]">
                 <div className="h-full  flex max-w-fit pb-6 pt-10  lg:w-1/2  lg:rounded-xl lg:p-4">
                     <div className="flex flex-row gap-[15px] text-4xl font-extrabold text-left mt-2">
@@ -184,17 +194,15 @@ const LessonComponent = ({ params }: { params: { lessonName: string } }) => {
                 </div>
                 <div className=" flex shadow-sm float-right justify-end h-full w-1/2 ml-0 mr-[30px] bg-white w-fit p-1 rounded-[.5rem] dark:from-black dark:via-black size-auto bg-none">
                   <DropdownMenu>
-                    <DropdownMenuTrigger><Menu /></DropdownMenuTrigger>
-                    <DropdownMenuContent>
-                      <Link href={"/"}><DropdownMenuLabel>Home</DropdownMenuLabel></Link>
-                      <Link href={"/dashboard"}><DropdownMenuLabel>Dashboard</DropdownMenuLabel></Link>
-                      <Link href={"/lessons"}><DropdownMenuLabel>Lessons</DropdownMenuLabel></Link>
-                      <Link href="/practice"><DropdownMenuLabel>Practice</DropdownMenuLabel></Link>
-                      <Link href="/tests"><DropdownMenuLabel>Tests</DropdownMenuLabel></Link>
-                      <div className="flex flex-row w-full">
-                        <button className="text-center ml-auto mr-auto" onClick={() => {setNormal(!normal)}}>{(normal) ? <AlignLeft/> : <AlignRight/>}</button>
-                      </div>
-                    </DropdownMenuContent>
+                      <DropdownMenuTrigger><Menu className='w-7 h-7' /></DropdownMenuTrigger>
+                      <DropdownMenuContent>
+                          <Link href={'/profile'}><DropdownMenuLabel className='flex flex-row gap-2'><UserRound/>My Account</DropdownMenuLabel></Link>
+                          <DropdownMenuSeparator />
+                          <Link href="/chatbot"><DropdownMenuItem className='flex flex-row gap-2'><MessageCircle/> Chatbot</DropdownMenuItem></Link>
+                          <Link href="/cocode"><DropdownMenuItem className='flex flex-row gap-2'><CodeXml/> Cocode</DropdownMenuItem></Link>
+                          <Link href="/lessons"><DropdownMenuItem className='flex flex-row gap-2'><BookOpenCheck/> Lessons</DropdownMenuItem></Link>
+                          <Link href="/"><DropdownMenuItem className='flex flex-row gap-2'><Dock /> Home </DropdownMenuItem></Link>
+                      </DropdownMenuContent>
                   </DropdownMenu>
                 </div>
             </div>

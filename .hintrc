@@ -6,14 +6,16 @@
     "axe/forms": [
       "default",
       {
-        "label": "off"
+        "label": "off",
+        "select-name": "off"
       }
     ],
     "compat-api/css": [
       "default",
       {
         "ignore": [
-          "width: fit-content"
+          "width: fit-content",
+          "@layer"
         ]
       }
     ]

@@ -1,3 +1,5 @@
+"use client"
+
 import '@tensorflow/tfjs-backend-cpu';
 import '@tensorflow/tfjs-backend-webgl';
 import * as qna from '@tensorflow-models/qna';
@@ -15,3 +17,4 @@ export const findAnswers = async (question: string, passage: string) => {
     const answers = await model.findAnswers(question, passage);
     return answers;
 }
+
