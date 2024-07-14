@@ -1,6 +1,6 @@
 "use client"
 
-import ReactFlow, { Node, Edge, addEdge, ReactFlowProps, useNodesState, useEdgesState, Controls, Background, MiniMap, ReactFlowActions, Connection } from 'react-flow-renderer';
+import ReactFlow, { Node, Edge, addEdge, ReactFlowProps, useNodesState, useEdgesState, Controls, Background, MiniMap, ReactFlowActions, Connection, } from 'react-flow-renderer';
 import React, { useState, useEffect, useCallback } from 'react';
 import { useToast } from "@/components/ui/use-toast"
 
@@ -25,11 +25,22 @@ import {
     SheetTrigger,
   } from "@/components/ui/sheet"
 
-const initialNodes = [
+  interface NodeData {
+    label: string;
+}
+
+interface EdgeData {
+    label: string;
+    animated: boolean;
+    type: string; // adjust type based on your actual usage
+}
+
+  const initialNodes: Node[] = [
     { id: '1', position: { x: 0, y: 0 }, data: { label: '1' } },
     { id: '2', position: { x: 0, y: 100 }, data: { label: '2' } },
-  ];
-  const initialEdges = [{ id: 'e1-2', source: '1', target: '2' }];
+];
+
+const initialEdges: Edge[] = [{ id: 'e1-2', source: '1', target: '2', data: { label: '', animated: false, type: "smoothstep" } }];
 
 export default function Page() {
     const [counter, setCounter] = React.useState(0);
@@ -45,15 +56,22 @@ export default function Page() {
 
     const onConnect = useCallback(
         (params: Edge<any> | Connection) => {
-            // Define the new edge with the desired properties
-            const newEdge = {
-                id: `e${params.source}-${params.target}`, 
-                source: params.source,
-                target: params.target,// custom ID format
-                label: '',
-                animated: false, // set the animated property to false
-                type: "smoothstep"
-            };
+            let newEdge: Edge<any>;
+    
+            if ('source' in params && 'target' in params) {
+                // Handle Connection type
+                newEdge = {
+                    id: `e${params.source}-${params.target}`,
+                    source: params.source!,
+                    target: params.target!,
+                    label: '',
+                    animated: false,
+                    type: "smoothstep"
+                };
+            } else {
+                // Handle Edge type
+                newEdge = params as Edge<any>;
+            }
     
             // Add the new edge to the state
             setEdges((prevEdges) => addEdge(newEdge, prevEdges));
@@ -61,6 +79,7 @@ export default function Page() {
         },
         [setEdges]
     );
+    
     
     const handleEdgeLabelChange = (event: React.ChangeEvent<HTMLInputElement>, edgeId: string) => {
         const newLabel = event.target.value;
@@ -185,7 +204,7 @@ export default function Page() {
                                                 <textarea className='w-full h-[80%] p-2' autoCorrect="off" autoCapitalize="off">
                                                     {
                                                         "Boxes: {" + 
-                                                        Object.keys(nodes).map((key, index) => {
+                                                        Object.keys(nodes).map((key: any, index: any) => {
                                                             return (
                                                                 `\n\tBox${index + 1}: {id: 's${step}-${nodes[key].id}', position: ${JSON.stringify(nodes[key].position)}, data: ${JSON.stringify(nodes[key].data)}}`
                                                             );
@@ -213,7 +232,7 @@ export default function Page() {
                             </TableHeader>
                             <TableBody>
                                 {
-                                    Object.keys(nodes).map((key, index) => {
+                                    Object.keys(nodes).map((key: any, index: any) => {
                                         return <TableRow key={index}>
                                             <TableCell>{nodes[key].id}</TableCell>
                                             <TableCell>({nodes[key].position.x}, {nodes[key].position.y})</TableCell>
@@ -277,7 +296,7 @@ export default function Page() {
                                             <textarea className='w-full h-[80%] p-2' autoCorrect="off" autoCapitalize="off">
                                                 {
                                                     "Edges: {" + 
-                                                    Object.keys(edges).map((key, index) => {
+                                                    Object.keys(edges).map((key: any, index: any) => {
                                                         return (
                                                             `\n\tEdge${index + 1}: {id: 'e${edges[key].source}-${edges[key].target}', source: "s${step}-${edges[key].source}", target: "s${step}-${edges[key].target}", animated: ${edges[key].animated || false}, type: ${JSON.stringify(edges[key].type || "bezier")}}`
                                                         );
@@ -303,7 +322,7 @@ export default function Page() {
                             </TableHeader>
                             <TableBody>
                                 {
-                                    Object.keys(edges).map((key, index) => {
+                                    Object.keys(edges).map((key: any, index: any) => {
                                         return <TableRow key={index}>
                                             <TableCell>{`e${edges[key].source}-${edges[key].target}`}</TableCell>
                                             <TableCell>{edges[key].source}</TableCell>
@@ -311,7 +330,7 @@ export default function Page() {
                                             <TableCell>
                                                 <input
                                                     type="text"
-                                                    value={edges[key].label}
+                                                    value={edges[key].label as string}
                                                     onChange={(event) => handleEdgeLabelChange(event, `e${edges[key].source}-${edges[key].target}`)}
                                                     className='w-20 rounded-[0.5rem] text-center'
                                                 />
