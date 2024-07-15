@@ -78,8 +78,8 @@ export default function Lesson(params: any) {
                 }
             </div>
             <div className="absolute bottom-0 left-0 bg-gray  shadow-sm rounded-[20px] border-none p-[30px] mt-[60px] max-w-1/2">
-                <Button asChild className={((switchSet) ? "!bg-gradient-to-r !from-blue-600 !to-violet-600 gradient-animated " : "") + " rounded-[20px] border-none bg-black text-white hover:bg-gray-600 transition-all"}>
-                    <Link href={(!switchSet) ? (`lessons/${link}`) : (`teach/${link}`)}>{(!switchSet) ? (`Learn Now`) : (`Teach Now`)}</Link>
+                <Button asChild className={((switchSet) ? "!bg-gradient-to-r !from-blue-600 !to-violet-600 gradient-animated " : "") + " rounded-[20px] border-none transition-all"}>
+                    <Link href={(!switchSet) ? (`lessons/${link}`) : (`teach/${link}`)}>{(!switchSet) ? (`Start`) : (`Teach`)} Lesson</Link>
                 </Button>
                 <Sheet>
                     <SheetTrigger className="ml-3">Learn More</SheetTrigger>

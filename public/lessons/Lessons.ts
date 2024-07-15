@@ -969,6 +969,40 @@ export const DefiningCharacters = {
                 title: "access modifiers"
             }
         },
+        Step3: {
+            QuestionType: "default",
+            Boxes: {
+                Box1: {id: 's1-1', position: {"x":-120,"y":30}, data: {"label":"\""}},
+                Box2: {id: 's1-2', position: {"x":-90,"y":45}, data: {"label":"H"}},
+                Box3: {id: 's1-3', position: {"x":-60,"y":45}, data: {"label":"e"}},
+                Box4: {id: 's1-4', position: {"x":-30,"y":45}, data: {"label":"l"}},
+                Box5: {id: 's1-5', position: {"x":30,"y":45}, data: {"label":"o"}},
+                Box6: {id: 's1-6', position: {"x":0,"y":45}, data: {"label":"l"}},
+                Box7: {id: 's1-7', position: {"x":60,"y":30}, data: {"label":"\""}},
+                Box8: {id: 's1-8', position: {"x":-90,"y":165}, data: {"label":"Character c"}},
+                Box9: {id: 's1-9', position: {"x":75,"y":165}, data: {"label":"="}},
+                Box10: {id: 's1-10', position: {x: 140, y: 165}, data: {label: "'H'"}}
+            },
+            Edges: {
+                Edge1: {id: 'e9-8', source: "s1-9", target: "s1-8", animated: false, type: "smoothstep"},
+                Edge2: {id: 'e2-9', source: "s1-2", target: "s1-9", animated: false, type: "smoothstep"},
+                Edge3: {id: 'e9-10', source: 's1-9', target: 's1-10', animated: true, type: "smoothstep"}
+            },
+            Title: "The .charAt() method.",
+            SubTitle: ".charAt()",
+            Overview: "Learn about Introduction to Binary and how all complex number types stem from it.",
+            Content: {
+                1: { type: "text", content: "The most infamous method you will use when working with characters is the .charAt() method called on a string." },
+                2: { type: "title", content: "Syntax", },
+                3: {type: "seperator"},
+                4: {type: "code", content: ["String s = \"Hello world\";", "", "char c = s.charAt(0); // c == 'H'"]},
+            },
+            Teach: {
+                good: ["default", "accessor", "no modifiers", "viewed", "same", "package", "is", "is", "a"],
+                bad: ["public", "private", "global"],
+                title: "access modifiers"
+            }
+        },
         Step7: {
             Title: "Point to the Correct Answer",
             QuestionType: "question",

@@ -187,6 +187,19 @@ const halfIndex = Math.ceil(itemsArray.length / 2);
 const firstHalfItems = itemsArray.slice(0, halfIndex);
 const secondHalfItems = itemsArray.slice(halfIndex);
 
+const messages = [
+    "Happy studying!",
+    "Enjoy your learning journey!",
+    "Stay focused and motivated!",
+    "Keep up the good work!",
+    "You're making great progress!",
+    "Stay curious and keep exploring!",
+    "Every lesson brings you closer to mastery!",
+    "Challenge yourself to go beyond!",
+    "Embrace the learning process!",
+    "Celebrate every milestone, big or small!"
+];
+
 export default function ProfilePage() {
     const { toast } = useToast()
 
@@ -240,19 +253,6 @@ export default function ProfilePage() {
         }
         return "";
     });
-    
-    const messages = [
-        "Happy studying!",
-        "Enjoy your learning journey!",
-        "Stay focused and motivated!",
-        "Keep up the good work!",
-        "You're making great progress!",
-        "Stay curious and keep exploring!",
-        "Every lesson brings you closer to mastery!",
-        "Challenge yourself to go beyond!",
-        "Embrace the learning process!",
-        "Celebrate every milestone, big or small!"
-    ];
 
     React.useEffect(() => {
         try {
@@ -275,7 +275,7 @@ export default function ProfilePage() {
             description: messages[Math.floor(Math.random() * messages.length)],
         })
         localStorage.setItem("Focus", focus);
-    }, [focus])
+    }, [focus, toast])
 
     
 
@@ -305,7 +305,7 @@ export default function ProfilePage() {
                         <AlertTitle>Focus: <Badge>{focus}</Badge></AlertTitle>
                     </Alert>
                 </CardHeader>
-                <CardContent className="flex flex-col gap-2">
+                <CardContent className="flex flex-col gap-10">
 
                     {items.map(item => (
                         <Card key={item.id}>

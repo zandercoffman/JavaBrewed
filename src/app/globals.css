@@ -642,3 +642,12 @@ g {
   transform: translateY(-30px);
   z-index: 3;
 }
+
+.shadow-selected {
+  --red: #ec695f;
+  --orange: #f6bd4f;
+  --green: #63bd59;
+  --shadow-color: var(--green); /* Default shadow color */
+
+  box-shadow: 0 0 20px var(--shadow-color); /* Box shadow using variable */
+}

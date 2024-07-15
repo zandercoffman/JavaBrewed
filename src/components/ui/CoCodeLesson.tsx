@@ -6,16 +6,16 @@ import {
     CarouselItem,
     CarouselNext,
     CarouselPrevious,
-  } from "@/components/ui/carousel"
+} from "@/components/ui/carousel"
 
-  import {
+import {
     Card,
     CardContent,
     CardDescription,
     CardFooter,
     CardHeader,
     CardTitle,
-  } from "@/components/ui/card"
+} from "@/components/ui/card"
 import { CodePiece } from "./CodePiece"
 import { returnIcon } from "../../../public/lessons/Lessons";
 import { Button } from "./button";
@@ -65,7 +65,7 @@ export default function CoCodeLesson(params: any) {
                 case "easy":
                     setText(easy.question);
                     setDifficulty("easy");
-                    break;  
+                    break;
             }
         }
     }
@@ -78,32 +78,57 @@ export default function CoCodeLesson(params: any) {
         }
     }
 
+    const grammer = (s: string) => {
+        return s.substring(0, 1).toUpperCase() + s.substring(1);
+    }
+
     return <>
-        <Card>
+        <Card className="h-full">
             <CardHeader>
-                <CardTitle className="flex flex-row gap-2"><Icon className="w-8 h-8"/> {lesson.name}</CardTitle>
+                <CardTitle className="flex flex-row gap-2"><Icon className="w-8 h-8" /> {lesson.name}</CardTitle>
                 <CardDescription>{lesson.description}</CardDescription>
             </CardHeader>
             <CardContent>
-                <Card>
+                <Card className="dark:shadow-[0px_2px_2px_2px_#f7fafc]">
                     <CardHeader className="pb-1">
                         <CardTitle>Your problem...</CardTitle>
                     </CardHeader>
-                    <CardContent className="p-4">
-                        <CoCodeCodePiece code={getText(text)}/>
+                    <CardContent className="p-4 h-auto">
+                        <CoCodeCodePiece code={getText(text)} />
                     </CardContent>
                 </Card>
             </CardContent>
             <CardFooter className="flex w-full justify-between">
                 <div className="flex">
                     <Button asChild>
-                        <Link href={`/cocode/${linkName}?difficulty=${difficulty}`}>Login</Link>
+                        <Link href={`/cocode/${linkName}?difficulty=${difficulty}`}>Code ({grammer(difficulty)})</Link>
                     </Button>
                 </div>
-                <div className="flex space-x-2">
-                    <Button className="!border-none bg-[#ec695f]  rounded-[50px] w-[32px] h-[32px]" onClick={() => set("hard")}></Button>
-                    <Button className="!border-none bg-[#f6bd4f]  rounded-[50px] w-[32px] h-[32px]" onClick={() => set("medium")}></Button>
-                    <Button className="!border-none bg-[#63bd59]  rounded-[50px] w-[32px] h-[32px]" onClick={() => set("easy")}></Button>
+                <div className="flex space-x-3">
+                    <p className="leading-7 [&:not(:first-child)]:mt-6 font-semibold">
+                        Choose your difficulty:
+                    </p>
+                    <Button
+                        className={`!border-none bg-[#ec695f] rounded-[50px] w-[32px] h-[32px] ${difficulty === "hard" ? "shadow-selected" : ""}`}
+                        onClick={() => set("hard")}
+                        style={{ '--shadow-color': difficulty === "hard" ? '#ec695f' : '' } as any}
+                    >
+                    </Button>
+                    <Button
+                        className={`!border-none bg-[#f6bd4f] rounded-[50px] w-[32px] h-[32px] ${difficulty === "medium" ? "shadow-selected" : ""}`}
+                        onClick={() => set("medium")}
+                        style={{ '--shadow-color': difficulty === "medium" ? '#f6bd4f' : '' } as any}
+                    >
+                    </Button>
+                    <Button
+                        className={`!border-none bg-[#63bd59] rounded-[50px] w-[32px] h-[32px] ${difficulty === "easy" ? "shadow-selected" : ""}`}
+                        onClick={() => set("easy")}
+                        style={{ '--shadow-color': difficulty === "easy" ? '#63bd59' : '' } as any}
+                    >
+                    </Button>
+
+
+
                 </div>
             </CardFooter>
 

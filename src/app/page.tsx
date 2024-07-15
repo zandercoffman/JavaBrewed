@@ -112,7 +112,7 @@ export default function Home() {
           </Carousel>
         </div>
         <div className="w-full lg:w-1/2 flex justify-center lg:justify-end">
-          <Image src="/lessons.png" alt="Lessons" width={600} height={500} className="rounded-[1rem] shadow-[0px_20px_20px_10px_#00000024]"></Image>
+          <Image src="/lessons.png" alt="Lessons" width={600} height={500} className="rounded-[1rem] shadow-[0px_20px_20px_10px_#00000024] dark:shadow-[5px_5px_5px_5px_#f7fafc]"></Image>
         </div>
       </div>
       <div className="flex flex-col lg:flex-row gap-5 justify-center w-full h-auto p-3 lg:p-20">
