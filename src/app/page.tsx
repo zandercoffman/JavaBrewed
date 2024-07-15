@@ -19,6 +19,7 @@ import {
 } from "@/components/ui/card"
 import Link from "next/link";
 import { Github, Share } from "lucide-react";
+import { CardBody, CardContainer, CardItem } from "@/components/ui/3d-card";
 
 
 export default function Home() {
@@ -37,28 +38,27 @@ export default function Home() {
   }
 
   return (
-    <main className="flex min-h-screen flex-col gap-10 items-center justify-between p-24">
+    <main className="flex min-h-screen flex-col gap-10 items-center justify-between p-6 lg:p-24 text-center lg:text-left">
       <div className="z-10 w-full max-w-5xl items-center justify-between font-mono text-sm lg:flex mb-4 lg:mb-12">
-        <div className="static h-full left-0 top-0 flex max-w-1/2 justify-center border-b border-gray-300 bg-gradient-to-b from-zinc-200 pb-6 pt-8 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit  lg:w-1/2  lg:rounded-xl lg:border lg:bg-gray-200 lg:p-4 lg:dark:bg-zinc-800/30">
-          <div className="text-5xl font-extrabold text-left">
-            <span className="bg-clip-text text-transparent bg-gradient-to-r from-gray-500 to-gray-700 text-left">
+        <div className="static h-full left-0 top-0 flex max-w-full justify-center border-b  pb-6 pt-8 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:w-1/2 lg:rounded-xl lg:border lg:bg-gray-200 lg:p-4 lg:dark:bg-zinc-800/30">
+          <div className="text-2xl lg:text-5xl font-extrabold text-left">
+            <span className="bg-clip-text text-transparent bg-gradient-to-r from-gray-500 to-gray-700">
               Brewing Knowledge and Inspiration, One Cup at a Time.
             </span>
           </div>
         </div>
-        <div className=" flex  h-full w-full lg:w-1/2 ml-0 mr-0 justify-center bg-gradient-to-t from-white via-white dark:from-black dark:via-black size-auto bg-none">
+        <div className="flex h-full w-full lg:w-1/2 justify-center bg-gradient-to-t from-white via-white dark:from-black dark:via-black size-auto bg-none">
           <CodePiece code={
             ["public class JavaBrewed {", "\tpublic static void main(String[] args) {", "\t\tUser user = new User();", "\t\twhile (!user.isDone()) {", "\t\t\tuser.code();", "\t\t}", "\t}", "}"]
           } />
-
         </div>
       </div>
-      <div className="flex flex-col lg:flex-row gap-2 justify-center w-full h-[90vh] p-3 lg:p-20">
-        <div className="w-full lg:w-1/2 flex flex-col gap-2 mr-14">
-          <h1 className="scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl">
+      <div className="flex flex-col lg:flex-row gap-5 justify-center w-full h-auto lg:h-[90vh] p-3 lg:p-20">
+        <div className="w-full lg:w-1/2 flex flex-col gap-2">
+          <h1 className="scroll-m-20 text-2xl lg:text-4xl font-extrabold tracking-tight">
             Lessons
           </h1>
-          Welcome to your lessons, the heart of your Java learning journey! This section is designed to cater to all levels of Java learners, from beginners to advanced students, including those preparing for AP and Honors courses. Here's what you can expect:
+          <p>Welcome to your lessons, the heart of your Java learning journey! This section is designed to cater to all levels of Java learners, from beginners to advanced students, including those preparing for AP and Honors courses. Here's what you can expect:</p>
           <Carousel>
             <CarouselContent>
               <CarouselItem>
@@ -75,7 +75,6 @@ export default function Home() {
                   </CardFooter>
                 </Card>
               </CarouselItem>
-
               <CarouselItem>
                 <Card>
                   <CardHeader>
@@ -87,7 +86,6 @@ export default function Home() {
                   </CardContent>
                 </Card>
               </CarouselItem>
-
               <CarouselItem>
                 <Card>
                   <CardHeader>
@@ -99,7 +97,6 @@ export default function Home() {
                   </CardContent>
                 </Card>
               </CarouselItem>
-
               <CarouselItem>
                 <Card>
                   <CardHeader>
@@ -111,18 +108,16 @@ export default function Home() {
                   </CardContent>
                 </Card>
               </CarouselItem>
-
             </CarouselContent>
           </Carousel>
-
         </div>
-        <div className="w-1/2">
-          <Image src={"/lessons.png"} alt={""} width={600} height={500} className="rounded-[1rem] shadow-[0px_20px_20px_10px_#00000024]"></Image>
+        <div className="w-full lg:w-1/2 flex justify-center lg:justify-end">
+          <Image src="/lessons.png" alt="Lessons" width={600} height={500} className="rounded-[1rem] shadow-[0px_20px_20px_10px_#00000024]"></Image>
         </div>
       </div>
-      <div className="flex flex-col lg:flex-row gap-3 justify-center w-full h-max p-3 lg:p-20">
-        <div className="w-full lg:w-1/2 h-full">
-          <h1 className="scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl">
+      <div className="flex flex-col lg:flex-row gap-5 justify-center w-full h-auto p-3 lg:p-20">
+        <div className="w-full lg:w-1/2">
+          <h1 className="scroll-m-20 text-2xl lg:text-4xl font-extrabold tracking-tight">
             Credibility
           </h1>
           <p className="leading-7 [&:not(:first-child)]:mt-6">
@@ -132,37 +127,68 @@ export default function Home() {
             <span className="font-bold">Note from the author:</span> Pst. I have been through exactly the same curriculum as what is covered under the AP section and more.
           </p>
         </div>
-        <div className="w-full lg:w-1/2 h-full flex flex-col gap-2">
+        <div className="w-full lg:w-1/2 flex flex-col gap-2">
           <div className="t-photo w-full">
-            <Image src={"/ap.png"} width={500} height={600} alt={""} className="rounded-[2rem]" />
+            <Image src="/ap.png" width={500} height={600} alt="AP" className="rounded-[2rem]" />
           </div>
           <div className="t-photo w-full">
-            <Link href={"https://www.credly.com/badges/aa15effd-3d7e-4ea8-a109-0c410424489e/public_url"}><Image src={"/it.png"} width={500} height={650} alt={""} className="rounded-[2rem]" /></Link>
+            <Link href="https://www.credly.com/badges/aa15effd-3d7e-4ea8-a109-0c410424489e/public_url">
+              <Image src="/it.png" width={500} height={650} alt="IT Certification" className="rounded-[2rem]" />
+            </Link>
           </div>
         </div>
       </div>
-      <div className="flex flex-col lg:flex-row gap-3 justify-center w-full h-[800px] lg:h-[500px] p-3 lg:p-20">
-        <div className="w-full lg:w-1/2 h-full">
-          <h1 className="scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl">
+      <div className="flex flex-col lg:flex-row gap-5 justify-center w-full h-auto lg:h-[500px] p-3 lg:p-20">
+        <div className="w-full lg:w-1/2">
+          <h1 className="scroll-m-20 text-2xl lg:text-4xl font-extrabold tracking-tight">
             Open-Source
           </h1>
           <p className="leading-7 [&:not(:first-child)]:mt-6">
             JavaBrewed is <span className="font-bold">100%</span> open-source and freely available for use. Dedicated to fostering community engagement, JavaBrewed welcomes contributions such as lesson creation and enhancements. Developed by a Java enthusiast with a strong foundation in AP Computer Science and industry certification, this platform offers comprehensive Java programming lessons. Join us in shaping the future of Java education through collaboration and innovation.
           </p>
         </div>
-        <div className="w-full lg:w-1/2 h-full grid place-items-center">
-          <div className="flex flex-col gap-3 text-center">
-            <div className="flex flex-row gap-3 font-bold scroll-m-20 text-3xl  tracking-tight lg:text-4xl">
-              <Github className="lg:w-10 lg:h-10" />
-              <Link href="https://github.com/zandercoffman/JavaBrewed">GitHub Repository</Link>
-            </div>
-            <div className="flex flex-row gap-3 font-bold scroll-m-20 text-3xl  tracking-tight lg:text-4xl" onClick={share}>
-              <Share className="lg:w-10 lg:h-10" />
-              <Link href="">Share</Link>
-            </div>
-          </div>
+        <div className="w-full lg:w-1/2 h-full">
+          <CardContainer className="inter-var h-full w-full">
+            <CardBody className="bg-gray-50 relative group/card  dark:hover:shadow-2xl dark:hover:shadow-emerald-500/[0.1] dark:bg-black dark:border-white/[0.2] border-black/[0.1] w-auto sm:w-[30rem] h-auto rounded-xl p-6 border  ">
+              <CardItem
+                translateZ="50"
+                className="text-xl font-bold text-neutral-600 dark:text-white"
+              >
+                Influence this Project
+              </CardItem>
+              <CardItem
+                as="p"
+                translateZ="60"
+                className="text-gray-500 text-sm max-w-sm mt-2 dark:text-neutral-300"
+              >
+                Influence this Project by supporting us in two ways. Contributing on GitHub, or by sharing JavaBrewed.
+              </CardItem>
+              <div className="flex justify-around items-center mt-20">
+                <CardItem
+                  translateZ={20}
+                  translateX={-40}
+                  as="button"
+                  className="px-4 py-2 rounded-xl text-xs font-normal dark:text-white"
+                >
+                  <Link href="https://github.com/zandercoffman/JavaBrewed" className="text-lg lg:text-2xl font-bold flex items-center flex-col">
+                    <Github />GitHub
+                  </Link>
+                </CardItem>
+                <CardItem
+                  translateZ={20}
+                  translateX={40}
+                  as="button"
+                  className="px-4 py-2 rounded-xl  text-xs font-bold"
+                >
+                 <div onClick={share} className="text-lg lg:text-2xl font-bold flex items-center flex-col">
+                    <Share />Share
+                  </div>
+                </CardItem>
+              </div>
+            </CardBody>
+          </CardContainer>
         </div>
       </div>
     </main>
-  );
+  )
 }

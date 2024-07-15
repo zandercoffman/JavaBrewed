@@ -14,10 +14,10 @@ export default function SearchItem(params: any) {
 
     return <>
         <CommandItem className='w-full'>
-            <Button onClick={handleClick} className="w-full !text-left !border-none" variant={"outline"}>
-                <div className="justify-start align-baseline flex flex-row gap-2">
-                    <Icon/>
-                    {name}
+            <Button onClick={handleClick} className="w-full text-left !border-none" variant={"outline"}>
+                <div className="flex items-center gap-2 justify-start w-full">
+                    <Icon />
+                    <span className="text-left">{name}</span>
                 </div>
             </Button>
         </CommandItem>
