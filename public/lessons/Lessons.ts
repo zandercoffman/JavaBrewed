@@ -905,29 +905,27 @@ export const DefiningCharacters = {
         Step1: {
             QuestionType: "default",
             Boxes: {
-                Box1: { id: '1-1', position: {x: 220, y: 150}, data: {label: "Numbers"} },
-                Box2: { id: '1-2', position: {x: 60, y: 0}, data: {label: "Integers"}},
-                Box3: {id: '1-3', position: {x: 10, y: 240}, data: {label: "Double"}},
-                Box4: {id: '1-4', position: {x: 210, y: 340}, data: {label: "Byte"}},
-                Box5: {id: '1-5', position: {x: 460, y: 260}, data: {label: "Longs"}},
-                Box6: {id: '1-6', position: {x: 420, y: 10}, data: {label: "Shorts"}}
+                Box1: {id: 's1-1', position: {"x":-120,"y":30}, data: {"label":"\""}},
+                Box2: {id: 's1-2', position: {"x":-90,"y":45}, data: {"label":"H"}},
+                Box3: {id: 's1-3', position: {"x":-60,"y":45}, data: {"label":"e"}},
+                Box4: {id: 's1-4', position: {"x":-30,"y":45}, data: {"label":"l"}},
+                Box5: {id: 's1-5', position: {"x":30,"y":45}, data: {"label":"o"}},
+                Box6: {id: 's1-6', position: {"x":0,"y":45}, data: {"label":"l"}},
+                Box7: {id: 's1-7', position: {"x":60,"y":30}, data: {"label":"\""}},
+                Box8: {id: 's1-8', position: {"x":-90,"y":165}, data: {"label":"Character c"}},
+                Box9: {id: 's1-9', position: {"x":75,"y":165}, data: {"label":"="}}
             },
             Edges: {
-                Edge1: { id: '1-2-1-1', source: '1-2', target: '1-1', animated: true },
-                Edge2: {id: '1-6-1-1', source: '1-6', target: '1-1', animated: true},
-                Edge3: {id: '1-1-1-3', source: '1-1', target: '1-3', animated: true},
-                Edge4: {id: '1-1-1-4', source: '1-1', target: '1-4', animated: true},
-                Edge5: {id: '1-1-1-5', source: '1-1', target: '1-5', animated: true}
+                Edge1: {id: 'e9-8', source: "s1-9", target: "s1-8", animated: false, type: "smoothstep"},
+                Edge2: {id: 'e2-9', source: "s1-2", target: "s1-9", animated: false, type: "smoothstep"}
             },
-            Title: "Introduction to Number Types",
+            Title: "Introduction to Characters",
             SubTitle: "Introduction",
-            Overview: "Learn about Introduction to Number Types and how they are different to preserve memory in Java.",
+            Overview: "Learn about Introduction to Characters and how they are different to preserve memory in Java.",
             Content: {
-                1: { type: "text", content: "In this lesson, we will explore the fundamental concepts of number types in Java. Understanding how different data types manage and preserve memory is crucial for efficient programming. Let's dive into the world of number types!" },
-                2: { type: "text", content: "The number types in Java are:byte, short, int, long, float, double" },
-                3: {type: "text", content: "The main ones you will be working with are integers and doubles."},
-                4: {type: "text", content: "To fully understand numbering systems, you will also need to have a basic understanding of the binary system. It is not required, but highly useful."},
-                5: { type: "code", content: ["int integer = 2;", "double a = 2; //yes, this works - is 2.0", "byte b = 1;"] }
+                1: { type: "text", content: "In this lesson, we will explore the fundamental concepts of characters in Java. " },
+                2: { type: "text", content: "In Java, characters are a fundamental data type used to store individual text characters. In summary, it is just one character (can be from a string). This lesson will cover how to define and use characters in Java." },
+                3: {type: "text", content: "In Java, the char data type is used to store a single character. The char type is a 16-bit Unicode character. Unicode is a standard for encoding characters from virtually all written languages."}
             },
             Teach: {
                 good: ["default", "accessor", "no modifiers", "viewed", "same", "package", "is", "is", "a"],
@@ -938,246 +936,38 @@ export const DefiningCharacters = {
         Step2: {
             QuestionType: "default",
             Boxes: {
-                Box3: {id: "s1e-3", position: {x: 40, y: 110}, data: {label: "2^0"}},
-                Box4: {id: "s1e-4", position: {x: 40, y: 165}, data: {label: "2^1"}},
-                Box5: {id: "s1e-5", position: {x: 40, y: 220}, data: {label: "2^2"}},
-                Box6: {id: "s1e-6", position: {x: 40, y: 275}, data: {label: "2^3"}},
-                Box7: {id: "s1e-7", position: {x: 40, y: 330}, data: {label: "2^4"}},
-                Box8: {id: "s1e-8", position: {x: 40, y: 385}, data: {label: "2^5"}},
-                Box9: {id: "s1e-9", position: {x: 40, y: 440}, data: {label: "2^6"}},
-                Box10: {id: "s1e-10", position: {x: 40, y: 495}, data: {label: "2^7"}},
+                Box1: {id: 's1-1', position: {"x":-120,"y":30}, data: {"label":"\""}},
+                Box2: {id: 's1-2', position: {"x":-90,"y":45}, data: {"label":"H"}},
+                Box3: {id: 's1-3', position: {"x":-60,"y":45}, data: {"label":"e"}},
+                Box4: {id: 's1-4', position: {"x":-30,"y":45}, data: {"label":"l"}},
+                Box5: {id: 's1-5', position: {"x":30,"y":45}, data: {"label":"o"}},
+                Box6: {id: 's1-6', position: {"x":0,"y":45}, data: {"label":"l"}},
+                Box7: {id: 's1-7', position: {"x":60,"y":30}, data: {"label":"\""}},
+                Box8: {id: 's1-8', position: {"x":-90,"y":165}, data: {"label":"Character c"}},
+                Box9: {id: 's1-9', position: {"x":75,"y":165}, data: {"label":"="}},
+                Box10: {id: 's1-10', position: {x: 140, y: 165}, data: {label: "'H'"}}
             },
             Edges: {
-                Edge1: { id: '1-2-1-1', source: '1-2', target: '1-1', animated: true },
-                Edge2: {id: '1-6-1-1', source: '1-6', target: '1-1', animated: true},
-                Edge3: {id: '1-1-1-3', source: '1-1', target: '1-3', animated: true},
-                Edge4: {id: '1-1-1-4', source: '1-1', target: '1-4', animated: true},
-                Edge5: {id: '1-1-1-5', source: '1-1', target: '1-5', animated: true}
+                Edge1: {id: 'e9-8', source: "s1-9", target: "s1-8", animated: false, type: "smoothstep"},
+                Edge2: {id: 'e2-9', source: "s1-2", target: "s1-9", animated: false, type: "smoothstep"},
+                Edge3: {id: 'e9-10', source: 's1-9', target: 's1-10', animated: true, type: "smoothstep"}
             },
-            Title: "Introduction to Binary",
-            SubTitle: "Binary",
+            Title: "Defining Characters",
+            SubTitle: "Defining",
             Overview: "Learn about Introduction to Binary and how all complex number types stem from it.",
             Content: {
-                1: { type: "text", content: "The binary system uses a base-2 system, where numbers are represented using only two digits: 0 and 1. Each digit in this system is called a 'bit'. On its own, a bit can't do much, so bits are usually grouped together into sets of 8, called a 'byte'. With bytes, we can represent a lot more information, especially numbers." },
-                2: { type: "text", content: "Because it uses only two digits, a single bit can either be 0 or 1. Understanding this simple concept is very important for learning how numbers work in Java. By grasping the basics of the binary system, you'll have a solid foundation for understanding more complex number types in Java." },
+                1: { type: "text", content: "To define a char variable, you use the char keyword, followed by the variable name. You can initialize it using a character literal enclosed in single quotes." },
+                2: { type: "title", content: "Syntax", },
+                3: {type: "seperator"},
+                4: {type: "code", content: ["char variableName = 'A';"]},
+                5: {type: "text", content: "Unlike a string, it uses single quotes instead of double quotes."},
+                6: {type: "code", content: ["String s = \"Hello\"; // Notice the double quotes", "char c = 'a'; // Notice the single quotes"]}
             },
             Teach: {
                 good: ["default", "accessor", "no modifiers", "viewed", "same", "package", "is", "is", "a"],
                 bad: ["public", "private", "global"],
                 title: "access modifiers"
             }
-        },
-        Step3: {
-            QuestionType: "default",
-            Boxes: {
-                Box1: {id: "s2-1", position: {x: 40, y: 0}, data: {label: "-1.7976931348623157E+308"}},
-                Box2: {id: "s2-2", position: {x: 40, y: 55}, data: {label: "-9,223,372,036,854,775,808"}},
-                Box3: {id: "s2-3", position: {x: 40, y: 110}, data: {label: "-3.4028235E+38"}},
-                Box4: {id: "s2-4", position: {x: 40, y: 165}, data: {label: "-2^31"}},
-                Box5: {id: "s2-5", position: {x: 40, y: 220}, data: {label: "-32,768"}},
-                Box6: {id: "s2-6", position: {x: 40, y: 275}, data: {label: "-128"}},
-                Box7: {id: "s2-7", position: {x: 40, y: 330}, data: {label: "127"}},
-                Box8: {id: "s2-8", position: {x: 40, y: 385}, data: {label: "32,767"}},
-                Box9: {id: "s2-9", position: {x: 40, y: 440}, data: {label: "2^31 - 1"}},
-                Box10: {id: "s2-10", position: {x: 40, y: 495}, data: {label: "3.4028235E+38"}},
-                Box11: {id: "s2-11", position: {x: 40, y: 550}, data: {label: "9,223,372,036,854,775,807"}},
-                Box12: {id: "s2-12", position: {x: 40, y: 605}, data: {label: "1.7976931348623157E+308"}},
-
-                //Title boxes start here
-                Box15: {id: "s2-15", position: {x: 310, y: 302.5}, data: {label: "Integer"}},
-                Box18: {id: "s2-18", position: {x: 670, y: 302.5}, data: {label: "Double"}}
-            },
-            Edges: {
-               Edge5: {id: "int-1", source: "s2-15", target: "s2-4"},
-               Edge6: {id: "int-2", source: "s2-9", target: "s2-15"},
-           
-               Edge11: {id: "double-1", source: "s2-18", target: "s2-1"},
-               Edge12: {id: "double-2", source: "s2-12", target: "s2-18"}
-            },
-            Title: "Integers and Doubles",
-            SubTitle: "Int & Double",
-            Overview: "Understand how the public access modifier works and its implications for code accessibility.",
-            Content: {
-                1: { type: "text", content: "The most common types of numbers that you will use in Java are Integers and Doubles. Integers represent numbers that do not have any decimal points and take up 32 bits of memory (4 bytes). Doubles can represent Integers and also represent numbers that have a decimal point. They take up 64 bits of memory (8 bytes)." },
-                2: { type: "points", content: ["Integers represent whole numbers", "Doubles represent whole numbers (and/or) with decimal places."] },
-                3: { type: "code", content: ["int x = 2;", "double a = 4.0;", "//is the same as", "double a = 4;"] }
-            },
-            Teach: {
-                good: ["default", "accessor", "no modifiers", "viewed", "same", "package", "is", "is", "a"],
-                bad: ["public", "private", "global"],
-                title: "public keyword"
-            }
-            
-        },
-        Step4: {
-            QuestionType: "default",
-            Boxes: {
-                Box1: {id: "s2-1", position: {x: 40, y: 0}, data: {label: "-1.7976931348623157E+308"}},
-                Box2: {id: "s2-2", position: {x: 40, y: 55}, data: {label: "-9,223,372,036,854,775,808"}},
-                Box3: {id: "s2-3", position: {x: 40, y: 110}, data: {label: "-3.4028235E+38"}},
-                Box4: {id: "s2-4", position: {x: 40, y: 165}, data: {label: "-2^31"}},
-                Box5: {id: "s2-5", position: {x: 40, y: 220}, data: {label: "-32,768"}},
-                Box6: {id: "s2-6", position: {x: 40, y: 275}, data: {label: "-128"}},
-                Box7: {id: "s2-7", position: {x: 40, y: 330}, data: {label: "127"}},
-                Box8: {id: "s2-8", position: {x: 40, y: 385}, data: {label: "32,767"}},
-                Box9: {id: "s2-9", position: {x: 40, y: 440}, data: {label: "2^31 - 1"}},
-                Box10: {id: "s2-10", position: {x: 40, y: 495}, data: {label: "3.4028235E+38"}},
-                Box11: {id: "s2-11", position: {x: 40, y: 550}, data: {label: "9,223,372,036,854,775,807"}},
-                Box12: {id: "s2-12", position: {x: 40, y: 605}, data: {label: "1.7976931348623157E+308"}},
-
-                //Title boxes start here
-                Box14: {id: "s2-14", position: {x: 200, y: 302.5}, data: {label: "Short"}},
-                Box15: {id: "s2-15", position: {x: 310, y: 302.5}, data: {label: "Integer"}},
-                Box16: {id: "s2-16", position: {x: 430, y: 302.5}, data: {label: "Long"}},
-                Box18: {id: "s2-18", position: {x: 670, y: 302.5}, data: {label: "Double"}}
-            },
-            Edges: {
-                Edge3: {id: "short-1", source: "s2-14", target: "s2-5"},
-                Edge4: {id: "short-2", source: "s2-8", target: "s2-14"},
-
-                Edge5: {id: "int-1", source: "s2-15", target: "s2-4"},
-                Edge6: {id: "int-2", source: "s2-9", target: "s2-15"},
-
-                Edge7: {id: "long-1", source: "s2-16", target: "s2-3"},
-                Edge8: {id: "long-2", source: "s2-10", target: "s2-16"},
-            
-                Edge11: {id: "double-1", source: "s2-18", target: "s2-1"},
-                Edge12: {id: "double-2", source: "s2-12", target: "s2-18"}
-            },
-            Title: "Long and Short",
-            SubTitle: "Long & Short",
-            Content: {
-                1: {type: "title", content: "Long Data Type"},
-                2: {type: "text", content: "The long data type in Java is used to store very large integer values that are larger than what int can handle. It takes up 64 bits (8 bytes) of memory."},
-                3: {type: "points", content: ["Memory Usage: Takes up 8 bytes (64 bits).", "Declaration: Add L at the end of the number to specify it as a long."]},
-                4: {type: "code", content: ["long bigNumber = 100000L; //'L' indicates a long number"]},
-                5: {type: "seperator"},
-                6: {type: "title", content: "Short Data Type"},
-                7: {type: "text", content: "The short data type in Java is used for storing smaller integer values. It takes up 16 bits (2 bytes) of memory."},
-                8: {type: "points", content: ["Memory Usage: Takes up 2 bytes (16 bits)."]},
-                9: {type: "code", content: ["short smallNumber = 100; //Does not have an ending"]}
-            },
-            Teach: {
-                good: ["default", "accessor", "no modifiers", "viewed", "same", "package", "is", "is", "a"],
-                bad: ["public", "private", "global"],
-                title: "default keyword"
-            },
-            Overview: "Understand how the default keyword operates regarding code accessibility."
-        },
-        Step5: {
-            QuestionType: "default",
-            Boxes: {
-                Box1: {id: "s2-1", position: {x: 40, y: 0}, data: {label: "-1.7976931348623157E+308"}},
-                Box2: {id: "s2-2", position: {x: 40, y: 55}, data: {label: "-9,223,372,036,854,775,808"}},
-                Box3: {id: "s2-3", position: {x: 40, y: 110}, data: {label: "-3.4028235E+38"}},
-                Box4: {id: "s2-4", position: {x: 40, y: 165}, data: {label: "-2^31"}},
-                Box5: {id: "s2-5", position: {x: 40, y: 220}, data: {label: "-32,768"}},
-                Box6: {id: "s2-6", position: {x: 40, y: 275}, data: {label: "-128"}},
-                Box7: {id: "s2-7", position: {x: 40, y: 330}, data: {label: "127"}},
-                Box8: {id: "s2-8", position: {x: 40, y: 385}, data: {label: "32,767"}},
-                Box9: {id: "s2-9", position: {x: 40, y: 440}, data: {label: "2^31 - 1"}},
-                Box10: {id: "s2-10", position: {x: 40, y: 495}, data: {label: "3.4028235E+38"}},
-                Box11: {id: "s2-11", position: {x: 40, y: 550}, data: {label: "9,223,372,036,854,775,807"}},
-                Box12: {id: "s2-12", position: {x: 40, y: 605}, data: {label: "1.7976931348623157E+308"}},
-
-                //Title boxes start here
-                Box13: {id: "s2-13", position: {x: 110, y: 302.5}, data: {label: "Byte"}},
-                Box14: {id: "s2-14", position: {x: 200, y: 302.5}, data: {label: "Short"}},
-                Box15: {id: "s2-15", position: {x: 310, y: 302.5}, data: {label: "Integer"}},
-                Box16: {id: "s2-16", position: {x: 430, y: 302.5}, data: {label: "Long"}},
-                Box18: {id: "s2-18", position: {x: 670, y: 302.5}, data: {label: "Double"}}
-            },
-            Edges: {
-                Edge1: {id: "Byte-1", source: "s2-13", target: "s2-6"},
-                Edge2: {id: "Byte-2", source: "s2-7", target: "s2-13"},
-
-                Edge3: {id: "short-1", source: "s2-14", target: "s2-5"},
-                Edge4: {id: "short-2", source: "s2-8", target: "s2-14"},
-
-                Edge5: {id: "int-1", source: "s2-15", target: "s2-4"},
-                Edge6: {id: "int-2", source: "s2-9", target: "s2-15"},
-
-                Edge7: {id: "long-1", source: "s2-16", target: "s2-3"},
-                Edge8: {id: "long-2", source: "s2-10", target: "s2-16"},
-            
-                Edge11: {id: "double-1", source: "s2-18", target: "s2-1"},
-                Edge12: {id: "double-2", source: "s2-12", target: "s2-18"}
-            },
-            Title: "About Bytes",
-            SubTitle: "Byte",
-            Content: {
-                1: {type: "text",content: "Bytes range from these values based on how the binary system works. The first bit is represented as the sign, and the rest of the bits are able to be expressed as the actual number."},
-                2: {type: "remember",content: ["8 bits make up a byte; with the sign it leaves 7 bits which maxes out at 127.", "Bytes have 8 bits which represent powers of two.", "[2^7] [2^6] [2^5] [2^4] [2^3] [2^2] [2^1] [2^0]", "[128] [64] [32] [16] [8] [4] [2] [1]", "0 = positive; 1 = negative "]},
-                3: {type: "points", content: ["Bytes are signed integers, which mean they use a bit to represent the sign.", "First digit represents the sign."]},
-                4: {type: "code", content: ["byte b = 0b01111111; // Represents 127 in binary", "byte a = (byte) 0b10000000; //Represents 128 in binary", "// Needs explicit casting to byte to interpret as ", "// signed byte, resulting in -128"]}
-            },
-            Teach: {
-                good: ["default", "accessor", "no modifiers", "viewed", "same", "package", "is", "is", "a"],
-                bad: ["public", "private", "global"],
-                title: "protected keyword (1/2)"
-            },
-            Overview: "Understand how the protected keyword influences code accessibility."
-        },
-        Step6: {
-            "QuestionType": "default",
-            "Boxes": {
-                Box1: {id: "s2-1", position: {x: 40, y: 0}, data: {label: "-1.7976931348623157E+308"}},
-                Box2: {id: "s2-2", position: {x: 40, y: 55}, data: {label: "-9,223,372,036,854,775,808"}},
-                Box3: {id: "s2-3", position: {x: 40, y: 110}, data: {label: "-3.4028235E+38"}},
-                Box4: {id: "s2-4", position: {x: 40, y: 165}, data: {label: "-2^31"}},
-                Box5: {id: "s2-5", position: {x: 40, y: 220}, data: {label: "-32,768"}},
-                Box6: {id: "s2-6", position: {x: 40, y: 275}, data: {label: "-128"}},
-                Box7: {id: "s2-7", position: {x: 40, y: 330}, data: {label: "127"}},
-                Box8: {id: "s2-8", position: {x: 40, y: 385}, data: {label: "32,767"}},
-                Box9: {id: "s2-9", position: {x: 40, y: 440}, data: {label: "2^31 - 1"}},
-                Box10: {id: "s2-10", position: {x: 40, y: 495}, data: {label: "3.4028235E+38"}},
-                Box11: {id: "s2-11", position: {x: 40, y: 550}, data: {label: "9,223,372,036,854,775,807"}},
-                Box12: {id: "s2-12", position: {x: 40, y: 605}, data: {label: "1.7976931348623157E+308"}},
-
-                //Title boxes start here
-                Box13: {id: "s2-13", position: {x: 110, y: 302.5}, data: {label: "Byte"}},
-                Box14: {id: "s2-14", position: {x: 200, y: 302.5}, data: {label: "Short"}},
-                Box15: {id: "s2-15", position: {x: 310, y: 302.5}, data: {label: "Integer"}},
-                Box16: {id: "s2-16", position: {x: 430, y: 302.5}, data: {label: "Long"}},
-                Box17: {id: "s2-17", position: {x: 550, y: 302.5}, data: {label: "Float"}},
-                Box18: {id: "s2-18", position: {x: 670, y: 302.5}, data: {label: "Double"}}
-            },
-            "Edges": {
-                
-                Edge1: {id: "Byte-1", source: "s2-13", target: "s2-6"},
-                Edge2: {id: "Byte-2", source: "s2-7", target: "s2-13"},
-
-                Edge3: {id: "short-1", source: "s2-14", target: "s2-5"},
-                Edge4: {id: "short-2", source: "s2-8", target: "s2-14"},
-
-                Edge5: {id: "int-1", source: "s2-15", target: "s2-4"},
-                Edge6: {id: "int-2", source: "s2-9", target: "s2-15"},
-
-                Edge7: {id: "long-1", source: "s2-16", target: "s2-3"},
-                Edge8: {id: "long-2", source: "s2-10", target: "s2-16"},
-
-                Edge9: {id: "float-1", source: "s2-17", target: "s2-2"},
-                Edge10: {id: "float-2", source: "s2-11", target: "s2-17"},
-
-                Edge11: {id: "double-1", source: "s2-18", target: "s2-1"},
-                Edge12: {id: "double-2", source: "s2-12", target: "s2-18"}
-
-            },
-            "Title": "About Floats",
-            "SubTitle": "Float",
-            "Content": {
-                "1": {"type": "text","content": "In Java, floating-point numbers are used to represent decimal values with fractions. The float and double data types handle these numbers, with float being single-precision and double being double-precision."},
-                "2": {"type": "points","content": ["Memory: Uses 32 bits (4 bytes).","Precision: Less precise than double.","Declaration: Add F at the end of the value."]},
-                "3": {"type": "code","content": ["float num = 12.375F; "]},
-                4: {type: "title", content: "Three Parts of a Float"},
-                5: {type: "points", content: ["Sign bit: 1 bit, indicates the sign of the number (0 for positive, 1 for negative).", "Exponent: 8 bits, represents the exponent of the number in base 2.", "Actual Number: 23 bits, represents the significant digits of the number in base 2."]}
-            },
-            Teach: {
-                good: ["default", "accessor", "no modifiers", "viewed", "same", "package", "is", "is", "a"],
-                bad: ["public", "private", "global"],
-                title: "protected keyword (2/2)"
-            },
-            Overview: "Understand how the protected keyword has a different case and how that affects visibility."
         },
         Step7: {
             Title: "Point to the Correct Answer",

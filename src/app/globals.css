@@ -623,3 +623,22 @@ g {
     transform: matrix(-0.577688, 0.816258, -0.846818, -0.531883, 145.078, 518.925);
   }
 }
+
+.t-photo {
+  height: 150px;
+  width: 80%;
+  z-index: 2;
+  transition: all 0.3s;
+  cursor: pointer;
+}
+.t-photo:nth-child(odd) {
+  align-self: flex-end;
+}
+.t-photo:not(:hover) {
+  transform: translateY(0);
+  z-index: 2;
+}
+.t-photo:hover {
+  transform: translateY(-30px);
+  z-index: 3;
+}
