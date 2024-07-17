@@ -72,13 +72,13 @@ export default function CocodeLessonPage() {
                     </div>
                     <div className="w-[35%] h-full grid place-items-center">
                         <div className="flex flex-col gap-2">
-                            <div className="flex flex-col lg:flex-row gap-10 font-bold justify-center">
+                            <div className="flex flex-col lg:flex-row gap-3 lg:gap-10 font-bold justify-center">
                                 <div className="flex flex-col items-center justify-center cursor-pointer">
                                     <TooltipProvider>
                                         <Tooltip>
                                             <TooltipTrigger asChild>
                                                 <div>
-                                                    <div className="w-10 h-10 rounded-full bg-[#ec695f] hover:shadow-[0px_0px_20px_0px_#ec695f] transition-all"></div>
+                                                    <div className="w-10 h-10 rounded-full bg-[#ec695f] shadow-[0px_0px_5px_0px_#ec695f] hover:shadow-[0px_0px_20px_0px_#ec695f] transition-all"></div>
                                                     <p className="mt-1">Hard</p>
                                                 </div>
                                             </TooltipTrigger>
@@ -93,7 +93,7 @@ export default function CocodeLessonPage() {
                                         <Tooltip>
                                             <TooltipTrigger asChild>
                                                 <div className="flex flex-col ">
-                                                    <div className="w-10 h-10 mx-auto rounded-full bg-[#f6bd4f] hover:shadow-[0px_0px_20px_0px_#f6bd4f] transition-all"></div>
+                                                    <div className="w-10 h-10 mx-auto rounded-full bg-[#f6bd4f] shadow-[0px_0px_5px_0px_#f6bd4f] hover:shadow-[0px_0px_20px_0px_#f6bd4f] transition-all"></div>
                                                     <p className="mt-1">Medium</p>
                                                 </div>
                                             </TooltipTrigger>
@@ -108,7 +108,7 @@ export default function CocodeLessonPage() {
                                         <Tooltip>
                                             <TooltipTrigger asChild>
                                                 <div className="flex flex-col ">
-                                                    <div className="w-10 h-10 rounded-full bg-[#63bd59] hover:shadow-[0px_0px_20px_0px_#63bd59] transition-all"></div>
+                                                    <div className="w-10 h-10 rounded-full bg-[#63bd59] shadow-[0px_0px_5px_0px_#63bd59] hover:shadow-[0px_0px_20px_0px_#63bd59] transition-all"></div>
                                                     <p className="mt-1">Easy</p>
                                                 </div>
                                             </TooltipTrigger>

@@ -6,7 +6,7 @@ import React from 'react';
 import { useRouter } from 'next/navigation';
 import { usePathname, useSearchParams } from 'next/navigation'
 
-import { BookOpenCheck, CodeXml, MessageCircle, UserRound } from 'lucide-react';
+import { BookOpenCheck, CodeXml, MessageCircle, UserRound, Dock} from 'lucide-react';
 
 import {
   Tooltip,
@@ -27,7 +27,6 @@ import {
   CommandShortcut,
 } from "@/components/ui/command"
 import { Lessons, returnIcon } from '../../../public/lessons/Lessons';
-
 import { Button as SButton } from "@/components/ui/button"
 import SearchItem from './SearchItem';
 import ThemeSwitcher from './ThemeSwitcher';
@@ -102,6 +101,7 @@ export default function Header() {
         <CommandList>
           <CommandEmpty>No results found.</CommandEmpty>
           <CommandGroup heading="Links">
+            <CommandItem><Button icon={Dock} link="/" title="Home"></Button></CommandItem>
             <CommandItem><Button icon={BookOpenCheck} link="/lessons" title="Lessons"/></CommandItem>
             <CommandItem><Button icon={CodeXml} link="/cocode" title="CoCode"/></CommandItem>
             <CommandItem><Button icon={UserRound} link="/profile" title="Profile" /></CommandItem>

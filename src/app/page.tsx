@@ -20,6 +20,8 @@ import {
 import Link from "next/link";
 import { Github, Share } from "lucide-react";
 import { CardBody, CardContainer, CardItem } from "@/components/ui/3d-card";
+import { SparklesCore } from "@/components/ui/sparkles";
+import { Button } from "@/components/ui/button";
 
 
 export default function Home() {
@@ -40,22 +42,42 @@ export default function Home() {
   return (
     <main className="flex min-h-screen flex-col gap-10 items-center justify-between p-6 lg:p-24 text-center lg:text-left">
       <div className="z-10 w-full max-w-5xl items-center justify-between font-mono text-sm lg:flex mb-4 lg:mb-12">
-        <div className="static h-full left-0 top-0 flex max-w-full justify-center border-b  pb-6 pt-8 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:w-1/2 lg:rounded-xl lg:border lg:bg-gray-200 lg:p-4 lg:dark:bg-zinc-800/30">
-          <div className="text-2xl lg:text-5xl font-extrabold text-left">
-            <span className="bg-clip-text text-transparent bg-gradient-to-r from-gray-500 to-gray-700">
+        <div className="static h-full left-0 top-0 flex max-w-full justify-center border-b  pb-6 pt-8 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:rounded-xl lg:border lg:bg-gray-200 lg:p-4 lg:dark:bg-zinc-800/30">
+          <div className="text-2xl lg:text-5xl font-extrabold text-left dark:bg-black bg-gray-500 rounded-lg p-20">
+            <span className="text-white text-center ">
               Brewing Knowledge and Inspiration, One Cup at a Time.
             </span>
+            <div className="w-full mt-2 h-40 relative rounded-[2rem]">
+                {/* Gradients */}
+                <div className="absolute inset-x-20 top-0 bg-gradient-to-r from-transparent via-indigo-500 to-transparent h-[2px] w-3/4 blur-sm" />
+                <div className="absolute inset-x-20 top-0 bg-gradient-to-r from-transparent via-indigo-500 to-transparent h-px w-3/4" />
+                <div className="absolute inset-x-60 top-0 bg-gradient-to-r from-transparent via-sky-500 to-transparent h-[5px] w-1/4 blur-sm" />
+                <div className="absolute inset-x-60 top-0 bg-gradient-to-r from-transparent via-sky-500 to-transparent h-px w-1/4" />
+        
+                {/* Core component */}
+                <SparklesCore
+                  background="transparent"
+                  minSize={0.4}
+                  maxSize={1}
+                  particleDensity={1200}
+                  className="w-full h-full"
+                  particleColor="#FFFFFF"
+                />
+        
+                {/* Radial Gradient to prevent sharp edges */}
+                <div className="absolute inset-0 w-full h-full bg-black [mask-image:radial-gradient(350px_200px_at_top,transparent_20%,white)]"></div>
+              </div>
+              <div className="flex flex-row gap-2 mx-auto w-full">
+                <div><Button onClick={() => window.location.href = window.location.href + "#lessons"}>Start Here</Button></div>
+                <div><Button variant={"outline"} className="dark:bg-gray-900">Learn More</Button></div>
+              </div>
           </div>
         </div>
-        <div className="flex h-full w-full lg:w-1/2 justify-center bg-gradient-to-t from-white via-white dark:from-black dark:via-black size-auto bg-none">
-          <CodePiece code={
-            ["public class JavaBrewed {", "\tpublic static void main(String[] args) {", "\t\tUser user = new User();", "\t\twhile (!user.isDone()) {", "\t\t\tuser.code();", "\t\t}", "\t}", "}"]
-          } />
-        </div>
+        
       </div>
       <div className="flex flex-col lg:flex-row gap-5 justify-center w-full h-auto lg:h-[90vh] p-3 lg:p-20">
         <div className="w-full lg:w-1/2 flex flex-col gap-2">
-          <h1 className="scroll-m-20 text-2xl lg:text-4xl font-extrabold tracking-tight">
+          <h1 className="scroll-m-20 text-2xl lg:text-4xl font-extrabold tracking-tight" id="lessons">
             Lessons
           </h1>
           <p>Welcome to your lessons, the heart of your Java learning journey! This section is designed to cater to all levels of Java learners, from beginners to advanced students, including those preparing for AP and Honors courses. Here's what you can expect:</p>

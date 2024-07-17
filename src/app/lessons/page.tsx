@@ -313,11 +313,13 @@ export default function LessonPage() {
             <div className="z-10 w-full items-center justify-between lg:flex mr-0">
                 <div className="flex flex-col gap-2 max-w-full" >
                     <div className=" w-[100%] h-fit mb-4">
-                        <h1 className="text-5xl font-bold mb-5">Lessons Page</h1>
-                        <div className="flex flex-row gap-3 ">
-                            {Object.values(filterButtons).map((filter, index) => (
-                                <LessonFilter key={index} title={filter.title} options={["N/A", ...filter.options]} changeFilters={changeFilters}/>
-                            ))}
+                        <h1 className="text-5xl font-bold mb-5 text-center lg:text-left">Lessons Page</h1>
+                        <div className="flex flex-col lg:flex-row gap-3 w-fit lg:w-full mx-auto lg:mx-0 ">
+                            <div className="max-w-screen lg:max-w-full flex flex-col lg:flex-row gap-2">
+                                {Object.values(filterButtons).map((filter, index) => (
+                                    <LessonFilter key={index} title={filter.title} options={["N/A", ...filter.options]} changeFilters={changeFilters}/>
+                                ))}
+                            </div>
                             <Drawer>
                                 <DrawerTrigger><PersonalizedFilter className="ml-[10px]"/></DrawerTrigger>
                                 <DrawerContent className="bg-white dark:bg-gray-800 dark:border-none ml-4 mr-4 rounded-t-[2rem] h-[95vh]">
@@ -483,7 +485,7 @@ export default function LessonPage() {
                                     </div>
                                 </DrawerContent>
                             </Drawer>
-                            <div className="grid place-items-center float-right ml-auto">
+                            <div className="grid place-items-center float-right mx-auto lg:mx-0 lg:ml-auto">
                                 <div className="flex flex-row gap-2 align-middle">
                                     <Label htmlFor="lesson-teach" className="text-1xl">{isTeachMode ? "Teach" : "Learn"}</Label>
                                     <Switch id="lesson-teach" checked={isTeachMode} onCheckedChange={() => handleSwitchChange(isTeachMode)}/>
@@ -505,7 +507,7 @@ export default function LessonPage() {
                                     </Badge>
                                 ))}
                             </div>
-                            <Carousel>
+                            <Carousel className="mx-2">
                                 <CarouselContent>
                                     {Lessons.filter(lesson => isJobFilterShow(lesson)).length === 0 ? (
                                         <div className="grid place-items-center m-3 w-full h-[200px]">
@@ -531,7 +533,7 @@ export default function LessonPage() {
                     )}
 
                     <h1 className="font-bold text-3xl lg:text-left text-center">All Lessons</h1>
-                    <Carousel >
+                    <Carousel className="mx-2">
                         <CarouselContent>
                             {Lessons.map((lesson: Object) => {
                                 return <>
@@ -544,7 +546,7 @@ export default function LessonPage() {
                     </Carousel>
                     {filters.map((group: string) => {
                         return <>
-                            <div className="flex flex-col mt-5 mb-5 gap-2">
+                            <div className="flex flex-col my-5 mx-2 gap-2">
                                 <h1 className="text-3xl font-bold md:text-left leading-20 text-center border-b">{group}</h1> <br/>
                                 <Carousel>
                                     <CarouselContent>

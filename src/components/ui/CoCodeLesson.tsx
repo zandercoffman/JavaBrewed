@@ -101,7 +101,7 @@ export default function CoCodeLesson(params: any) {
             <CardFooter className="flex w-full justify-between">
                 <div className="flex">
                     <Button asChild>
-                        <Link href={`/cocode/${linkName}?difficulty=${difficulty}`}>Code ({grammer(difficulty)})</Link>
+                        <Link href={`/cocode/${linkName}?difficulty=${difficulty}`}>Start Coding ({grammer(difficulty)})</Link>
                     </Button>
                 </div>
                 <div className="flex space-x-3">
