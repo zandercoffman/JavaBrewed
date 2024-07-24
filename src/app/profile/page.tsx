@@ -200,6 +200,10 @@ const messages = [
     "Celebrate every milestone, big or small!"
 ];
 
+const buy = (s: string) => {
+
+}
+
 export default function ProfilePage() {
     const { toast } = useToast()
 
@@ -432,7 +436,20 @@ export default function ProfilePage() {
                                                     <div><Badge variant={"outline"}>{item.value}</Badge></div>
                                                 </div>
                                                 <div className="w-[15%] mr-2">
-                                                    <Button>Buy now</Button>
+                                                    <Button onClick={() => {
+                                                        const a = localStorage.getItem("UserData");
+                                                        if (a) {
+                                                            const b = JSON.parse(a);
+                                                            if (typeof b.titles !== 'undefined') {
+                                                                b.titles.push(item.name);
+                                                                localStorage.setItem("UserData", JSON.stringify(b));
+                                                                toast({
+                                                                    title: "Successfully bought!"
+                                                                })
+                                                            }
+                                                        }
+
+                                                    }}>Buy now</Button>
                                                 </div>
                                             </div>
                                         ))}
@@ -447,7 +464,19 @@ export default function ProfilePage() {
                                                     <div><Badge variant={"outline"}>{item.value}</Badge></div>
                                                 </div>
                                                 <div className="w-[15%] mr-2">
-                                                    <Button>Buy now</Button>
+                                                    <Button onClick={() => {
+                                                        const a = localStorage.getItem("UserData");
+                                                        if (a) {
+                                                            const b = JSON.parse(a);
+                                                            if (typeof b.titles !== 'undefined') {
+                                                                b.titles.push(item.name);
+                                                                localStorage.setItem("UserData", JSON.stringify(b));
+                                                                toast({
+                                                                    title: "Successfully bought!"
+                                                                })
+                                                            }
+                                                        }
+                                                    }}>Buy now</Button>
                                                 </div>
                                             </div>
                                         ))}

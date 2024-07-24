@@ -146,7 +146,7 @@ export const WhatIsJava = {
             },
             Title: "How to install Java?",
             SubTitle: "How to install?",
-            Overview: "Learn about access modifiers and how they control access to variables and methods in Java.",
+            Overview: "Learn about how to install Java on one's machine.",
             Content: {
                 1: { type: "text", content: "You can install Java in a couple ways. By installing an IDE, installing the development enviroment, and more." },
                 2: {type: "text", content: "Visit the official Oracle website or OpenJDK website to download the JDK version suitable for your operating system (Windows, macOS, Linux)."},
@@ -157,8 +157,8 @@ export const WhatIsJava = {
                 7: {type: "link", content: {link: "https://code.visualstudio.com/Download", text: "VS Code"}}
             },
             Teach: {
-                good: [],
-                bad: ["public", "private", "global"],
+                good: ["eclipse", "vscode", "download", "jre"],
+                bad: ["public", "private", "global", ],
                 title: "to install Java"
             }
         },
@@ -203,7 +203,7 @@ export const WhatIsJava = {
             },
             Title: "Main Method",
             SubTitle: "Main Method",
-            Overview: "Learn about access modifiers and how they control access to variables and methods in Java.",
+            Overview: "Learn about the main method in Java and its usage.",
             Content: {
                 1: { type: "text", content: "Each Java program is able to be runned by the method main() which is listed in the diagram. Let us analyze each part of this method as an introduction." },
                 2: { type: "points", content: ["public: Any class is able to see it (JVM needs to see the class' method to run the program!)", "static: It belongs to the class itself and not an object made from the class.", "void: States that this method doesn't have to return anything (optional)", "main: reserved keyword so the JVM knows which method to start the program", "String[] args: An array of arguments passed in the program to then be used."]}
@@ -236,7 +236,7 @@ export const WhatIsJava = {
             },
             Title: "Syntax",
             SubTitle: "Syntax",
-            Overview: "Learn about access modifiers and how they control access to variables and methods in Java.",
+            Overview: "Learn about syntax - the language that makes Java the way it is.",
             Content: {
                 1: { type: "text", content: "Understanding the proper syntax is crucial to writing code. Here is some of the basic syntax in Java:" },
                 2: { type: "points", content: ["Parentheses (): Used when calling methods, instantiating an object.", "Curly Braces {}: Traps the code within a certain class, method or control structure.", "Semicolons ';': Used for the end of every statement in Java.", "Square Brackets []: Used when defining an array.", "// This is a single-line comment", "/* This is a multiline comment */", "/** @category This is JavaDocs */"]},
@@ -330,12 +330,12 @@ export const AccessModifiers = {
     },
     cocode: {
         easy: {
-            question: "",
-            expected: ""
+            question: "Make a class have a variable called name, and another integer variable that is a balance; No main method.",
+            expected: "public class Program { public String name = \"\"; private int balance = 20; }"
         },
         medium: {
-            question: "",
-            expected: ""
+            question: "Declare two classes, Program and Account. Declare a variable that can be seen from program (int called money) in Account and try to reference it from Program; try to set Account.money to two. Will it work?",
+            expected: "public class Program { public static void main(String[] args) { Account.money = 2; } } public class Account { public int money = 2; }"
         },
         hard: {
             question: "",
