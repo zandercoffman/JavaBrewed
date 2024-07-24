@@ -45,20 +45,8 @@ export function Overview(params: Params) {
         setContent(params.content);
     }, [params.content])
 
-    const isValid = () => {
-        let num = 0;
-        Object.keys(content).map((key, index) => {
-            const obj = content[key as keyof Content];
-            if (obj !== "")
-               num++;
-        })
-
-        return num / Object.keys(content).length > 0.5;
-    }
-
     const submit = () => {
-        if (isValid())
-            params.submit();
+        params.submit();
     }
     
     return <>

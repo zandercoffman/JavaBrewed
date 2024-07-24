@@ -6,7 +6,7 @@ import React from 'react';
 import { useRouter } from 'next/navigation';
 import { usePathname, useSearchParams } from 'next/navigation'
 
-import { BookOpenCheck, CodeXml, MessageCircle, UserRound, Dock} from 'lucide-react';
+import { BookOpenCheck, CodeXml, MessageCircle, UserRound, Dock, BotMessageSquare} from 'lucide-react';
 
 import {
   Tooltip,
@@ -122,7 +122,8 @@ export default function Header() {
           <SButton variant="outline" className='w-full md:max-w-[200px] flex flex-row gap-2 bg-slate-100 text-black dark:bg-slate-800 dark:text-white transition-colors hover:text-foreground/80 text-foreground/60' onClick={() =>  setOpen(!open)}>Search JavaBrewed... <CommandShortcut>⌘K</CommandShortcut></SButton>
           
           <div className='flex-row gap-5 hidden md:flex'>
-            <Button icon={BookOpenCheck} link="/lessons" title="Lessons" />
+            <Button icon={BotMessageSquare} link="/chatbot" title="Ask Codi"/>
+            <Button icon={BookOpenCheck} link="/lessons" title="Teach / Lessons" />
             <Button icon={CodeXml} link="/cocode" title="CoCode" />
             <Button icon={UserRound} link="/profile" title={name} />
             
